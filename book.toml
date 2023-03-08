@@ -1,0 +1,12 @@
+[book]
+title = "计算机系统结构"
+authors = ["JZYFC"]
+language = "zh-cn"
+multilingual = false
+src = "src"
+
+[build]
+create-missing = false
+
+[output.html]
+mathjax-support = true
