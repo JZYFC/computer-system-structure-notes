@@ -20,7 +20,7 @@ jobs:
           mdbook-version: 'latest'
           
       - name: Install mdbook-katex
-        uses: jaxxstorm/action-install-gh-release@v1.9
+        uses: jaxxstorm/action-install-gh-release@v1.9.0
         with: # Grab the latest version
           repo: lzanini/mdbook-katex
 
