@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>简单接口电路及应用 - 计算机系统结构</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Part 1</li><li class="chapter-item expanded "><a href="../../../Part1/一. 计算机中的信息表示.html"><strong aria-hidden="true">1.</strong> 计算机中的信息表示</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/数据性数据的表示方法.html"><strong aria-hidden="true">1.1.</strong> 数据型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/字符型数据的表示方法.html"><strong aria-hidden="true">1.2.</strong> 字符型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/计算机中信息的物理表示.html"><strong aria-hidden="true">1.3.</strong> 计算机中信息的物理表示</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part1/二. 数字逻辑基础.html"><strong aria-hidden="true">2.</strong> 数字逻辑基础</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 2</li><li class="chapter-item expanded "><a href="../../../Part2/一. 概论/概论.html"><strong aria-hidden="true">3.</strong> 概论</a></li><li class="chapter-item expanded "><a href="../../../Part2/二. 指令系统/二. 指令系统.html"><strong aria-hidden="true">4.</strong> 指令系统</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/中央处理器.html"><strong aria-hidden="true">5.</strong> 中央处理器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/1. 模型机的总体设计/模型机的总体设计.html"><strong aria-hidden="true">5.1.</strong> 模型机的总体设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html"><strong aria-hidden="true">5.2.</strong> 运算部件与运算器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/3. 模型机的组合逻辑控制器/模型机的组合逻辑控制器.html"><strong aria-hidden="true">5.3.</strong> 模型机的组合逻辑控制器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html"><strong aria-hidden="true">5.4.</strong> 模型机的微程序控制器</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/存储子系统.html"><strong aria-hidden="true">6.</strong> 存储子系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/1. 概述/概述.html"><strong aria-hidden="true">6.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/2. 半导体存储原理/半导体存储原理.html"><strong aria-hidden="true">6.2.</strong> 半导体存储原理</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html"><strong aria-hidden="true">6.3.</strong> 主存储器组织</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/一. 主存储器的逻辑设计/一. 主存储器的逻辑设计.html"><strong aria-hidden="true">6.3.1.</strong> 主存储器的逻辑设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/二.动态存储器的刷新/动态存储器的刷新.html"><strong aria-hidden="true">6.3.2.</strong> 动态存储器的刷新</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html"><strong aria-hidden="true">6.3.3.</strong> 主存储器的校验方法</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 磁表面存储器</div></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/五. 输入输出子系统/输入输出系统.html"><strong aria-hidden="true">7.</strong> 输入输出系统</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 3</li><li class="chapter-item expanded "><a href="../../../Part3/一. 微型计算机概述/微型计算机概述.html"><strong aria-hidden="true">8.</strong> 微型计算机概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/二. 微处理器/微处理器.html"><strong aria-hidden="true">9.</strong> 微处理器</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/8086-8088指令系统.html"><strong aria-hidden="true">10.</strong> 8086-8088指令系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/1. 概述/概述.html"><strong aria-hidden="true">10.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html"><strong aria-hidden="true">10.2.</strong> 寻址方式</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/3. 指令系统/指令系统.html"><strong aria-hidden="true">10.3.</strong> 指令系统</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html"><strong aria-hidden="true">11.</strong> 汇编语言程序设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/1. 汇编语言基础/汇编语言基础.html"><strong aria-hidden="true">11.1.</strong> 汇编语言基础</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html"><strong aria-hidden="true">11.2.</strong> 常用伪指令</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/3. DOS功能调用/DOS功能调用.html"><strong aria-hidden="true">11.3.</strong> DOS功能调用</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/4. 汇编程序设计基础/汇编程序设计基础.html"><strong aria-hidden="true">11.4.</strong> 汇编程序设计基础</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/输入输出及中断技术.html"><strong aria-hidden="true">12.</strong> 输入输出及中断技术</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html"><strong aria-hidden="true">12.1.</strong> IO系统概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/2. 简单接口电路及应用/简单接口电路及应用.html" class="active"><strong aria-hidden="true">12.2.</strong> 简单接口电路及应用</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html"><strong aria-hidden="true">12.3.</strong> 8086-8088中断系统</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/4. 中断控制器8259A/中断控制器8259A.html"><strong aria-hidden="true">12.4.</strong> 中断控制器8259A</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机系统结构</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="简单接口电路及应用"><a class="header" href="#简单接口电路及应用">简单接口电路及应用</a></h1>
+<h2 id="三态门接口"><a class="header" href="#三态门接口">三态门接口</a></h2>
+<p>三态门具有数据控制能力, 常用作输入接口</p>
+<p><img src="pics/%E4%B8%89%E6%80%81%E9%97%A8.png" alt="三态门" /></p>
+<h3 id="74ls244"><a class="header" href="#74ls244">74LS244</a></h3>
+<ul>
+<li>8个三态门</li>
+<li>两个控制端: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord">1</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mord cjk_fallback">、</span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord">2</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></li>
+<li>控制端有效时, 外设与总线联通</li>
+</ul>
+<p><img src="pics/74LS244%E5%BC%95%E8%84%9A%E5%9B%BE.png" alt="引脚图" /></p>
+<h3 id="示例"><a class="header" href="#示例">示例</a></h3>
+<p><img src="pics/%E4%B8%89%E6%80%81%E9%97%A8%E7%94%A8%E4%BD%9C%E8%BE%93%E5%85%A5%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B.png" alt="示例" /></p>
+<h2 id="锁存器接口"><a class="header" href="#锁存器接口">锁存器接口</a></h2>
+<p>具备对数据的锁存能力, 常用作输出接口</p>
+<p>CPU输出的数据经数据总线送锁存器锁存, 直到设备将数据取走</p>
+<p>采用具有信息存储能力的双稳态触发器构成;</p>
+<p><img src="pics/D%E8%A7%A6%E5%8F%91%E5%99%A8.png" alt="D触发器" /></p>
+<h3 id="锁存器芯片74ls273"><a class="header" href="#锁存器芯片74ls273">锁存器芯片74LS273</a></h3>
+<ul>
+<li>8D触发器, 有锁存能力, 常用作输出接口</li>
+<li>S:异步复位端, 低电平有效</li>
+<li>CP：同步脉冲输入, 上升沿触发</li>
+</ul>
+<p><img src="pics/74LS273.png" alt="74LS273" /></p>
+<h3 id="锁存器芯片74ls374"><a class="header" href="#锁存器芯片74ls374">锁存器芯片74LS374</a></h3>
+<ul>
+<li>三态输出的8D触发器, 具有对数据的控制能力;</li>
+<li>既可以用做输入接口, 也可以用做输出接口;</li>
+<li>输出允许端<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">OE</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>, 低电平有效</li>
+</ul>
+<p><img src="pics/74LS374.png" alt="74LS374" /></p>
+<h3 id="74ls374作输出接口示例"><a class="header" href="#74ls374作输出接口示例">74LS374作输出接口示例</a></h3>
+<p><img src="pics/74LS374%E4%BD%9C%E8%BE%93%E5%87%BA%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B.png" alt="74LS374作输出接口示例" /></p>
+<h3 id="74ls374作输入接口示例"><a class="header" href="#74ls374作输入接口示例">74LS374作输入接口示例</a></h3>
+<p><img src="pics/74LS374%E4%BD%9C%E8%BE%93%E5%85%A5%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B.png" alt="74LS374作输入接口示例" /></p>
+<h2 id="io接口应用示例"><a class="header" href="#io接口应用示例">IO接口应用示例</a></h2>
+<h3 id="例1"><a class="header" href="#例1">例1</a></h3>
+<p>外设状态端口地址为<code>03FBH</code>, 第5位(bit5)为状态标志（=1忙, =0准备好）</p>
+<p>外设数据端口地址为<code>03F8H</code>, 写入数据会使状态标志置1; 外设把数据读走后又把它置0</p>
+<p>试画出其电路图, 并将BUF中的100个字节数据输出。</p>
+<h4 id="电路图"><a class="header" href="#电路图">电路图</a></h4>
+<p><img src="pics/%E4%BE%8B1%E7%94%B5%E8%B7%AF%E5%9B%BE.png" alt="例1电路图" /></p>
+<h4 id="控制程序"><a class="header" href="#控制程序">控制程序</a></h4>
+<p><img src="pics/%E4%BE%8B1%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="流程图" /></p>
+<pre><code class="language-asm">        LEA SI, BUF
+        MOV CX, 100
+AGAIN:  MOV DX, 03FBH   ; 状态端口
+WAITT:  IN  AL,DX       ; 读状态端口         
+        TEST AL,20H
+        JNZ   WAITT    ; 设备   
+        MOV DX,03F8H   ; 数据端口
+        MOV AL, [SI]
+        OUT DX, AL     ; 写数端口
+        INC SI
+        LOOP  AGAIN
+        HLT
+</code></pre>
+<h3 id="例2"><a class="header" href="#例2">例2</a></h3>
+<ul>
+<li>根据开关状态在7段数码管上显示数字或符号</li>
+<li>当4个开关的状态分别为<code>0000～1111</code>时，在7段数码管上对应显示’0’～’F’</li>
+<li>设输出端口的地址为<code>0F0H</code>,输入端口地址为<code>0F1H</code></li>
+</ul>
+<p><img src="pics/%E4%BE%8B2%E9%A2%98%E7%9B%AE%E8%AF%B4%E6%98%8E.png" alt="题目说明" /></p>
+<blockquote>
+<p>发光二极管高电平亮<br />
+输入端口: 连开关<br />
+输出端口: 连数码管</p>
+</blockquote>
+<h4 id="电路图-1"><a class="header" href="#电路图-1">电路图</a></h4>
+<p><img src="pics/%E4%BE%8B2%E7%94%B5%E8%B7%AF%E5%9B%BE.png" alt="电路图" /></p>
+<blockquote>
+<p>74LS273作为输出接口. 74LS244作为输入接口<br />
+DP为小数点指示, 不使用<br />
+要发光二极管亮, 则对应的 Q 则应为1<br />
+开关关, 低电平; 开关开, 高电平</p>
+</blockquote>
+<h4 id="数码管显示"><a class="header" href="#数码管显示">数码管显示</a></h4>
+<p><img src="pics/%E4%BE%8B2%E6%95%B0%E7%A0%81%E7%AE%A1%E6%98%BE%E7%A4%BA%E8%A1%A8.png" alt="数码管显示表" /></p>
+<blockquote>
+<p>注意小数点不显示, Dp为0</p>
+</blockquote>
+<h4 id="控制程序-1"><a class="header" href="#控制程序-1">控制程序</a></h4>
+<pre><code class="language-asm">        ……
+Seg7  DB  3FH,06H, 5BH,4FH,66H,6DH, 7DH,07H, 
+    7FH,67H,77H, 7CH,39H,5EH,79H,71H
+        ……
+        LEA    BX, Seg7
+        MOV    AH, 0
+GOON:   IN     AL, 0F1H   ;读输入端口
+        AND    AL, 0FH    ;屏蔽高4位，保留低4位的开关状态 
+        MOV    SI, AX      ;计算在Seg7中的位移量
+        MOV    AL, [BX+SI]
+        OUT    0F0H, AL  ;写输出端口
+        JMP    GOON
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

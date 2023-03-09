@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>半导体存储原理 - 计算机系统结构</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Part 1</li><li class="chapter-item expanded "><a href="../../../Part1/一. 计算机中的信息表示.html"><strong aria-hidden="true">1.</strong> 计算机中的信息表示</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/数据性数据的表示方法.html"><strong aria-hidden="true">1.1.</strong> 数据型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/字符型数据的表示方法.html"><strong aria-hidden="true">1.2.</strong> 字符型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/计算机中信息的物理表示.html"><strong aria-hidden="true">1.3.</strong> 计算机中信息的物理表示</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part1/二. 数字逻辑基础.html"><strong aria-hidden="true">2.</strong> 数字逻辑基础</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 2</li><li class="chapter-item expanded "><a href="../../../Part2/一. 概论/概论.html"><strong aria-hidden="true">3.</strong> 概论</a></li><li class="chapter-item expanded "><a href="../../../Part2/二. 指令系统/二. 指令系统.html"><strong aria-hidden="true">4.</strong> 指令系统</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/中央处理器.html"><strong aria-hidden="true">5.</strong> 中央处理器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/1. 模型机的总体设计/模型机的总体设计.html"><strong aria-hidden="true">5.1.</strong> 模型机的总体设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html"><strong aria-hidden="true">5.2.</strong> 运算部件与运算器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/3. 模型机的组合逻辑控制器/模型机的组合逻辑控制器.html"><strong aria-hidden="true">5.3.</strong> 模型机的组合逻辑控制器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html"><strong aria-hidden="true">5.4.</strong> 模型机的微程序控制器</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/存储子系统.html"><strong aria-hidden="true">6.</strong> 存储子系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/1. 概述/概述.html"><strong aria-hidden="true">6.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/2. 半导体存储原理/半导体存储原理.html" class="active"><strong aria-hidden="true">6.2.</strong> 半导体存储原理</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html"><strong aria-hidden="true">6.3.</strong> 主存储器组织</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/一. 主存储器的逻辑设计/一. 主存储器的逻辑设计.html"><strong aria-hidden="true">6.3.1.</strong> 主存储器的逻辑设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/二.动态存储器的刷新/动态存储器的刷新.html"><strong aria-hidden="true">6.3.2.</strong> 动态存储器的刷新</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html"><strong aria-hidden="true">6.3.3.</strong> 主存储器的校验方法</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 磁表面存储器</div></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/五. 输入输出子系统/输入输出系统.html"><strong aria-hidden="true">7.</strong> 输入输出系统</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 3</li><li class="chapter-item expanded "><a href="../../../Part3/一. 微型计算机概述/微型计算机概述.html"><strong aria-hidden="true">8.</strong> 微型计算机概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/二. 微处理器/微处理器.html"><strong aria-hidden="true">9.</strong> 微处理器</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/8086-8088指令系统.html"><strong aria-hidden="true">10.</strong> 8086-8088指令系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/1. 概述/概述.html"><strong aria-hidden="true">10.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html"><strong aria-hidden="true">10.2.</strong> 寻址方式</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/3. 指令系统/指令系统.html"><strong aria-hidden="true">10.3.</strong> 指令系统</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html"><strong aria-hidden="true">11.</strong> 汇编语言程序设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/1. 汇编语言基础/汇编语言基础.html"><strong aria-hidden="true">11.1.</strong> 汇编语言基础</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html"><strong aria-hidden="true">11.2.</strong> 常用伪指令</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/3. DOS功能调用/DOS功能调用.html"><strong aria-hidden="true">11.3.</strong> DOS功能调用</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/4. 汇编程序设计基础/汇编程序设计基础.html"><strong aria-hidden="true">11.4.</strong> 汇编程序设计基础</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/输入输出及中断技术.html"><strong aria-hidden="true">12.</strong> 输入输出及中断技术</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html"><strong aria-hidden="true">12.1.</strong> IO系统概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/2. 简单接口电路及应用/简单接口电路及应用.html"><strong aria-hidden="true">12.2.</strong> 简单接口电路及应用</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html"><strong aria-hidden="true">12.3.</strong> 8086-8088中断系统</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/4. 中断控制器8259A/中断控制器8259A.html"><strong aria-hidden="true">12.4.</strong> 中断控制器8259A</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机系统结构</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="半导体存储原理"><a class="header" href="#半导体存储原理">半导体存储原理</a></h1>
+<h2 id="存储元"><a class="header" href="#存储元">存储元</a></h2>
+<p><font color=blue>存储元</font>: 能够表示一位二进制的&quot;0&quot;、&quot;1&quot;两种状态，且具有记忆功能的物理器件</p>
+<p><font color=blue>存储单元</font>: 若干存储元构成的一个存储单元</p>
+<p><font color="blue">按信息存储原理分类</font></p>
+<ol>
+<li>静态存储元SRAM(静态MOS型), 不需刷新</li>
+<li>动态存储元DRAM(动态MOS型), 需要刷新</li>
+</ol>
+<h2 id="静态mos存储元与芯片-sram"><a class="header" href="#静态mos存储元与芯片-sram">静态MOS存储元与芯片 (SRAM)</a></h2>
+<h3 id="1-六管单元电路结构存储元"><a class="header" href="#1-六管单元电路结构存储元">1. 六管单元电路结构(存储元)</a></h3>
+<p>依靠<font color=orange><strong>双稳态电路</strong></font>内部交叉反馈的机制存储信息</p>
+<p><img src="pics/%E5%85%AD%E7%AE%A1%E5%8D%95%E5%85%83%E7%94%B5%E8%B7%AF%E7%BB%93%E6%9E%84.png" alt="六管单元电路结构" /></p>
+<p>存0: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span> 高电平, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span> 低电平<br />
+存0: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span> 低电平, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span> 高电平</p>
+<p>有VCC, 功耗较高</p>
+<h3 id="2-存储芯片"><a class="header" href="#2-存储芯片">2. 存储芯片</a></h3>
+<h4 id="1-sram芯片2114"><a class="header" href="#1-sram芯片2114">(1) SRAM芯片2114</a></h4>
+<p><img src="pics/SRAM2114.png" alt="2114" /></p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>: 1K个编址单元, 每个4b</p>
+<p>地址端: 接地址总线</p>
+<p>数据端: 接数据总线</p>
+<h4 id="2-sram芯片6264"><a class="header" href="#2-sram芯片6264">(2) SRAM芯片6264</a></h4>
+<p><img src="pics/SRAM6264.png" alt="6264" /></p>
+<h2 id="动态mos存储元与芯片-dram"><a class="header" href="#动态mos存储元与芯片-dram">动态MOS存储元与芯片 (DRAM)</a></h2>
+<h3 id="1-基本存储原理"><a class="header" href="#1-基本存储原理">1. 基本存储原理</a></h3>
+<p>依靠电容存储电荷的原理存储信息</p>
+<h3 id="2-动态存储元刷新"><a class="header" href="#2-动态存储元刷新">2. 动态存储元刷新</a></h3>
+<p>电容存在泄漏通路，电容上的电荷通过泄漏电路放电，使存储的信息丢失<br />
+为此，每隔一定时间后就需要对<font color="red">存1的电容重新充电</font>，称为<font color="red">刷新</font></p>
+<h3 id="3-四管单元电路-存储元"><a class="header" href="#3-四管单元电路-存储元">3. 四管单元电路 (存储元)</a></h3>
+<p><img src="pics/%E5%9B%9B%E7%AE%A1%E5%AD%98%E5%82%A8%E5%8D%95%E5%85%83.png" alt="四管存储单元" /></p>
+<p>无VCC, 功耗较低</p>
+<p>0、1与W的关系同六管单元</p>
+<p><img src="pics/DRAM%E5%86%99%E5%85%A5.png" alt="写入1" />
+<img src="pics/DRAM%E5%86%99%E5%85%A52.png" alt="写入2" /></p>
+<p><img src="pics/DRAM%E8%AF%BB.png" alt="读取" />
+<img src="pics/DRAM%E8%AF%BB2.png" alt="读取2" /></p>
+<p><img src="pics/DRAM%E4%BF%9D%E5%AD%98.png" alt="保持" /></p>
+<h3 id="4-单管单元电路"><a class="header" href="#4-单管单元电路">4. 单管单元电路</a></h3>
+<p><img src="pics/%E5%8D%95%E7%AE%A1%E5%8D%95%E5%85%831.png" alt="单管单元" />
+<img src="pics/%E5%8D%95%E7%AE%A1%E5%8D%95%E5%85%832.png" alt="单管单元2" />
+W预充电: 到C的高低电平之间</p>
+<h3 id="5-存储芯片2164"><a class="header" href="#5-存储芯片2164">5. 存储芯片2164</a></h3>
+<p><img src="pics/DRAM2164.png" alt="2164" /></p>
+<p>分时复用: 两次地址数据传送一个地址</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Part2/四. 存储子系统/1. 概述/概述.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Part2/四. 存储子系统/1. 概述/概述.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

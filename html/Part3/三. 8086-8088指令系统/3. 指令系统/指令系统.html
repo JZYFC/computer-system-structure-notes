@@ -1,0 +1,1253 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>指令系统 - 计算机系统结构</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Part 1</li><li class="chapter-item expanded "><a href="../../../Part1/一. 计算机中的信息表示.html"><strong aria-hidden="true">1.</strong> 计算机中的信息表示</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/数据性数据的表示方法.html"><strong aria-hidden="true">1.1.</strong> 数据型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/字符型数据的表示方法.html"><strong aria-hidden="true">1.2.</strong> 字符型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/计算机中信息的物理表示.html"><strong aria-hidden="true">1.3.</strong> 计算机中信息的物理表示</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part1/二. 数字逻辑基础.html"><strong aria-hidden="true">2.</strong> 数字逻辑基础</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 2</li><li class="chapter-item expanded "><a href="../../../Part2/一. 概论/概论.html"><strong aria-hidden="true">3.</strong> 概论</a></li><li class="chapter-item expanded "><a href="../../../Part2/二. 指令系统/二. 指令系统.html"><strong aria-hidden="true">4.</strong> 指令系统</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/中央处理器.html"><strong aria-hidden="true">5.</strong> 中央处理器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/1. 模型机的总体设计/模型机的总体设计.html"><strong aria-hidden="true">5.1.</strong> 模型机的总体设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html"><strong aria-hidden="true">5.2.</strong> 运算部件与运算器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/3. 模型机的组合逻辑控制器/模型机的组合逻辑控制器.html"><strong aria-hidden="true">5.3.</strong> 模型机的组合逻辑控制器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html"><strong aria-hidden="true">5.4.</strong> 模型机的微程序控制器</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/存储子系统.html"><strong aria-hidden="true">6.</strong> 存储子系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/1. 概述/概述.html"><strong aria-hidden="true">6.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/2. 半导体存储原理/半导体存储原理.html"><strong aria-hidden="true">6.2.</strong> 半导体存储原理</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html"><strong aria-hidden="true">6.3.</strong> 主存储器组织</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/一. 主存储器的逻辑设计/一. 主存储器的逻辑设计.html"><strong aria-hidden="true">6.3.1.</strong> 主存储器的逻辑设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/二.动态存储器的刷新/动态存储器的刷新.html"><strong aria-hidden="true">6.3.2.</strong> 动态存储器的刷新</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html"><strong aria-hidden="true">6.3.3.</strong> 主存储器的校验方法</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 磁表面存储器</div></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/五. 输入输出子系统/输入输出系统.html"><strong aria-hidden="true">7.</strong> 输入输出系统</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 3</li><li class="chapter-item expanded "><a href="../../../Part3/一. 微型计算机概述/微型计算机概述.html"><strong aria-hidden="true">8.</strong> 微型计算机概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/二. 微处理器/微处理器.html"><strong aria-hidden="true">9.</strong> 微处理器</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/8086-8088指令系统.html"><strong aria-hidden="true">10.</strong> 8086-8088指令系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/1. 概述/概述.html"><strong aria-hidden="true">10.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html"><strong aria-hidden="true">10.2.</strong> 寻址方式</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/3. 指令系统/指令系统.html" class="active"><strong aria-hidden="true">10.3.</strong> 指令系统</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html"><strong aria-hidden="true">11.</strong> 汇编语言程序设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/1. 汇编语言基础/汇编语言基础.html"><strong aria-hidden="true">11.1.</strong> 汇编语言基础</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html"><strong aria-hidden="true">11.2.</strong> 常用伪指令</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/3. DOS功能调用/DOS功能调用.html"><strong aria-hidden="true">11.3.</strong> DOS功能调用</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/4. 汇编程序设计基础/汇编程序设计基础.html"><strong aria-hidden="true">11.4.</strong> 汇编程序设计基础</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/输入输出及中断技术.html"><strong aria-hidden="true">12.</strong> 输入输出及中断技术</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html"><strong aria-hidden="true">12.1.</strong> IO系统概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/2. 简单接口电路及应用/简单接口电路及应用.html"><strong aria-hidden="true">12.2.</strong> 简单接口电路及应用</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html"><strong aria-hidden="true">12.3.</strong> 8086-8088中断系统</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/4. 中断控制器8259A/中断控制器8259A.html"><strong aria-hidden="true">12.4.</strong> 中断控制器8259A</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机系统结构</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="指令系统"><a class="header" href="#指令系统">指令系统</a></h1>
+<p>常用符号说明</p>
+<div class="table-wrapper"><table><thead><tr><th>符号</th><th>说明</th></tr></thead><tbody>
+<tr><td>OPRD</td><td>泛指操作数</td></tr>
+<tr><td>REG</td><td>寄存器操作数</td></tr>
+<tr><td>mem</td><td>存储器操作数</td></tr>
+<tr><td>acc</td><td>累加器(<code>AX AL</code>)操作数</td></tr>
+<tr><td>dest</td><td>目标操作数</td></tr>
+<tr><td>src</td><td>源操作数</td></tr>
+<tr><td>disp</td><td>8/16位偏移量, 可以是符号地址</td></tr>
+<tr><td>DATA</td><td>8/16位立即数</td></tr>
+<tr><td>PORT</td><td>输入输出端口号</td></tr>
+<tr><td>[ ]</td><td>存储器操作数, 括号内为偏移地址</td></tr>
+</tbody></table>
+</div>
+<h2 id="一-数据传输指令"><a class="header" href="#一-数据传输指令">一. 数据传输指令</a></h2>
+<h3 id="1-通用数据传送"><a class="header" href="#1-通用数据传送">1. 通用数据传送</a></h3>
+<p><strong>特点:</strong> <font color=red>该类指令的执行对标识位不产生影响</font></p>
+<h4 id="1-一般数据传送指令"><a class="header" href="#1-一般数据传送指令">1) 一般数据传送指令</a></h4>
+<p>格式: <code>MOV dest src</code></p>
+<p>操作: <code>src</code> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>dest</code></p>
+<p><font color="orange">执行后<code>src</code>不变</font></p>
+<p>举例:</p>
+<pre><code class="language-asm">MOV AL, BL
+MOV AX, 1278H
+MOV [BX], AX
+</code></pre>
+<p>注意事项:</p>
+<ul>
+<li>两操作数长度必须相同</li>
+<li>存储单元之间不能直接传送(可以分成两条, 用一个寄存器过渡)</li>
+<li>段寄存器CS和指令指针IP一般不直接通过MOV指令修改，但可作源操作数</li>
+<li>立即数不能直接传送给段寄存器</li>
+<li>两个段寄存器之间不能直接传送</li>
+<li><font color=red>不影响标志位</font></li>
+</ul>
+<p><img src="pics/MOV%E4%BC%A0%E9%80%81%E6%96%B9%E5%90%91%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="传送方向示意图" /></p>
+<blockquote>
+<p><img src="pics/MOV%E5%88%A4%E6%96%AD.png" alt="判断" />
+第三个判断: BX与BP不兼容, 应为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">BP</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">SP</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mclose">)</span></span></span></span><br />
+第五项: <code>09H</code> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>0009H</code></p>
+</blockquote>
+<h5 id="mov应用例"><a class="header" href="#mov应用例">MOV应用例</a></h5>
+<p>将符号 &quot;*&quot; 的ASCII码 <code>2AH</code>送入内存数据段 <code>1010H</code> 开始的100个单元中</p>
+<p><img src="pics/MOV%E5%BA%94%E7%94%A8%E4%BE%8B.png" alt="MOV应用例" /></p>
+<p>程序段:</p>
+<pre><code class="language-asm">       MOV  DI, 1010H       ; 变址寄存器初始化
+       MOV  CX, 100         ; 计数器初值
+       MOV  AL, '*'
+AGAIN: MOV  [DI], AL        ; 一字节传送
+       INC  DI              ; 修改地址指针(+1)
+       DEC  CX              ; 修改计数器(-1)
+       JNZ  AGAIN           ; ZF!=0则继续传送
+       HLT
+</code></pre>
+<p><img src="pics/MOV%E5%BA%94%E7%94%A8%E4%BE%8B-%E7%BB%93%E6%9E%9C.png" alt="结果" /></p>
+<h4 id="2-堆栈操作指令"><a class="header" href="#2-堆栈操作指令">2) 堆栈操作指令</a></h4>
+<p>堆栈操作类型: 入栈(压栈)、出栈</p>
+<p>在活动段(栈顶)进行, 先进后出</p>
+<p>以<font color=red>字为单位</font>, 操作数必须位16位</p>
+<h5 id="压栈指令-push"><a class="header" href="#压栈指令-push">压栈指令 <code>PUSH</code></a></h5>
+<p>格式: <code>PUSH OPRD</code> (<code>OPRD</code>: 16位寄存器或存储器字单元)</p>
+<p>指令执行过程:</p>
+<p><img src="pics/PUSH%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C.png" alt="执行过程" /></p>
+<ol>
+<li><code>SP - 2</code> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>SP</code></li>
+<li>操作数高字节 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>(SP + 1)</code></li>
+<li>操作数低字节 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>(SP)</code></li>
+</ol>
+<p>操作示例:</p>
+<p><img src="pics/PUSH%E7%9A%84%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B.png" alt="操作示例" /></p>
+<h5 id="出栈指令-pop"><a class="header" href="#出栈指令-pop">出栈指令 <code>POP</code></a></h5>
+<p>格式: <code>POP OPRD</code></p>
+<p>指令执行过程:</p>
+<ol>
+<li><code>(SP)</code>操作数低字节 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 弹出</li>
+<li><code>(SP + 1)</code>操作数高字节 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 弹出</li>
+<li><code>SP + 2</code> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>SP</code></li>
+</ol>
+<p><img src="pics/POP%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B.png" alt="POP操作示例" /></p>
+<h5 id="堆栈操作指令说明"><a class="header" href="#堆栈操作指令说明">堆栈操作指令说明</a></h5>
+<ul>
+<li>操作数必须是<font color="orange">16位</font></li>
+<li>操作数不能是立即数</li>
+<li>出栈指令操作数不能是CS</li>
+<li>PUSH 与 POP 指令一般<font color="orange">成对使用</font></li>
+<li>PUSH指令的操作方向是从高地址向低地址，而POP指令操作是从低地址向高地址</li>
+</ul>
+<h5 id="例题"><a class="header" href="#例题">例题</a></h5>
+<p>说明程序段功能</p>
+<pre><code class="language-asm">MOV  AX，1234H
+MOV  SP，AX
+MOV  BX，5678H
+
+PUSH  AX
+PUSH  BX
+
+POP  AX
+POP  BX
+</code></pre>
+<p><img src="pics/PUSHPOP%E4%BE%8B%E9%A2%98%E9%85%8D%E5%9B%BE.png" alt="配图" /></p>
+<p><font color=red>交换</font><code>AX、BX</code></p>
+<h5 id="非栈顶单元的访问"><a class="header" href="#非栈顶单元的访问">非栈顶单元的访问</a></h5>
+<p>要想访问非栈顶单元, 可以使用<code>MOV</code></p>
+<p><code>BP</code>默认在<code>SS(堆栈段)</code></p>
+<h4 id="3-交换指令"><a class="header" href="#3-交换指令">3) 交换指令</a></h4>
+<p>格式: <code>XCHG REG/MEM MEM/REG</code></p>
+<p>说明:</p>
+<ul>
+<li>两操作数必须有一个是寄存器操作数</li>
+<li>不能使用段寄存器</li>
+</ul>
+<p>使用例:</p>
+<pre><code class="language-asm">XCHG AX，BX
+XCHG [2000]，CL
+</code></pre>
+<h4 id="4-查表转换指令"><a class="header" href="#4-查表转换指令">4) 查表转换指令</a></h4>
+<p>格式: <code>XLAT</code></p>
+<p>说明:</p>
+<ul>
+<li>零操作数, <font color=red>隐含寻址</font>, 隐含操作数为 <code>BX AL</code></li>
+<li><code>BX</code>: 表格<font color="red">首地址</font></li>
+<li><code>AL</code>: 要查找元素序号(0, 1, 2, ...), 即&lt;font color=&gt;表内位移量</font></li>
+</ul>
+<p>操作:</p>
+<p><code>((BX) + (AL))</code> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>AL</code></p>
+<p><code>XLAT</code> 指令为字节传送</p>
+<h5 id="查表指令例"><a class="header" href="#查表指令例">查表指令例</a></h5>
+<p><img src="pics/%E6%9F%A5%E8%A1%A8%E6%8C%87%E4%BB%A4%E4%BE%8B.png" alt="查表指令例" /></p>
+<p>查表指令实现:</p>
+<pre><code class="language-asm">MOV  BX, 2000H      ;BX &lt;- 表首地址
+MOV  AL, 0BH        ;AL &lt;- 序号(表内偏移)
+XLAT                ;查表转换
+</code></pre>
+<p>执行后 <code>AL = 42H</code></p>
+<p>传送指令实现:</p>
+<pre><code class="language-asm">MOV  BX, 0BH
+MOV  AL, [BX+2000H]
+</code></pre>
+<h4 id="5-字位扩展指令"><a class="header" href="#5-字位扩展指令">5) 字位扩展指令</a></h4>
+<p>将有符号数的<font color=orange>符号位扩展</font>到高位</p>
+<ul>
+<li><code>CBW</code>：字节-&gt;字</li>
+<li><code>CWD</code>：字-&gt;双字</li>
+</ul>
+<p>指令为零操作数指令，采用<font color="red">隐含寻址</font>，隐含的操作数为<code>AX</code>或<code>AX:DX</code></p>
+<h5 id="cbw"><a class="header" href="#cbw"><code>CBW</code></a></h5>
+<p>将AL的符号位扩展到AH</p>
+<ul>
+<li>若<code>AL</code>最高位=1，则执行后 <code>AH=FFH</code></li>
+<li>若<code>AL</code>最高位=0，则执行后 <code>AH=00H</code></li>
+</ul>
+<h5 id="cwd"><a class="header" href="#cwd"><code>CWD</code></a></h5>
+<p>将<code>AX</code>符号位扩展到<code>DX</code></p>
+<ul>
+<li>若<code>AX</code>最高位=1，则执行后 <code>DX=FFFFH</code></li>
+<li>若<code>AX</code>最高位=0，则执行后 <code>DX=0000H</code></li>
+</ul>
+<h5 id="例"><a class="header" href="#例">例</a></h5>
+<p>给出以下指令执行结果</p>
+<pre><code class="language-asm">MOV  AL，44H
+CBW
+; AX = 0044H
+
+MOV  AX，0AFDEH
+CWD
+; DX = FFFFH
+
+MOV  AL，86H
+CBW
+; AX = FF86H
+</code></pre>
+<p>多用于除法指令(被除数、除数、商的宽度不同)</p>
+<h3 id="2-输入输出指令"><a class="header" href="#2-输入输出指令">2. 输入输出指令</a></h3>
+<p>专用I/O指令，面向I/O端口操作</p>
+<h4 id="指令格式"><a class="header" href="#指令格式">指令格式</a></h4>
+<p>输入指令: <code>IN acc, PORT</code></p>
+<p>输出指令: <code>OUT PORT, acc</code></p>
+<p><code>PORT</code> 为端口地址, <code>acc</code> 为累加器 <code>AX或AL</code></p>
+<p>注意<code>acc</code>的限定</p>
+<h4 id="io-寻址方式port表示方式"><a class="header" href="#io-寻址方式port表示方式">IO 寻址方式(PORT表示方式)</a></h4>
+<h5 id="直接寻址"><a class="header" href="#直接寻址">直接寻址</a></h5>
+<p>端口地址为<font color="red">8位</font>时，指令中直接给出8位端口地址</p>
+<p>可寻址 255 个端口</p>
+<h5 id="间接寻址"><a class="header" href="#间接寻址">间接寻址</a></h5>
+<p>端口地址为<font color="red">16位</font>时，指令中的端口地址必须由<code>DX</code>指定</p>
+<p>可寻址 64K 个端口</p>
+<h4 id="io指令例"><a class="header" href="#io指令例">IO指令例</a></h4>
+<pre><code class="language-asm">IN  AX，80H ; 80H 为端口号, (80H) -&gt; AX
+OUT 35H，AX ; 35H 为端口号, AX -&gt; (35H)
+
+MOV DX，2400H
+IN  AL，DX  ; 2400H 为端口号, (DX) -&gt; AL
+</code></pre>
+<p>注意端口号的表示与通用数据传送指令里间接寻址的不同</p>
+<h4 id="注意点"><a class="header" href="#注意点">注意点</a></h4>
+<p>只有累加器(<code>AX/AL</code>)可用于与端口间传送数据</p>
+<p>端口间接寻址只能用DX</p>
+<p><font color="red">与传送类指令寻址方式的区别</font></p>
+<h3 id="3-地址传送指令"><a class="header" href="#3-地址传送指令">3. 地址传送指令</a></h3>
+<p>用于获取<font color="orange">存储器操作数</font>的<font color="orange">段基址</font>和<font color="orange">段内偏移地址</font></p>
+<h4 id="1-取偏移地址指令-lea"><a class="header" href="#1-取偏移地址指令-lea">1) 取偏移地址指令 <code>LEA</code></a></h4>
+<blockquote>
+<p>EA: 有效地址, L: Load</p>
+</blockquote>
+<p>格式: <code>LEA REG MEM</code> (<code>MEM</code> 为存储器操作数)</p>
+<p>操作: 将存储器操作数<code>MEM</code>的16位偏移地址送<code>REG</code></p>
+<p>程序中用于获取符号地址的偏移地址</p>
+<p><font color="red">源操作数</font>必须是一个<font color="red">存储器操作数</font>，目标操作数必须是<font color="red">16位</font>通用寄存器，通常是间址寄存器</p>
+<blockquote>
+<p>高级语言例</p>
+<pre><code class="language-c">int arr = int[] {1, 2, 3};
+int* p = /* -&gt; */ &amp;arr; // &lt;- 对应 LEA
+</code></pre>
+</blockquote>
+<h5 id="lea-应用例"><a class="header" href="#lea-应用例">LEA 应用例</a></h5>
+<p>--- 例一 ---</p>
+<p>若<code>DS=093AH</code>，比较指令 <code>MOV BX,[23H]</code> 与 <code>LEA BX,[23H]</code> 执行后BX结果</p>
+<p><img src="pics/LEA%E5%BA%94%E7%94%A8%E4%BE%8B.png" alt="LEA应用例" /></p>
+<p><code>MOV</code> 将字单元的内容送到 <code>BX</code>, <code>LEA</code> 将字单元的段内偏移地址送到 <code>BX</code></p>
+<p>--- 例二 ---</p>
+<p>看PPT动画吧(Part3 第三章 指令系统(二) 幻灯片34)</p>
+<p>--- 例三 ---</p>
+<p>将数据段中首地址为<code>MEM1</code>的50个字节的数据传送到同一逻辑段首地址为<code>MEM2</code>的区域存放，编写相应的程序段</p>
+<p><img src="pics/LEA%E5%BA%94%E7%94%A8%E4%BE%8B2.png" alt="例2" /></p>
+<pre><code class="language-asm">        LEA  SI, MEM1
+        LEA  DI, MEM2 
+        MOV  CL, 50
+NEXT:   MOV  AL, [SI]
+        MOV  [DI], AL
+        INC  SI
+        INC  DI
+        DEC  CL
+        JNZ  NEXT
+        HLT  
+</code></pre>
+<h4 id="2-装入地址指针指令-lds-和-les"><a class="header" href="#2-装入地址指针指令-lds-和-les">2) 装入地址指针指令 <code>LDS</code> 和 <code>LES</code></a></h4>
+<blockquote>
+<p><code>DS ES</code>:段寄存器</p>
+</blockquote>
+<p>格式: <code>LDS DEST, SRC</code> <code>LES DEST, SRC</code></p>
+<p><code>SRC</code>: 存储器操作数</p>
+<p><code>DEST</code>: 16位通用寄存器</p>
+<p>把<code>SRC</code>开始的4字节内容分别送入通用寄存器<code>DEST</code>和段寄存器<code>DS</code>(<code>LDS</code>指令)或<code>ES</code>(<code>LES</code>指令)</p>
+<p>低字单元内容为<font color="orange">偏移量送DEST</font>，高字单元内容为<font color="orange">段基址送DS或ES</font></p>
+<h5 id="lds-示例"><a class="header" href="#lds-示例">LDS 示例</a></h5>
+<p><img src="pics/LDS%E7%A4%BA%E4%BE%8B.png" alt="LDS示例" /></p>
+<blockquote>
+<p><code>SI</code>: <code>0020H</code><br />
+<code>DS</code>: <code>5030H</code></p>
+</blockquote>
+<h3 id="4-标志位操作指令"><a class="header" href="#4-标志位操作指令">4. 标志位操作指令</a></h3>
+<h4 id="1-lahf-sahf"><a class="header" href="#1-lahf-sahf">1) <code>LAHF</code> <code>SAHF</code></a></h4>
+<p>隐含操作数<code>AH</code>和<code>FLAGS</code></p>
+<ul>
+<li><code>LAHF</code>: Load AH Flags, 将<code>FLAGS</code>的底8位装入<code>AH</code></li>
+</ul>
+<p><img src="pics/LAHF.png" alt="LAHF" /></p>
+<ul>
+<li><code>SAHF</code>: Save AH Flags, 将<code>AH</code>内容送<code>FLAGS</code>低8位</li>
+</ul>
+<h4 id="2-pushf-popf"><a class="header" href="#2-pushf-popf">2) <code>PUSHF</code> <code>POPF</code></a></h4>
+<p>针对FLAGS的堆栈操作指令</p>
+<ul>
+<li>
+<p><code>PUSHF</code>：将标志寄存器<code>FLAGS</code>压栈</p>
+</li>
+<li>
+<p><code>POPF</code>：将当前栈顶的两字节内容弹出送<code>FLAGS</code></p>
+</li>
+</ul>
+<h3 id="传送指令小结"><a class="header" href="#传送指令小结">传送指令小结</a></h3>
+<p><img src="pics/%E4%BC%A0%E9%80%81%E7%B1%BB%E6%8C%87%E4%BB%A4%E5%B0%8F%E7%BB%93.png" alt="小结" /></p>
+<h2 id="二-算数运算指令"><a class="header" href="#二-算数运算指令">二. 算数运算指令</a></h2>
+<p><font color="red">算术运算指令的执行大多对状态标志位会产生影响</font></p>
+<h3 id="1-加法运算指令"><a class="header" href="#1-加法运算指令">1. 加法运算指令</a></h3>
+<p><font color="red">加法指令对操作数的要求与MOV指令相同</font></p>
+<h4 id="1-普通加法指令-add"><a class="header" href="#1-普通加法指令-add">1) 普通加法指令 <code>ADD</code></a></h4>
+<p>格式: <code>ADD OPRD1, OPRD2</code></p>
+<p>功能: <code>OPRD1 + OPRD2 -&gt; OPRD1</code></p>
+<p><font color="red">ADD指令的执行对全部6个状态标志位都产生影响</font></p>
+<h5 id="add-指令例"><a class="header" href="#add-指令例">ADD 指令例</a></h5>
+<pre><code class="language-asm">MOV  AL，78H
+ADD  AL，99H
+</code></pre>
+<p><img src="pics/ADD%E6%8C%87%E4%BB%A4%E4%BE%8B.png" alt="标识位影响" /></p>
+<h4 id="2-带进位的加法指令-adc"><a class="header" href="#2-带进位的加法指令-adc">2) 带进位的加法指令 <code>ADC</code></a></h4>
+<p>格式: <code>ADC OPRD1, OPRD2</code></p>
+<p>对操作数的要求和<code>ADD</code>完全一样</p>
+<p>功能: <code>OPRD1 + OPRD2 + CF -&gt; OPRD1</code></p>
+<p><code>CF</code>是指令执行前的值</p>
+<p><font color="red">ADC指令常用于多字节数相加，使用前要先将<code>CF</code>清零(指多字节相加前)</font></p>
+<h5 id="adc-指令应用"><a class="header" href="#adc-指令应用">ADC 指令应用</a></h5>
+<p>例: 求两个大数的和, 两个数的长度都为20字节</p>
+<p><img src="pics/ADC%E6%8C%87%E4%BB%A4.png" alt="配图" /></p>
+<pre><code class="language-asm">        LEA  SI, M1
+        LEA  DI, M2
+        MOV  CX, 20
+        CLC           ; CF置0
+NEXT:   MOV  AL, [SI]
+        ADC  [DI], AL ; ADD无法处理进位
+        INC  SI
+        INC  DI
+        DEC  CX 
+        JNZ  NEXT
+        HLT
+</code></pre>
+<h4 id="3-加1指令-inc"><a class="header" href="#3-加1指令-inc">3) 加1指令 <code>INC</code></a></h4>
+<p>格式: <code>INC OPRD</code></p>
+<p>OPRD: 不能为段寄存器或立即数; 存储器操作数要限定宽度</p>
+<p>功能: <code>OPRD + 1 -&gt; OPRD</code></p>
+<p><code>INC</code>指令<font color="red">不影响<code>FLAGS</code>标志位</font></p>
+<p><font color="red">常用于程序的循环或串操作中修改地址指针</font></p>
+<h3 id="2-减法运算指令"><a class="header" href="#2-减法运算指令">2. 减法运算指令</a></h3>
+<p><font color="red">减法指令对操作数的要求与对应的加法指令相同</font></p>
+<h4 id="1-普通减法指令-sub"><a class="header" href="#1-普通减法指令-sub">1) 普通减法指令 <code>SUB</code></a></h4>
+<p>格式: <code>SUB OPRD1, OPRD2</code></p>
+<p>功能: <code>OPRD1 - OPRD2 -&gt; OPRD1</code></p>
+<p>例:</p>
+<pre><code class="language-asm">SUB  BL, 30H
+SUB  BH, [1000H]
+</code></pre>
+<p><font color="red">对标志位的影响与ADD指令同</font></p>
+<h4 id="2-带借位的减法指令-sbb"><a class="header" href="#2-带借位的减法指令-sbb">2) 带借位的减法指令 <code>SBB</code></a></h4>
+<p>格式: <code>SBB OPRD1, OPRD2</code></p>
+<p>格式: <code>OPRD1 - OPRD2 - CF -&gt; OPRD1</code></p>
+<p><font color="red">对操作数的要求、对标志位的影响与SUB指令完全一样</font></p>
+<h4 id="3-减1指令-dec"><a class="header" href="#3-减1指令-dec">3) 减1指令 <code>DEC</code></a></h4>
+<p>格式: <code>DEC OPRD</code></p>
+<p><code>OPRD</code>: 不能是段寄存器或立即数</p>
+<p>功能: <code>OPRD - 1 -&gt; OPRD</code></p>
+<p><font color="red">对标志位CF不影响</font></p>
+<p><font color="red">指令常用于在程序中修改计数值</font></p>
+<h5 id="dec-指令例"><a class="header" href="#dec-指令例">DEC 指令例</a></h5>
+<p>--- 例1 ---</p>
+<p>说明下面程序的功能</p>
+<pre><code class="language-asm">        MOV  BL, 2
+NEXT1:  MOV  CX, 0FFFFH
+NEXT2:  DEC  CX
+        JNZ  NEXT2         ; ZF=0转NEXT2
+        DEC  BL
+        JNZ  NEXT1         ; ZF=0转NEXT1
+        HLT                ; 暂停执行
+</code></pre>
+<p>功能: 两重循环, 内层<code>0FFFFH</code>次, 外层2次.<br />
+可用作<font color="red">延时</font>的作用</p>
+<p>--- 例2 ---</p>
+<pre><code class="language-asm">        MOV  AL, 10H
+LOP:    DEC  AL
+        JNC  LOP    ; CF != 转跳
+</code></pre>
+<p>DEC 不影响CF, 无法控制循环</p>
+<h4 id="4-比较指令-cmp"><a class="header" href="#4-比较指令-cmp">4) 比较指令 <code>CMP</code></a></h4>
+<p>格式: <code>CMP OPRD1 OPRD2</code></p>
+<p>功能: <code>OPRD1 - OPRD2</code></p>
+<p><font color="red">两数相减，不保存结果，仅影响标志位</font></p>
+<p>用途: 比较两个数的大小, 可作为条件转移指令的转移条件</p>
+<p><font color="red">指令对操作数的要求及对标志位的影响与SUB指令相同</font></p>
+<h5 id="cmp-指令应用"><a class="header" href="#cmp-指令应用">CMP 指令应用</a></h5>
+<p>两个无符号数比较 <code>CMP AX BX</code></p>
+<p>两个数的大小由<code>CF</code>或<code>ZF</code>判断</p>
+<ul>
+<li><code>AX = BX</code>, <code>ZF = 1</code></li>
+<li><code>AX &gt; BX</code>, <code>CF = 0</code></li>
+<li><code>AX &lt; BX</code>, <code>CF = 1</code></li>
+<li>另外，有专门的判断转移指令: <code>JA/JAE/JB/JBE</code></li>
+</ul>
+<p>两个带符号数的比较 <code>CMP AX BX</code></p>
+<p>两个数的大小由<code>OF</code>和<code>SF</code>共同决定</p>
+<blockquote>
+<p>^ 为异或</p>
+</blockquote>
+<ul>
+<li><code>OF ^ SF = 0</code>, <code>AX &gt; BX</code></li>
+<li><code>OF ^ SF = 1</code>, <code>AX &lt; BX</code></li>
+<li>另外，有专门的判断带符号数大小的指令：<code>JG/JGE/JL/JLE</code></li>
+</ul>
+<h5 id="cmp-指令示例"><a class="header" href="#cmp-指令示例">CMP 指令示例</a></h5>
+<pre><code class="language-asm">        LEA  BX, MAX
+        LEA  SI, BUF
+        MOV  CL, 20
+        MOV  AL, [SI]
+NEXT:   INC  SI
+        CMP  AL, [SI]
+        JNC  GOON      ;CF=0转移, 只跳过了下一行指令
+        MOV  AL, [SI]
+GOON:   DEC  CL
+        JNZ  NEXT
+        MOV  [BX], AL
+        HLT
+</code></pre>
+<p>以上程序功能: 在<code>BUF</code>开始的20个字节中找出最大的数(无符号), 并送到<code>MAX</code></p>
+<h4 id="5-求补指令-neg-自学"><a class="header" href="#5-求补指令-neg-自学">5) 求补指令 <code>NEG</code> (自学)</a></h4>
+<p>看PPT嘞 (Part3 第三章 指令系统(二) 幻灯片60)</p>
+<h3 id="3-无符号数乘除法运算"><a class="header" href="#3-无符号数乘除法运算">3. 无符号数乘/除法运算</a></h3>
+<h4 id="1-无符号数乘法指令-mul"><a class="header" href="#1-无符号数乘法指令-mul">1) 无符号数乘法指令 <code>MUL</code></a></h4>
+<p>格式: <code>MUL OPRD</code></p>
+<p><code>OPRD</code>: <code>OPRD</code>提供一个操作数, 另一个操作数隐含使用<code>AL 或 AX</code>寄存器</p>
+<p>操作:</p>
+<p>字节运算: <code>(AL) * (OPRD) -&gt; AX</code>
+字运算: <code>(AX) * (OPRD) -&gt; DX:AX</code></p>
+<p><code>MUL</code>只<font color="orange">对<code>CF</code>和<code>OF</code>标志位有效影响</font>,其他标志位无定义</p>
+<p>若结果的AH(字节运算)或DX(字运算)为全0，则<code>CF=OF=0</code>，否则<code>CF=OF=1</code></p>
+<h4 id="2-无符号数除法指令"><a class="header" href="#2-无符号数除法指令">2) 无符号数除法指令</a></h4>
+<p>格式: <code>DIV OPRD</code></p>
+<p><code>OPRD</code>: 提供除数, 被除数隐含使用<code>AX 或 DX:AX</code></p>
+<p>操作:</p>
+<p>OPRD为字节: <code>AX / OPRD 商 -&gt; AL 余数 -&gt; AH</code>
+OPRD为字: <code>(DX:AX) / OPRD 商 -&gt; AX 余数 -&gt; DX</code></p>
+<p><font color="red">除法指令要求被除数是除数的双倍字长</font></p>
+<p>常与字节扩展<code>CBW</code>或字扩展指令CWD`配合使用</p>
+<p>当运算结果大于寄存器可保存的范围(除数太小或除数为0), 产生<font color="orange">0型中断</font></p>
+<p><font color="red">除法指令<strong>不影响</strong>标志位</font></p>
+<h3 id="4-带符号数的乘除法运算自学"><a class="header" href="#4-带符号数的乘除法运算自学">4. 带符号数的乘除法运算(自学)</a></h3>
+<p>看PPT嘞 (Part3 第三章 指令系统(二) 幻灯片64)</p>
+<h3 id="5-bcd码调整指令自学"><a class="header" href="#5-bcd码调整指令自学">5. BCD码调整指令(自学)</a></h3>
+<h4 id="bcd码"><a class="header" href="#bcd码">BCD码</a></h4>
+<p>Binary Coded Decimal, 也叫 <em>二 - 十 进制数</em></p>
+<p>用四位二进制(压缩型)或八位二进制(非压缩型)表示一位十进制数, 如十六进制内只使用 <code>0H-9H</code></p>
+<p>如 <code>0010_1001H</code> $\rightarrow$ ${29}_{10}$ (压缩型)</p>
+<p>使用BCD进行运算时, 进位方式就要进行调整</p>
+<p>剩下的看PPT嘞 (Part3 第三章 指令系统(二) 幻灯片67)</p>
+<h3 id="算数运算指令小结"><a class="header" href="#算数运算指令小结">算数运算指令小结</a></h3>
+<p><img src="pics/%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%B1%BB%E6%8C%87%E4%BB%A4%E5%B0%8F%E7%BB%931.png" alt="1" /></p>
+<p><img src="pics/%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%B1%BB%E6%8C%87%E4%BB%A4%E5%B0%8F%E7%BB%932.png" alt="2" /></p>
+<h2 id="三-逻辑运算和移位指令"><a class="header" href="#三-逻辑运算和移位指令">三. 逻辑运算和移位指令</a></h2>
+<h3 id="1-逻辑运算"><a class="header" href="#1-逻辑运算">1. 逻辑运算</a></h3>
+<ul>
+<li>逻辑运算指令对操作数的要求大多与MOV指令相同</li>
+<li>“非”运算指令的操作数不能是立即数</li>
+<li><font color="red">除“非”运算指令外，其余指令的执行都会使标志位OF=CF=0；AF不定；其余状态标志位有影响</font></li>
+</ul>
+<h4 id="1-逻辑与指令"><a class="header" href="#1-逻辑与指令">1) 逻辑与指令</a></h4>
+<p>格式: <code>AND OPRD1 ,OPRD2</code></p>
+<p>功能: 两操作数<font color="red">按位与</font>, 结果送 <code>OPRD</code></p>
+<h5 id="逻辑与的应用"><a class="header" href="#逻辑与的应用">逻辑与的应用</a></h5>
+<ul>
+<li>实现两操作数按位相与的运算 <code>AND  BL，[SI]</code></li>
+<li>使目标操作数的某些<font color="orange">位清零</font> <code>AND  AL，0FH</code></li>
+<li>在<font color="orange">操作数不变的情况</font>下使CF和OF清零 <code>AND  AX，AX</code></li>
+</ul>
+<h5 id="逻辑与示例"><a class="header" href="#逻辑与示例">逻辑与示例</a></h5>
+<p>从地址为<code>3F8H</code>端口(状态端口)中读入一个字节数，如果该数bit1位为1，则将DATA为首地址的一个字输出到<code>38FH</code>端口（数据端口），否则就不进行数据传送</p>
+<blockquote>
+<p>直接程序传送方式: 基于端口状态的判定的数据传送, bit1 为 1 表示设备准备好</p>
+</blockquote>
+<p>编写实现该功能的程序段</p>
+<p><img src="pics/%E9%80%BB%E8%BE%91%E4%B8%8E%E8%BF%90%E7%94%A8.png" alt="思路" /></p>
+<pre><code class="language-asm">        LEA  SI, DATA
+        MOV  DX, 3F8H   ; 送状态端口号到DX
+WAIT:   IN   AL, DX     ; 读状态端口
+        AND  AL, 02H    ; 测试bit1, 02H -&gt; 0000_0010B
+        JZ   WAIT       ; ZF=1则bit1=0, 等待设备准备好
+        MOV  DX, 38FH   ; 数据端口
+        MOV  AX, [SI]   ; OUT 只能使用累加器 AL/AX
+        OUT  DX, AX     ; 输出数据DATA
+</code></pre>
+<h4 id="2-逻辑或指令"><a class="header" href="#2-逻辑或指令">2) 逻辑或指令</a></h4>
+<p>格式: <code>OR OPRD1, OPRD2</code></p>
+<p>功能: 两个数按位或, 结果送 <code>OPRD1</code></p>
+<h5 id="逻辑或的应用"><a class="header" href="#逻辑或的应用">逻辑或的应用</a></h5>
+<ul>
+<li>实现两操作数按位“或”运算 <code>OR  AX，[DI]</code></li>
+<li><font color="red">使某些位不变，某些位置&quot;1&quot;</font> <code>OR  CL，0FH</code></li>
+<li>在不改变操作数的情况下使<code>OF=CF=0</code> <code>OR  AX，AX</code></li>
+</ul>
+<h4 id="3-逻辑非指令"><a class="header" href="#3-逻辑非指令">3) 逻辑非指令</a></h4>
+<p>格式: <code>NOT OPRD</code></p>
+<p><code>OPRD</code>: 存储器操作数需要给出长度</p>
+<p>功能: 操作数按位变反送回原地址</p>
+<p>例: <code>NOT BYTE PTR[BX] ; 限定长度为字节</code></p>
+<p><font color="red">NOT指令操作数不能是立即数</font></p>
+<p><font color="red">NOT指令的执行对标志位无影响</font></p>
+<h4 id="4-逻辑异或指令"><a class="header" href="#4-逻辑异或指令">4) 逻辑异或指令</a></h4>
+<p>格式: <code>XOR OPRD1, OPRD2</code></p>
+<p>功能: 按位异或, 送回目的地</p>
+<p>例:</p>
+<pre><code class="language-asm">XOR  BL, 80H  ;将BL的最高位变反 USEFUL
+XOR  AX, AX   ;AX置0
+</code></pre>
+<h4 id="5-测试指令"><a class="header" href="#5-测试指令">5) 测试指令</a></h4>
+<p>格式: <code>TEST OPRD1, OPRD2</code></p>
+<p>功能: 按位“与”，<font color="red">不保存结果</font></p>
+<p>对标志位的影响与AND指令相同</p>
+<p>应用: 常用于测试某些位的状态</p>
+<h5 id="测试指令的应用"><a class="header" href="#测试指令的应用">测试指令的应用</a></h5>
+<p>从地址为<code>3F8H</code>的端口中读入一个字节数，当该数的bit1，bit3，bit5位都为1时，将DATA为首地址的一个字输出到<code>38FH</code>端口，否则就不能进行数据传送。</p>
+<pre><code class="language-asm">        LEA   SI,DATA
+        MOV   DX,3F8H       ; 状态端口
+WAIT:   IN    AL,DX
+        TEST  AL,02H        ; 测试Bit1
+        ; 优化?
+        JZ    WAIT          ; ZF=1,bit1=0,等待
+        TEST  AL,08H        ; 测试bit3
+        JZ    WAIT
+        TEST  AL,20H        ; 测试bit5
+        JZ    WAIT
+        ; 优化?
+        MOV   DX,38FH       ; 数据端口
+        MOV   AX,[SI]
+        OUT   DX,AX         ; 输出到端口38FH
+</code></pre>
+<p>优化方案:</p>
+<pre><code class="language-asm">AND AL, 2AH
+CMP AL, 2AH ; 也可 XOR AL, 2AH
+JNZ WAIT
+</code></pre>
+<h4 id="逻辑运算小结"><a class="header" href="#逻辑运算小结">逻辑运算小结</a></h4>
+<p><img src="pics/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4%E5%B0%8F%E7%BB%93.png" alt="小结" /></p>
+<h4 id="练习"><a class="header" href="#练习">练习</a></h4>
+<ol>
+<li>
+<p>将AL寄存器低4位置0，高4位保持不变</p>
+<p><code>AND AL, 0F0H ; 注意最高位为字母时前面要加0</code></p>
+</li>
+<li>
+<p>将AL寄存器低4位置1，高4位保持不变</p>
+<p><code>OR AL, 0FH</code></p>
+</li>
+<li>
+<p>将AL最低位和最高位变反，其余位保持不变</p>
+<p><code>XOR AL, 81H</code></p>
+</li>
+<li>
+<p>测试AL中最高位（D7）是否为1</p>
+<pre><code class="language-asm">TEST   AL, 80H
+JZ/JNZ SOMEWHERE
+</code></pre>
+</li>
+</ol>
+<h3 id="2-移位运算"><a class="header" href="#2-移位运算">2. 移位运算</a></h3>
+<p>有两个操作数</p>
+<p><font color="red">移动次数一般用<code>CL</code>确定</font></p>
+<p><font color="red">若只移位1次，也可以在指令中直接写常数“1”</font></p>
+<p>也就是说一个操作数是 <code>1/CL</code></p>
+<h4 id="非循环移位指令"><a class="header" href="#非循环移位指令">非循环移位指令</a></h4>
+<h5 id="算数左移和逻辑左移"><a class="header" href="#算数左移和逻辑左移">算数左移和逻辑左移</a></h5>
+<p>算数左移: <code>SAL OPRD 1/CL</code> 有符号数</p>
+<p>逻辑左移: <code>SHL OPRD 1/CL</code> 无符号数</p>
+<p><img src="pics/%E9%9D%9E%E5%BE%AA%E7%8E%AF%E5%B7%A6%E7%A7%BB.png" alt="非循环左移规则" /></p>
+<p>例, 将41H左移1位, 可用如下语句:</p>
+<pre><code class="language-asm">MOV  AL,41H
+SHL  AL, 1 
+</code></pre>
+<p>结果：<code>AL=82H，CF=0，OF=1</code></p>
+<h5 id="算数右移和逻辑右移"><a class="header" href="#算数右移和逻辑右移">算数右移和逻辑右移</a></h5>
+<p>算数右移: <code>SAR  OPRD，1/CL</code> 有符号数</p>
+<p>逻辑右移: <code>SHR  OPRD，1/CL</code> 无符号数</p>
+<p><img src="pics/%E9%9D%9E%E5%BE%AA%E7%8E%AF%E5%8F%B3%E7%A7%BB.png" alt="非循环右移规则" /></p>
+<p>--- 例1 ---</p>
+<pre><code class="language-asm">MOV AL，82H
+SHR AL，1
+</code></pre>
+<p>执行结果：<code>AL=41H， CF=0，OF=1</code></p>
+<p>逻辑右移1位，结果最高位与次高位不同(补的位与原来的位不同)，则<code>OF=1</code>；否则<code>OF=0</code></p>
+<p>--- 例2 ---</p>
+<pre><code class="language-asm">MOV AL，6AH
+MOV CL，2
+SHR AL，CL
+</code></pre>
+<p><img src="pics/%E9%9D%9E%E5%BE%AA%E7%8E%AF%E5%8F%B3%E7%A7%BB%E4%BE%8B2.png" alt="结果" /></p>
+<p>--- 例3 ---</p>
+<pre><code class="language-asm">MOV AL，82H
+SAR AL，1
+</code></pre>
+<p>执行结果：<code>AL=C1H， CF=0</code></p>
+<p>算术右移影响CF，PF，SF，ZF，但不影响OF和AF</p>
+<h5 id="小结"><a class="header" href="#小结">小结</a></h5>
+<p>非循环移位指令影响操作数的数值，左移相当于乘法，右移相当于除法，且比乘除法指令速度快</p>
+<p>操作数可以是8位或16位数</p>
+<p>移位次数为1或由CL提供</p>
+<p>移出的位送CF；左移时低位补0，逻辑右移高位补0，算术右移高位(符号位)保持不变</p>
+<p>SHL、SAL、SHR对溢出标志(OF)的影响只考虑移位次数为1的情况，左移依据移位后的CF与最高位判定，右移依据移位后的最高位与次高位判定</p>
+<p>SAR不影响OF</p>
+<h5 id="应用"><a class="header" href="#应用">应用</a></h5>
+<p>指令<code>SAL</code>和<code>SAR</code>当移位次为n时，其作用分别相当于乘以$2^n$和除以$2^n$</p>
+<p>例,设AX中存放一个带符号数，若要实现$(AX) \times 5 \div 2$，可由以下几条指令完成。</p>
+<pre><code class="language-asm">MOV DX，AX
+SAL AX，1
+SAL AX，1
+ADD AX，DX
+SAR AX，1
+</code></pre>
+<h4 id="循环移位"><a class="header" href="#循环移位">循环移位</a></h4>
+<p><font color="red">指令格式、对操作数的要求与非循环移位指令相同</font></p>
+<p>不带进位位(CF)的循环移位(小循环)</p>
+<p>左移: <code>ROL</code></p>
+<p>右移: <code>ROR</code></p>
+<p>带进位位(CF)的循环移位（大循环）</p>
+<p>左移: <code>RCL</code></p>
+<p>右移: <code>RCR</code></p>
+<h5 id="不带进位位的循环移位"><a class="header" href="#不带进位位的循环移位">不带进位位的循环移位</a></h5>
+<p><img src="pics/%E4%B8%8D%E5%B8%A6%E8%BF%9B%E4%BD%8D%E4%BD%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D.png" alt="示意图" /></p>
+<p>--- 例1 ---</p>
+<pre><code class="language-asm">MOV AL，82H
+ROL AL，1
+</code></pre>
+<p>执行结果：<code>AL=05H， CF=1，OF=1</code></p>
+<p><code>ROL</code>影响<code>CF</code>和<code>OF</code></p>
+<p>若移位次数为1，且<font color="red">移位后的最高位与CF不同</font>，则OF=1；否则OF=0</p>
+<p>--- 例2 ---</p>
+<pre><code class="language-asm">MOV AL，82H
+ROR AL，1
+</code></pre>
+<p>执行结果：<code>AL=41H， CF=0，OF=1</code></p>
+<p>ROR影响CF和OF</p>
+<p>若移位次数为1，且移位后的<font color="red">最高位与次高位不同</font>，则OF=1；否则OF=0</p>
+<h5 id="带进位的循环移位"><a class="header" href="#带进位的循环移位">带进位的循环移位</a></h5>
+<p><img src="pics/%E5%B8%A6%E8%BF%9B%E4%BD%8D%E4%BD%8D%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D.png" alt="示意图" /></p>
+<p>--- 例1 ---</p>
+<p>若CF=0，执行指令：</p>
+<pre><code class="language-asm">MOV AL，82H
+RCL AL，1
+</code></pre>
+<p>执行结果：<code>AL=04H， CF=1，OF=1</code></p>
+<p><font color="red">RCL对标志位的影响与ROL 相同</font></p>
+<p>--- 例2 ---</p>
+<p>若CF=0，执行指令：</p>
+<pre><code class="language-asm">MOV AL，82H
+RCR AL，1
+</code></pre>
+<p>执行结果：<code>AL=41H， CF=0，OF=1</code></p>
+<p><font color="red">RCR对标志位的影响与ROR相同</font></p>
+<h5 id="小结-1"><a class="header" href="#小结-1">小结</a></h5>
+<p>指令格式和对操作数的要求与非循环移位指令相同</p>
+<p>循环移位指令不考虑对操作数值的影响</p>
+<p>移出的位送到CF</p>
+<p>不带进位的循环移位CF不参加移位带进位的循环移位CF要参与移位</p>
+<p>影响CF和OF</p>
+<h5 id="应用-1"><a class="header" href="#应用-1">应用</a></h5>
+<ol>
+<li>
+<p>用于对某些位状态的测试</p>
+<p>例：测试BL第4位状态</p>
+<pre><code class="language-asm">    MOV  CL, 4
+    ROL  BL, CL
+    JNC  ZERO
+    ......
+ZERO: ROR BL, CL
+</code></pre>
+</li>
+<li>
+<p>高位部分和低位部分的交换</p>
+<p>例</p>
+<pre><code class="language-asm">MOV  CL, 4
+ROL  BL，CL
+</code></pre>
+</li>
+<li>
+<p>与非循环移位指令一起组成32位或更长字长数的移位</p>
+</li>
+</ol>
+<h6 id="多字节单元数据联合移位"><a class="header" href="#多字节单元数据联合移位">多字节单元数据联合移位</a></h6>
+<p><img src="pics/%E5%A4%9A%E5%AD%97%E8%8A%82%E5%8D%95%E5%85%83%E6%95%B0%E6%8D%AE%E8%81%94%E5%90%88%E7%A7%BB%E4%BD%8D.png" alt="示例" /></p>
+<h4 id="移位指令应用"><a class="header" href="#移位指令应用">移位指令应用</a></h4>
+<p>将1000H开始存放的4个压缩BCD码(作为字符)转换为ASCII码存放到3000H开始的单元中去</p>
+<p>如 <code>&quot;12&quot; -&gt; 31H 和 32H (1 + 30H, 2 + 30H)</code></p>
+<p><img src="pics/%E7%A7%BB%E4%BD%8D%E6%8C%87%E4%BB%A4%E5%BA%94%E7%94%A8.png" alt="题目" /></p>
+<pre><code class="language-asm">        MOV SI, 1000H
+        MOV DI, 3000H
+        MOV CH, 4       ; BCD码个数
+Next:   MOV AL, [SI]
+        MOV BL, AL     
+        AND AL, 0FH     ; 分离低4位
+        OR  AL, 30H     ; 转换为ASCII码 用OR也行的原因: 原来只有4位, 30H低4位为0
+        MOV [DI], AL
+        INC DI
+        MOV AL, BL
+        MOV CL, 4       ; 移位次数
+        SHR AL, CL      ; 只留下高4位
+        OR  AL, 30H
+        MOV [DI], AL
+        ; 完成一次操作
+        INC DI
+        INC SI
+
+        DEC CH
+        JNZ Next
+        HLT
+</code></pre>
+<h2 id="四-串操作指令"><a class="header" href="#四-串操作指令">四. 串操作指令</a></h2>
+<p>针对<font color="red">数据块或字符串</font>的操作</p>
+<p>可实现<font color="red">存储器到存储器</font>的数据传送</p>
+<p>待操作的数据串称为<font color="red">源串</font>，目的地址存放的为<font color="red">目标串/目的串</font></p>
+<h3 id="1-串操作指令的特点"><a class="header" href="#1-串操作指令的特点">1. 串操作指令的特点</a></h3>
+<ul>
+<li>默认情况源串地址由<code>DS:[SI]</code>提供，目的串由<code>ES:[DI]</code>提供</li>
+<li>源串<font color="red">允许</font>段重设，目的串<font color="red">不允许</font>段重设</li>
+<li>每次只处理串中的一个单元(字或字节)，并自动修改SI和(或)DI，使其指向下一个单元</li>
+<li>地址修改方向由<font color="red">DF标志位</font>决定:<br />
+<code>DF=0</code> $\rightarrow$ 增地址方向 (指令<code>CLD</code> $\rightarrow$ 使<code>DF = 0</code>)<br />
+<code>DF=1</code> $\rightarrow$ 减地址方向 (指令<code>STD</code> $\rightarrow$ 使<code>DF = 1</code>)</li>
+<li>指令前面可加上<font color="red">自动重复前缀</font>，实现自动重复执行串操作，重复执行次数由<code>CX</code>指定</li>
+</ul>
+<h3 id="2-重复前缀"><a class="header" href="#2-重复前缀">2. 重复前缀</a></h3>
+<p><font color="blue">不是独立指令, 需配合串操作指令使用</font></p>
+<h4 id="1-无条件重复"><a class="header" href="#1-无条件重复">1) 无条件重复</a></h4>
+<p><code>REP</code> 若 <code>CX!=0</code> 则重复</p>
+<h4 id="2-条件重复"><a class="header" href="#2-条件重复">2) 条件重复</a></h4>
+<blockquote>
+<p>当前执行的指令要修改<code>ZF</code>, 如<code>CMPS</code></p>
+</blockquote>
+<p><code>REPE</code> 相等重复 <code>CX != 0 且 ZF == 1</code><br />
+<code>REPZ</code> 为零重复 <code>CX != 0 且 ZF == 1</code></p>
+<p><code>REPNE</code> 不相等重复 <code>CX != 0 且 ZF == 0</code><br />
+<code>REPNZ</code> 不为零重复 <code>CX != 0 且 ZF == 0</code></p>
+<h3 id="3-串操作指令"><a class="header" href="#3-串操作指令">3. 串操作指令</a></h3>
+<p>串操作指令中可以<strong>出现两个存储器操作数</strong>, 这是与其他双操作数指令不同的地方</p>
+<h4 id="1-串传送-movs"><a class="header" href="#1-串传送-movs">1) 串传送 <code>MOVS</code></a></h4>
+<p>格式:</p>
+<pre><code class="language-asm">MOVS OPRD1, OPRD2   ; 原串可以段重设
+MOVSB               ; 使用默认段, B表示一次一个字节
+MOVSW               ; W表示一次一个字
+</code></pre>
+<blockquote>
+<p>通常使用 <code>LEA</code> 设置 <code>SI、DI</code></p>
+</blockquote>
+<p>串传送指令<font color="red">不影响标志位</font></p>
+<p><font color="red">常与无条件重复前缀连用</font></p>
+<p><img src="pics/%E4%B8%B2%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4%E6%B5%81%E7%A8%8B.png" alt="串传送指令流程" /></p>
+<h5 id="串传送指令的应用"><a class="header" href="#串传送指令的应用">串传送指令的应用</a></h5>
+<p>用串传送指令实现将200个字节数据从内存<code>2000H:1200H</code>开始的区域传送到<code>6000H:0000H</code>开始的区域。</p>
+<pre><code class="language-asm">MOV  AX, 2000H
+MOV  DS, AX     ; 送段基址
+MOV  AX, 6000H
+MOV  ES, AX     ; 段基址
+MOV  SI, 1200H
+MOV  DI, 0
+MOV  CX, 200
+CLD             ; 按增地址方向, DF = 0
+REP  MOVSB      ; 重复串传送，直到CX为0
+HLT
+</code></pre>
+<blockquote>
+<p>上面的例子源和目的无重叠, 当有重叠的时候需要考虑 DF<br />
+如</p>
+</blockquote>
+<p>将存储器中的 <code>STR = 'ABCDE'</code> 向高地址移动一个单元, 并在串首插入一个空格</p>
+<pre><code class="language-asm">LEA SI, [STR+4]
+LEA DI, [STR+5]
+MOV CX, 5
+STD
+REP MOVSB
+MOV [STR], ' '  ; 也可用DI, 此时正好指向[STR]
+</code></pre>
+<h4 id="2-串比较-cmps"><a class="header" href="#2-串比较-cmps">2) 串比较 <code>CMPS</code></a></h4>
+<p>格式:</p>
+<pre><code class="language-asm">CMPS OPRD1, OPRD2   ; 原串可以段重设
+CMPSB
+CMPSW
+</code></pre>
+<p>执行<code>OPRD1-OPRD2</code>, <font color="red">不保存结果, 仅影响标志位</font></p>
+<p>常与条件重复前缀 <code>REPE(REPZ)/ REPNE(REPNZ)</code> 连用</p>
+<h5 id="串比较指令的应用"><a class="header" href="#串比较指令的应用">串比较指令的应用</a></h5>
+<p>比较两组200个字节数据，找出第一个不同数据放入AL，其地址放入BX</p>
+<pre><code class="language-asm">        LEA  SI，MEM1
+        LEA  DI，MEM2
+        MOV  CX，200
+        CLD 
+        REPE CMPSB  ; 相同则重复
+        JZ   STOP   ; 比较结束，ZF=1，则两个串相同, 注意不能使用JMP, 这里要判断是否有不相等的(ZF = 0), 否则(ZF = 1, 两个串全部相等)跳过下面的指令
+        DEC  SI     ; ZF=0，SI指向第一个不同数据的下一单元
+        MOV  AL，[SI]
+        MOV  BX，SI
+STOP:   HLT 
+</code></pre>
+<h4 id="3-串扫描-scas"><a class="header" href="#3-串扫描-scas">3) 串扫描 <code>SCAS</code></a></h4>
+<p>格式:</p>
+<pre><code class="language-asm">SCAS  OPRD  ; 隐含的一个操作数为目标串 ES:[DI]
+SCASB
+SCASW
+</code></pre>
+<p><code>OPRD-(AX)</code>或<code>OPRD-(AL)</code></p>
+<p>结果不保存，只影响标志寄存器, 通常用到<code>ZF</code></p>
+<p>用法：常用于在指定存储区域中<strong>寻找</strong>某个关键字</p>
+<h5 id="串扫描指令的应用"><a class="header" href="#串扫描指令的应用">串扫描指令的应用</a></h5>
+<p>ES段从<code>2000H</code>单元开始存放了10个字符，找出其中第一个'A'，将其地址放入BX;未找到则BX置0</p>
+<pre><code class="language-asm">        MOV  DI, 2000H
+        MOV  CX, 0AH
+        MOV  AL, 'A'
+        CLD 
+        REPNZ SCASB  ; 不同则重复 
+        JZ   FOUND   ; 扫描结束，ZF=1，找到‘A’
+        MOV  BX, 0   ; ZF=0，未找到‘A’
+        JMP  STOP
+FOUND:  DEC  DI      ; 第一个‘A’的地址
+        MOV  BX, DI
+STOP:   HLT 
+</code></pre>
+<h4 id="4-串装入-lods"><a class="header" href="#4-串装入-lods">4) 串装入 <code>LODS</code></a></h4>
+<p>格式:</p>
+<pre><code class="language-asm">LODS  OPRD ; 操作数位源串
+LODSB
+LODSW
+</code></pre>
+<p>操作:将源串中的字/字节送AX/AL,并修改地址指针</p>
+<p>对字节: <code>AL</code> $\leftarrow$ <code>[DS:SI]</code>; <code>SI</code> $\leftarrow$ <code>SI + 1</code></p>
+<p>对字: <code>AX</code> $\leftarrow$ <code>[DS:SI]</code>; <code>SI</code> $\leftarrow$ <code>SI + 1</code></p>
+<p><font color="red">串装入指令一般不加重复前缀，不影响标志位</font></p>
+<blockquote>
+<p>配合传统循环结构</p>
+</blockquote>
+<h4 id="5-串存储-stos"><a class="header" href="#5-串存储-stos">5) 串存储 <code>STOS</code></a></h4>
+<p>格式:</p>
+<pre><code class="language-asm">STOS  OPRD  ; 操作数为目标串
+STOSB
+STOSW
+</code></pre>
+<p>操作：将AX/AL内容送ES:DI指向的字/字节单元,并修改地址指针</p>
+<p>对字节: <code>[ES:DI]</code> $\leftarrow$ <code>AL</code> <code>DI</code> $\leftarrow$ <code>DI + 1</code></p>
+<p>对字: <code>[ES:DI]</code> $\leftarrow$ <code>AX</code> <code>DI</code> $\leftarrow$ <code>DI + 1</code></p>
+<p><font color="orange">常与无条件重复前缀REP配合，用于将内存某区域所有单元置同样的值；不影响标志位</font></p>
+<h5 id="串存储指令示例"><a class="header" href="#串存储指令示例">串存储指令示例</a></h5>
+<p>将附加段6000H:1200H开始的100个字单元内容清零</p>
+<pre><code class="language-asm">MOV  AX, 6000H
+MOV  ES, AX
+MOV  DI, 1200H
+MOV  CX,  100
+CLD 
+MOV  AX, 0
+REP  STOSW
+HLT 
+</code></pre>
+<h3 id="串操作指令应用注意事项"><a class="header" href="#串操作指令应用注意事项">串操作指令应用注意事项</a></h3>
+<ul>
+<li>目标串在附加段，且不能段重设</li>
+<li>操作前需要设置<font color="red">操作方向</font>,由<code>DF</code>状态确定</li>
+<li>源串和目标串指针分别为<code>SI</code>和<code>DI</code></li>
+<li>串长度值必须由<code>CX</code>给出</li>
+<li>重复前缀的使用<br />
+传送类指令前加无条件重复前缀<br />
+串比较类指令前加条件重复前缀，但<font color="darkred">前缀不影响ZF状态(不是CX导致的ZF修改)</font></li>
+</ul>
+<p><img src="pics/%E4%B8%B2%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4%E5%AF%B9%E6%A0%87%E5%BF%97%E4%BD%8D%E7%9A%84%E5%BD%B1%E5%93%8D.png" alt="串操作指令对标志位的影响" /></p>
+<h2 id="五-程序控制指令"><a class="header" href="#五-程序控制指令">五. 程序控制指令</a></h2>
+<p>程序控制类指令的本质是控制程序流程，由CS:IP决定下一指令地址</p>
+<h3 id="1-无条件转移指令"><a class="header" href="#1-无条件转移指令">1. 无条件转移指令</a></h3>
+<h4 id="1-段内直接转移"><a class="header" href="#1-段内直接转移">1) 段内直接转移</a></h4>
+<p>转移指令给出段内的标号</p>
+<p><code>JMP LABEL</code>, 其中, <code>LABEL</code>: 标号/符号地址</p>
+<p><font color="red">汇编时</font>自动计算位移量(8/16位)，即Label所在单元与JMP下一条指令间的距离</p>
+<p><img src="pics/%E6%AE%B5%E5%86%85%E7%9B%B4%E6%8E%A5%E8%BD%AC%E7%A7%BB.png" alt="位移量计算示意图" /></p>
+<p><strong><font color="red">转移目标指令偏移地址 = 当前<code>IP</code> + 位移量</font></strong></p>
+<h5 id="段内直接转移示例"><a class="header" href="#段内直接转移示例">段内直接转移示例</a></h5>
+<pre><code class="language-asm">        MOV AX, BX
+        JMP NEXT
+        AND CL, 0FH
+        .
+        .
+        .
+NEXT:   OR  CL, 7FH
+</code></pre>
+<h4 id="2-段内间接转移"><a class="header" href="#2-段内间接转移">2) 段内间接转移</a></h4>
+<p>转移的目标地址由<strong>16位通用寄存器或存储器的字单元</strong><font color="red">提供</font></p>
+<blockquote>
+<p>注意仅16位</p>
+</blockquote>
+<p>例:</p>
+<p><code>JMP  BX</code></p>
+<p>若：BX的值为1200H<br />
+则：转移目标指令偏移地址=1200H, 即<code>IP = 1200H</code></p>
+<p><img src="pics/%E6%AE%B5%E5%86%85%E9%97%B4%E6%8E%A5%E8%BD%AC%E7%A7%BB.png" alt="段内间接转移示意图" /></p>
+<h5 id="段内间接转移示例"><a class="header" href="#段内间接转移示例">段内间接转移示例</a></h5>
+<p><img src="pics/%E6%AE%B5%E5%86%85%E9%97%B4%E6%8E%A5%E8%BD%AC%E7%A7%BB%E7%A4%BA%E4%BE%8B.png" alt="示例图" /></p>
+<blockquote>
+<p>这里使用16位字单元, BX内是这个单元的地址<br />
+<code>PTR</code>是属性修改运算符, <font color=red>注意不是POINTER</font></p>
+</blockquote>
+<p><strong><font color=red>注意段内直接转移和间接转移在形成IP值的区别</font></strong></p>
+<h4 id="3-段间直接转移"><a class="header" href="#3-段间直接转移">3) 段间直接转移</a></h4>
+<p>格式: <code>JMP FAR LABEL</code></p>
+<blockquote>
+<p>FAR表明是个远标号32位, NEAR表明是近标号 8位?</p>
+</blockquote>
+<p>转移的目标地址<strong>不在当前代码段内</strong></p>
+<p><font color="red">汇编后</font>生成32位目标地址，包括段基址和偏移地址</p>
+<h5 id="段间直接转移示例"><a class="header" href="#段间直接转移示例">段间直接转移示例</a></h5>
+<p><img src="pics/%E6%AE%B5%E9%97%B4%E7%9B%B4%E6%8E%A5%E8%BD%AC%E7%A7%BB%E7%A4%BA%E4%BE%8B.png" alt="段间直接转移示例" /></p>
+<h4 id="4-段间间接转移"><a class="header" href="#4-段间间接转移">4) 段间间接转移</a></h4>
+<p>转移的目标地址由指令中的<strong>32位</strong>存储器单元给出</p>
+<p><code>JMP  DWORD PTR[BX]</code>
+若BX值为1200H</p>
+<blockquote>
+<p>注意 <code>DWORD</code></p>
+</blockquote>
+<p><img src="pics/%E6%AE%B5%E9%97%B4%E9%97%B4%E6%8E%A5%E8%BD%AC%E7%A7%BB.png" alt="段间间接转移" /></p>
+<h4 id="段间间接转移例"><a class="header" href="#段间间接转移例">段间间接转移例</a></h4>
+<p><img src="pics/%E6%97%A0%E6%9D%A1%E4%BB%B6%E9%97%B4%E6%8E%A5%E8%BD%AC%E7%A7%BB%E7%A4%BA%E4%BE%8B.png" alt="示例" /></p>
+<h3 id="2-条件转移指令"><a class="header" href="#2-条件转移指令">2. 条件转移指令</a></h3>
+<p><font color="orange">满足条件，程序转移到目标地址继续执行,不影响标志位</font></p>
+<p>条件转移指令均为直接寻址的段内短转移(段内直接转移)，即转移的位移量为<strong>8位补码表示</strong>，距离范围为：-128~+127</p>
+<p>具体见教材P134表3-4</p>
+<!-- TODO: table -->
+<p><img src="pics/%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4.png" alt="条件转移指令" /></p>
+<blockquote>
+<p>FOR SEARCH: <code>JDCX JC/JNC JZ/JNZ JS/JNS JO/JNO JP/JNP JA/JAE/JB/JBE JG/JGE/JL/JLE</code></p>
+</blockquote>
+<h4 id="转移指令应用"><a class="header" href="#转移指令应用">转移指令应用</a></h4>
+<p>统计内存数据段中以TABLE为首地址的100个8位有符号数中正数、负数和零的个数</p>
+<p><img src="pics/%E6%9C%89%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BE%8B.png" alt="程序流程" /></p>
+<!--  TODO: code -->
+<p>程序见教材P139</p>
+<h3 id="3-循环控制指令"><a class="header" href="#3-循环控制指令">3. 循环控制指令</a></h3>
+<p>循环范围: 目标地址以当前IP为中心的-128～+127范围内循环(短转移)</p>
+<p>循环次数: 由<code>CX</code>寄存器指定</p>
+<p>循环指令: 不影响标志位</p>
+<h4 id="1-无条件循环-loop"><a class="header" href="#1-无条件循环-loop">1) 无条件循环 <code>LOOP</code></a></h4>
+<p>格式: <code>LOOP LABEL</code> <code>LABEL</code>: 段内, 符号地址</p>
+<p>循环条件: <code>CX != 0</code></p>
+<p>执行操作:</p>
+<pre><code class="language-asm">DEC CX
+JNZ LABEL
+</code></pre>
+<p>统计正负数的例子也可用无条件循环指令实现：</p>
+<p><img src="pics/%E7%BB%9F%E8%AE%A1%E6%AD%A3%E8%B4%9F%E6%95%B0.png" alt="统计正负数" /></p>
+<h4 id="2-3-条件循环-loopz-loopnz"><a class="header" href="#2-3-条件循环-loopz-loopnz">2, 3) 条件循环 <code>LOOPZ LOOPNZ</code></a></h4>
+<p>自学</p>
+<h3 id="4-过程调用和返回"><a class="header" href="#4-过程调用和返回">4. 过程调用和返回</a></h3>
+<p>子过程执行结束后要返回原调用处</p>
+<p>两个重要的概念：<font color="red">入口地址和断点</font></p>
+<p>入口地址: 子过程的第一条指令的地址</p>
+<p>断点: 主程序调用指令的下一条指令</p>
+<p><img src="pics/%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%E5%92%8C%E8%BF%94%E5%9B%9E.png" alt="示例" /></p>
+<h4 id="1-段内调用"><a class="header" href="#1-段内调用">1) 段内调用</a></h4>
+<p>子过程与主程序在同一代码段</p>
+<ul>
+<li>
+<p>直接调用: <code>CALL NEAR PROC</code></p>
+<p>PROC: 过程名(符号地址), 汇编后得到16位地址偏移量</p>
+<p><code>IP</code> $\leftarrow$ <code>IP</code> + 位移量</p>
+</li>
+<li>
+<p>间接调用: <code>CALL OPRD</code></p>
+<p>OPRD: 16位寄存器或存储器操作数</p>
+<p><code>IP</code> $\leftarrow$ 寄存器或存储器<font color="red">单元内容</font></p>
+</li>
+</ul>
+<p>保存偏移地址</p>
+<p><img src="pics/%E6%AE%B5%E5%86%85%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%E7%A4%BA%E4%BE%8B.png" alt="段内示例" /></p>
+<h4 id="2-段间调用"><a class="header" href="#2-段间调用">2) 段间调用</a></h4>
+<p>子过程与主程序不在同一个代码段</p>
+<ul>
+<li>
+<p>直接调用: <code>CALL FAR PROC</code></p>
+</li>
+<li>
+<p>间接调用: <code>CALL OPRD</code></p>
+<p>OPRD: <strong>双字</strong>单元</p>
+</li>
+</ul>
+<p>调用前需<font color="red">保存断点的段基址(CS)和偏移地址(IP)</font>，<font color="orange">先将断点的CS压栈，再将IP压栈</font></p>
+<p><img src="pics/%E6%AE%B5%E9%97%B4%E8%B0%83%E7%94%A8%E7%A4%BA%E4%BE%8B.png" alt="示例" /></p>
+<h4 id="3-返回指令"><a class="header" href="#3-返回指令">3) 返回指令</a></h4>
+<p>功能: 从堆栈中弹出断点地址，返回主程序</p>
+<p>格式: <code>RET</code></p>
+<p>说明</p>
+<ul>
+<li>RET指令一般位于子程序的最后</li>
+<li>段内或段间调用过程的返回指令格式相同</li>
+</ul>
+<h4 id="过程调用指令执行过程"><a class="header" href="#过程调用指令执行过程">过程调用指令执行过程</a></h4>
+<ol>
+<li>保存断点：将调用指令的下一指令地址（断点）压入堆栈保存</li>
+<li>获取子过程的入口地址并送IP(段内调用)或CS、IP（段间调用）</li>
+<li>执行子过程，含<font color="red">相应参数的保存及恢复</font>(这个由子过程编写者负责)</li>
+<li>恢复断点，返回原程序<br />
+将断点地址（IP或CS+IP）由堆栈弹出</li>
+</ol>
+<h3 id="5-中断指令"><a class="header" href="#5-中断指令">5. 中断指令</a></h3>
+<h4 id="1-软中断-int"><a class="header" href="#1-软中断-int">1) 软中断 <code>INT</code></a></h4>
+<p>格式: <code>INT n</code>, <code>n</code>: 中断类型号</p>
+<p><img src="pics/INT.png" alt="INT" /></p>
+<p>根据中断类型号<font color="red">访问中断向量表</font>，获取中断服务程序<font color="red">入口地址</font>；</p>
+<p>8086的中断向量表存放在内存最低的1K单元</p>
+<h5 id="中断指令的执行过程"><a class="header" href="#中断指令的执行过程">中断指令的执行过程</a></h5>
+<ol>
+<li>将FLAGS压入堆栈</li>
+<li>保存断点：当前CS:IP，压栈保存</li>
+<li>由n×4得到存放中断向量的地址（中断向量表）</li>
+<li>将中断向量（中断服务程序入口地址）送CS和IP寄存器</li>
+<li>转入中断服务程序</li>
+</ol>
+<h5 id="中断指令例"><a class="header" href="#中断指令例">中断指令例</a></h5>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%8C%87%E4%BB%A4%E4%BE%8B.png" alt="例" /></p>
+<h4 id="2-中断返回-iret"><a class="header" href="#2-中断返回-iret">2) 中断返回 <code>IRET</code></a></h4>
+<p>格式: <code>IRET</code></p>
+<p>功能：</p>
+<p>恢复断点，恢复标志寄存器内容</p>
+<p>返回到主程序</p>
+<h3 id="程序控制类指令的特点"><a class="header" href="#程序控制类指令的特点">程序控制类指令的特点</a></h3>
+<ul>
+<li><font color="red">本质都是程序流程的改变</font>，通过CS、IP控制</li>
+<li>按目标地址位置可以有<font color="red">段内和段间</font>；按目标地址形式可以有<font color="red">直接(标号\过程名)和间接(寄存器或存储器)</font>方式</li>
+<li>段内转移的断点为IP，段间转移的断点为CS、IP</li>
+<li>目标地址为<font color="red">段内符号地址形式</font>(<strong>无条件段内直接转移、条件转移、循环、段内直接调用子过程</strong>)，汇编后得到补码表示的位移量（8/16位），IP+位移量-&gt;IP</li>
+</ul>
+<h2 id="六-处理器控制指令"><a class="header" href="#六-处理器控制指令">六. 处理器控制指令</a></h2>
+<p>自学</p>
+<p>说明见教材表3-5</p>
+<h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
+<ul>
+<li>8086指令<font color="red">基本格式</font>，执行过程</li>
+<li>操作数类型，操作数的<font color="red">寻址方式</font>，存储器操作数如何计算有效地址</li>
+<li>8086指令系统按功能划分的<font color="red">指令类型</font></li>
+<li><font color="red">各指令功能</font>，对操作数的要求，对标志位的影响</li>
+<li><font color="red">程序控制类指令</font>(转移、循环、过程调用、中断)如何得到断点，如何得到目标指令的地址</li>
+</ul>
+<h2 id="练习-1"><a class="header" href="#练习-1">练习</a></h2>
+<p>判断下列指令的正确性：</p>
+<pre><code class="language-asm">MOV  313H,AX                  X, 立即数不能为目的地
+OUT  313H,AX                  X, 端口号超出8位, 只能使用DX
+IN   DX,126H                  X, 不行, 目的地只能使用AX或AL, 端口号问题同上
+LEA  SI,5H[BP]                V
+ADD  BYTE PTR [SI],256        X, 256超出了一个字节(多了一位)
+SHL  AL,3                     X, 移位次数超过一的时候放进CL
+MOVS DS:[DI],[SI]             X, 串传送目的串只能在ES
+MUL  35H                      X, 形式上是单操作数指令, 不能使用立即数
+MOV  DS,BP                    V
+</code></pre>
+<p>判断题：</p>
+<ul>
+<li>
+<p>指令XOR AL，0FH可以将AL低4位变反，高4位保持不变</p>
+<ul>
+<li>V</li>
+</ul>
+</li>
+<li>
+<p>指令“IN AL, 26H”的源操作数寻址方式是直接寻址</p>
+<ul>
+<li>V, 注意输入输出指令的两种寻址方式: 直接、间接</li>
+</ul>
+</li>
+<li>
+<p>CPU执行“JMP DWORD PTR[BX]”指令，只改变IP内容,不改变CS内容</p>
+<ul>
+<li>X, 双字, 段间传送</li>
+</ul>
+</li>
+<li>
+<p>与LOOP Label1 指令功能等效的两条指令依次是DEC CX和JNZ Label1。</p>
+<ul>
+<li>V</li>
+</ul>
+</li>
+<li>
+<p>REPE CMPSB结束的条件有可能是CX=0，也可能是ZF=0。</p>
+<ul>
+<li>V, 相等重复, 即ZF == 1重复</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

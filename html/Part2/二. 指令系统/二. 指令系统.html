@@ -1,0 +1,507 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>指令系统 - 计算机系统结构</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Part 1</li><li class="chapter-item expanded "><a href="../../Part1/一. 计算机中的信息表示.html"><strong aria-hidden="true">1.</strong> 计算机中的信息表示</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part1/计算机中的信息表示/数据性数据的表示方法.html"><strong aria-hidden="true">1.1.</strong> 数据型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../Part1/计算机中的信息表示/字符型数据的表示方法.html"><strong aria-hidden="true">1.2.</strong> 字符型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../Part1/计算机中的信息表示/计算机中信息的物理表示.html"><strong aria-hidden="true">1.3.</strong> 计算机中信息的物理表示</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part1/二. 数字逻辑基础.html"><strong aria-hidden="true">2.</strong> 数字逻辑基础</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 2</li><li class="chapter-item expanded "><a href="../../Part2/一. 概论/概论.html"><strong aria-hidden="true">3.</strong> 概论</a></li><li class="chapter-item expanded "><a href="../../Part2/二. 指令系统/二. 指令系统.html" class="active"><strong aria-hidden="true">4.</strong> 指令系统</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/中央处理器.html"><strong aria-hidden="true">5.</strong> 中央处理器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/1. 模型机的总体设计/模型机的总体设计.html"><strong aria-hidden="true">5.1.</strong> 模型机的总体设计</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html"><strong aria-hidden="true">5.2.</strong> 运算部件与运算器</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/3. 模型机的组合逻辑控制器/模型机的组合逻辑控制器.html"><strong aria-hidden="true">5.3.</strong> 模型机的组合逻辑控制器</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html"><strong aria-hidden="true">5.4.</strong> 模型机的微程序控制器</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/存储子系统.html"><strong aria-hidden="true">6.</strong> 存储子系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/1. 概述/概述.html"><strong aria-hidden="true">6.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/2. 半导体存储原理/半导体存储原理.html"><strong aria-hidden="true">6.2.</strong> 半导体存储原理</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html"><strong aria-hidden="true">6.3.</strong> 主存储器组织</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/一. 主存储器的逻辑设计/一. 主存储器的逻辑设计.html"><strong aria-hidden="true">6.3.1.</strong> 主存储器的逻辑设计</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/二.动态存储器的刷新/动态存储器的刷新.html"><strong aria-hidden="true">6.3.2.</strong> 动态存储器的刷新</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html"><strong aria-hidden="true">6.3.3.</strong> 主存储器的校验方法</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 磁表面存储器</div></li></ol></li><li class="chapter-item expanded "><a href="../../Part2/五. 输入输出子系统/输入输出系统.html"><strong aria-hidden="true">7.</strong> 输入输出系统</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 3</li><li class="chapter-item expanded "><a href="../../Part3/一. 微型计算机概述/微型计算机概述.html"><strong aria-hidden="true">8.</strong> 微型计算机概述</a></li><li class="chapter-item expanded "><a href="../../Part3/二. 微处理器/微处理器.html"><strong aria-hidden="true">9.</strong> 微处理器</a></li><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/8086-8088指令系统.html"><strong aria-hidden="true">10.</strong> 8086-8088指令系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/1. 概述/概述.html"><strong aria-hidden="true">10.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html"><strong aria-hidden="true">10.2.</strong> 寻址方式</a></li><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/3. 指令系统/指令系统.html"><strong aria-hidden="true">10.3.</strong> 指令系统</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html"><strong aria-hidden="true">11.</strong> 汇编语言程序设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/1. 汇编语言基础/汇编语言基础.html"><strong aria-hidden="true">11.1.</strong> 汇编语言基础</a></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html"><strong aria-hidden="true">11.2.</strong> 常用伪指令</a></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/3. DOS功能调用/DOS功能调用.html"><strong aria-hidden="true">11.3.</strong> DOS功能调用</a></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/4. 汇编程序设计基础/汇编程序设计基础.html"><strong aria-hidden="true">11.4.</strong> 汇编程序设计基础</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/输入输出及中断技术.html"><strong aria-hidden="true">12.</strong> 输入输出及中断技术</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html"><strong aria-hidden="true">12.1.</strong> IO系统概述</a></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/2. 简单接口电路及应用/简单接口电路及应用.html"><strong aria-hidden="true">12.2.</strong> 简单接口电路及应用</a></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html"><strong aria-hidden="true">12.3.</strong> 8086-8088中断系统</a></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/4. 中断控制器8259A/中断控制器8259A.html"><strong aria-hidden="true">12.4.</strong> 中断控制器8259A</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机系统结构</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="指令系统"><a class="header" href="#指令系统">指令系统</a></h1>
+<h2 id="引言"><a class="header" href="#引言">引言</a></h2>
+<p>计算机的工作, 体现为<font color=red>指令的执行</font>, 可包含如下步骤:</p>
+<ol>
+<li><font color=blue>取指令:</font> 从主存储器中取指令到CPU</li>
+<li><font color=blue>执行指令:</font> 在CPU内部执行指令(CPU可能还要从主存中去获取操作数)</li>
+<li><font color=blue>存储结果:</font> 将执行结果送回存储器</li>
+</ol>
+<p><font color=blue>指令:</font>一系列按照某种规律有序排列的, 能被CPU识别、执行的二进制代码<br />
+<font color=blue>指令系统(指令集):</font>一台计算机所能执行的所有指令的集合<br />
+<font color=red>指令系统是计算机软硬件之间的界面</font></p>
+<p><strong><font color=red>CISC(Complex Instruction Set Computer)</font></strong></p>
+<p>指令集庞大, 指令功能复杂, 指令格式多变, 寻址方式多, 执行时间差异大, 大部分指令都可以访问存储器</p>
+<p><strong><font color=red>RISC(Reduced Instruction Set Computer)</font></strong></p>
+<p>精简指令数量, 指令类型少, 格式统一, 寻址方式简单, 设置专门的访存指令</p>
+<h2 id="指令格式"><a class="header" href="#指令格式">指令格式</a></h2>
+<h3 id="1-指令基本格式"><a class="header" href="#1-指令基本格式">1. 指令基本格式</a></h3>
+<p>一条指令提供两方面的信息:</p>
+<ul>
+<li><font color=blue>与CPU操作有关的信息---操作码 (OP)</font></li>
+<li><font color=blue>与操作数有关的信息---地址码</font></li>
+</ul>
+<p>指令的基本格式:</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/instructure.png" alt="instructure" /></p>
+<p><font color=red>注：一条指令中的操作码OP</font> <em>有且仅有一个</em>,
+<font color=red>而地址码A可有0、1、2、3、4个</font></p>
+<p>指令设计的时候需要考虑的主要问题:</p>
+<ol>
+<li><font color=red>指令字长:</font> 固定字长? 可变字长?</li>
+<li><font color=red>操作码:</font> 位置、位数固定?可扩展?</li>
+<li><font color=red>地址码:</font> 在指令中直接给出哪些地址?哪些地址是系统隐含约定的?</li>
+<li><font color=red>寻址方式:</font> <font color=red>根据地址码如何获取最终的操作数?(如何寻址?)</font></li>
+</ol>
+<h3 id="2-指令字长"><a class="header" href="#2-指令字长">2. 指令字长</a></h3>
+<ul>
+<li>定长指令格式: <font color=green>便于控制</font> <font color=red>存储空间利用率不佳</font></li>
+<li>变长指令格式: <font color=green>合理利用存储空间</font></li>
+</ul>
+<p>增加指令字长可丰富指令功能, 但存在如下问题:</p>
+<ul>
+<li>占用存储空间大</li>
+<li>从主存中取指令时间长</li>
+<li>指令执行速度慢(因为上一条)</li>
+</ul>
+<h3 id="3-操作码结构"><a class="header" href="#3-操作码结构">3. 操作码结构</a></h3>
+<p><font color=red>操作码的位数</font>决定了操作类型的多少</p>
+<h4 id="1-定长操作码"><a class="header" href="#1-定长操作码">(1) 定长操作码</a></h4>
+<p>指令长度比较长时, 操作码位置、位数固定, 一般在指令的高位</p>
+<h4 id="2-扩展操作码"><a class="header" href="#2-扩展操作码">(2) 扩展操作码</a></h4>
+<p>指令长度比较短时, 操作码位置、位数不固定, 用扩展标志表示</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%A0%81%E5%AE%9E%E4%BE%8B.png" alt="扩展操作码实例" /></p>
+<h4 id="3-方式码"><a class="header" href="#3-方式码">(3) 方式码</a></h4>
+<p>操作码分为几个部分, 每部分表示一种操作</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/%E6%96%B9%E5%BC%8F%E7%A0%81.png" alt="方式码" /></p>
+<h3 id="4-指令中所需操作数的地址形式-important"><a class="header" href="#4-指令中所需操作数的地址形式-important">4. 指令中所需操作数的地址形式 IMPORTANT</a></h3>
+<h4 id="地址"><a class="header" href="#地址">地址</a></h4>
+<h5 id="1-显地址"><a class="header" href="#1-显地址">(1) 显地址</a></h5>
+<p>在指令中显示地给出地址码, 如主存储单元号或CPU的寄存器编号, 例如：<code>ADD AX, BX</code></p>
+<h5 id="2-隐地址"><a class="header" href="#2-隐地址">(2) 隐地址</a></h5>
+<p>指令中并不给出地址码,而以隐含的方式约定, 例如：<code>PUSH AX</code></p>
+<blockquote>
+<p>压栈(<code>PUSH</code>)本身需要两个操作, 实际上隐含一个操作数, 由一个寄存器<code>SP</code>标示</p>
+</blockquote>
+<p><font color=blue>简化地址结构</font>的基本途径：<font color=red>尽量使用隐地址</font></p>
+<h4 id="地址结构"><a class="header" href="#地址结构">地址结构</a></h4>
+<p><font color=blue>地址结构:</font>
+在指令中明确给出<font color=red>几个</font>地址, 给出<font color=red>哪些</font>地址</p>
+<h5 id="1-四地址指令"><a class="header" href="#1-四地址指令">(1) 四地址指令</a></h5>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/four-addr.png" alt="四地址" /></p>
+<h5 id="2-三地址指令"><a class="header" href="#2-三地址指令">(2) 三地址指令</a></h5>
+<p>四地址指令 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 三地址指令: <font color=blue>下条指令地址使用隐地址</font></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/three-addr.png" alt="三地址" /></p>
+<blockquote>
+<p>n: 当前指令占用地址长度</p>
+</blockquote>
+<h5 id="3-二地址指令"><a class="header" href="#3-二地址指令">(3) 二地址指令</a></h5>
+<p>多数情况下, 两个操作数运算后至少有一个数不再使用, 因而不需要保留</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/two-addr.png" alt="两地址" /></p>
+<h5 id="4-一地址指令"><a class="header" href="#4-一地址指令">(4) 一地址指令</a></h5>
+<p>a). 隐含约定<font color=red>目的地</font>的双操作数指令</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/one-addr-1.png" alt="一地址-1" /></p>
+<p>例子中<code>DX:AX</code>指高位存在<code>DX</code>, 低位存在<code>AX</code></p>
+<p>b).<font color=red> 只有目的操作数</font>的单操作数指令</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/one-addr-2.png" alt="一地址-2" /></p>
+<p><code>BL</code>指<code>BX</code>的低字节</p>
+<h5 id="5-零地址指令"><a class="header" href="#5-零地址指令">(5). 零地址指令</a></h5>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/zero-addr.png" alt="零地址" /></p>
+<p><code>CLC</code> 将前一条指令的运行结果的flag放进<code>CF</code>, 如 <em>是否进位</em> 等</p>
+<h2 id="指令寻址方式-important"><a class="header" href="#指令寻址方式-important">指令寻址方式 IMPORTANT</a></h2>
+<h3 id="操作数存储位置"><a class="header" href="#操作数存储位置">操作数存储位置</a></h3>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/data-storage-posistion.png" alt="数据存储位置" /></p>
+<p>CPU能够<font color=red>直接访问</font>的操作数在 <em>CPU内寄存器</em>、<em>主存储器(含Cache及接口寄存器访问)</em></p>
+<p>由于主存储器容量远远大于CPU内的寄存器的容量, 因此<font color=red>CPU能直接访问的操作数主要存放在主存储器</font></p>
+<h3 id="寻址方式"><a class="header" href="#寻址方式">寻址方式</a></h3>
+<p>规定如何解释地址码, 以及找到操作数</p>
+<p>可分为四大类, 其他的寻址方式是他们的变型和组合</p>
+<blockquote>
+<p>注: 寄存器<font color=red>型</font>仅表示指令中的地址码是寄存器编号/名字</p>
+</blockquote>
+<h4 id="1-立即寻址方式"><a class="header" href="#1-立即寻址方式">1. 立即寻址方式</a></h4>
+<p>指令中直接给出操作数, 即在取出指令的同时也就取出了可以立即使用的操作数</p>
+<blockquote>
+<p>例: <code>MOV AX, 1234H</code></p>
+</blockquote>
+<p>常用于提供初值;</p>
+<p><font color=green>速度快</font>; <font color=red>灵活性差(数值无法改变, 数据受限于地址码的位数)</font></p>
+<h4 id="2-直接寻址方式绝对地址"><a class="header" href="#2-直接寻址方式绝对地址">2. 直接寻址方式(绝对地址)</a></h4>
+<p>由指令直接给出操作数地址(存储单元号或寄存器号)</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>存储器直接寻址</th><th>寄存器直接寻址</th></tr></thead><tbody>
+<tr><td>是否访存</td><td>访存一次</td><td>不访存</td></tr>
+<tr><td>速度</td><td>慢</td><td>快</td></tr>
+<tr><td>地址位数</td><td>多</td><td>少</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p><font color=darkcyan>注意</font>：减少指令中地址数目与减少一个地址码的位数是两个不同的概念<br />
+采用<font color=red>隐地址</font>可以减少指令中地址的数目;
+采用<font color=blue>寄存器型寻址</font>可以使指令中一个地址码的位数减少<br />
+两种方式均<font color=red>减少了指令长度</font></p>
+</blockquote>
+<h5 id="1-主存直接寻址方式"><a class="header" href="#1-主存直接寻址方式">(1). (主存)直接寻址方式</a></h5>
+<p><font color=red>操作数存放在主存单元中</font>, 指令中给出的地址吗是主存的单元号</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E4%B8%BB%E5%AD%98%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png" alt="主存直接寻址" /></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E4%B8%BB%E5%AD%98%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%802.png" alt="主存直接寻址2" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E4%B8%BB%E5%AD%98%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80-%E4%BE%8B.png" alt="主存直接寻址-例" /></p>
+</blockquote>
+<h5 id="2-寄存器直接寻址方式"><a class="header" href="#2-寄存器直接寻址方式">(2). 寄存器直接寻址方式</a></h5>
+<p><font color=red>操作数放在寄存器中</font>, 指令中给出的地址码是寄存器名称/编号</p>
+<blockquote>
+<p>例如, 模型机CPU的可编址寄存器编号可分配如下：<code>R0＝000</code>, <code>R1＝001</code>, <code>R2＝010</code>, <code>R3＝011</code>, <code>SP=100</code>, <code>PSW=101(存放程序执行中的控制标志, IBM中的flags, 如进位等)</code>, <code>PC=111</code>等</p>
+</blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%AF%84%E5%AD%98%E5%99%A8%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png" alt="寄存器直接寻址方式" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%AF%84%E5%AD%98%E5%99%A8%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F-%E4%BE%8B.png" alt="寄存器直接寻址方式-例" /></p>
+</blockquote>
+<h4 id="3-间接寻址"><a class="header" href="#3-间接寻址">3. 间接寻址</a></h4>
+<p><font color=orange>间接寻址类的操作数 都在主存储器中, 寻址过程中要先得到操作数所在主存单元的地址</font></p>
+<ul>
+<li><font color=blue>直接地址</font>: 操作数所在单元的地址</li>
+<li><font color=blue>简介地址</font>: 操作数<font color=red>地址</font>所在的单元的地址</li>
+<li><font color=blue>间址单元</font>: 存放操作数地址的存储单元</li>
+</ul>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.png" alt="间接寻址内存结构" /></p>
+<h5 id="1-主存间接寻址方式"><a class="header" href="#1-主存间接寻址方式">(1) 主存间接寻址方式</a></h5>
+<p>指令中给出的地址码是间接地址</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E4%B8%BB%E5%AD%98%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png" alt="主存间接寻址" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E4%B8%BB%E5%AD%98%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80-%E4%BE%8B.png" alt="主存间接寻址-例" /></p>
+</blockquote>
+<h5 id="2-寄存器间接寻址"><a class="header" href="#2-寄存器间接寻址">(2) 寄存器间接寻址</a></h5>
+<p>指令中给出的地址码是<font color=orange>寄存器编号, 寄存器中存放操作数地址</font></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80.png" alt="寄存器间接寻址" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80-%E4%BE%8B.png" alt="寄存器间接寻址-例" /></p>
+</blockquote>
+<p><font color=blue>采用寄存器间址方式, 可以减少指令中的地址码长度</font></p>
+<p>例如：<code>MOV AX, [BX] ; MOV AX, DS：[BX]</code></p>
+<h5 id="3-自增型寄存器间址方式"><a class="header" href="#3-自增型寄存器间址方式">(3) 自增型寄存器间址方式</a></h5>
+<p><font color="red">寄存器间址</font>的一种变型</p>
+<p>按照寄存器间址方式获取操作数后, <font color="red">寄存器本身的内容加1</font></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E8%87%AA%E5%A2%9E%E5%9E%8B%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E5%9D%80%E6%96%B9%E5%BC%8F.png" alt="自增型寄存器间址方式" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E8%87%AA%E5%A2%9E%E5%9E%8B%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E5%9D%80%E6%96%B9%E5%BC%8F-%E4%BE%8B.png" alt="自增型寄存器间址方式-例" /></p>
+</blockquote>
+<h5 id="4-自减型寄存器间址方式"><a class="header" href="#4-自减型寄存器间址方式">(4) 自减型寄存器间址方式</a></h5>
+<p><font color="red">寄存器间址</font>的又一种变型; 指定的寄存器内容减1, 然后按照寄存器间址方式获取操作数</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E8%87%AA%E5%87%8F%E5%9E%8B%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E5%9D%80%E6%96%B9%E5%BC%8F.png" alt="自减型寄存器间址方式" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E8%87%AA%E5%A2%9E%E5%9E%8B%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E5%9D%80%E6%96%B9%E5%BC%8F-%E4%BE%8B.png" alt="自减型寄存器间址方式-例" /></p>
+</blockquote>
+<h5 id="5-堆栈寻址"><a class="header" href="#5-堆栈寻址">(5) 堆栈寻址</a></h5>
+<h6 id="堆栈"><a class="header" href="#堆栈">堆栈</a></h6>
+<p><font color=blue>堆栈</font>是一段特殊的存储空间, 以向上生成（从高地址向低地址方向存放数据）方式为例</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%90%91%E4%B8%8A%E7%94%9F%E6%88%90%E7%9A%84%E6%A0%88.png" alt="向上生成的堆栈" /></p>
+<p><font color=red>当然也有向下生成的堆栈</font></p>
+<p><font color=orange>堆栈寻址：堆栈指针SP作为间址寄存器, 可以是隐含约定, 也可显示方式</font></p>
+<p><strong>注意</strong> <font color=red>栈顶包含数据</font></p>
+<ol>
+<li>隐式寻址</li>
+</ol>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E9%9A%90%E5%BC%8F%E5%AF%BB%E5%9D%80.png" alt="隐式寻址" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E9%9A%90%E5%BC%8F%E5%AF%BB%E5%9D%80-%E4%BE%8B1.png" alt="隐式寻址-例1" /><br />
+<img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E9%9A%90%E5%BC%8F%E5%AF%BB%E5%9D%80-%E4%BE%8B2.png" alt="隐式寻址-例2" />
+<img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E9%9A%90%E5%BC%8F%E5%AF%BB%E5%9D%80-%E4%BE%8B3.png" alt="隐式寻址-例3" /></p>
+</blockquote>
+<h4 id="4-变址基址寻址"><a class="header" href="#4-变址基址寻址">4. 变址、基址寻址</a></h4>
+<p>通过计算表示有效地址</p>
+<h5 id="1-变址寻址"><a class="header" href="#1-变址寻址">(1) 变址寻址</a></h5>
+<p>指令中<font color="red">一个</font>地址编码包含两个信息: <font color=red>形式地址<code>D</code></font>、<font color=red>变址寄存器<code>Rx</code></font></p>
+<p>操作数有效地址<code>A=D+(Rx)</code><font color=red>注意是<code>D+&lt;Rx内存的数据&gt;</code>, 而不是<code>D+&lt;Rx的编号&gt;</code></font>, 根据A访问主存储器, 读写操作数</p>
+<p><font color=blue>受限于地址码的位数, 形式地址D的位数较小</font>, 在实际的应用中D可能会放在当前指令的下一个存储单元, 即读了指令后还要读D</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80.png" alt="变址寻址" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80-%E4%BE%8B.png" alt="变址寻址-例" /><br />
+又例:
+<img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80-%E4%BE%8B2.png" alt="变址寻址-例2" /></p>
+</blockquote>
+<h5 id="2-基址寻址"><a class="header" href="#2-基址寻址">(2) 基址寻址</a></h5>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%80.png" alt="基址寻址" /></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%802.png" alt="基址寻址2" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%80-%E4%BE%8B.png" alt="基址寻址-例" /></p>
+</blockquote>
+<h5 id="两者比较"><a class="header" href="#两者比较">两者比较</a></h5>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%9F%BA%E5%9D%80%E5%8F%98%E5%9D%80%E5%B7%AE%E8%B7%9D.png" alt="基址变址差距" /></p>
+<h5 id="基址加变址方式"><a class="header" href="#基址加变址方式">基址加变址方式</a></h5>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%9F%BA%E5%9D%80%E5%8A%A0%E5%8F%98%E5%9D%80.png" alt="基址加变址" /></p>
+<blockquote>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%9F%BA%E5%9D%80%E5%8A%A0%E5%8F%98%E5%9D%80-%E4%BE%8B.png" alt="基址加变址-例" /></p>
+</blockquote>
+<h5 id="4-相对寻址浮动变址"><a class="header" href="#4-相对寻址浮动变址">(4) 相对寻址(浮动变址)</a></h5>
+<p>可当成<font color=orange>基址寻址的特例</font>, PC(程序计数器)作为基址寄存器</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80.png" alt="相对寻址" /></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%802.png" alt="相对寻址2" /></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80-%E4%BE%8B.png" alt="相对寻址-例" /></p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80-%E4%BE%8B2.png" alt="相对寻址-例2" /></p>
+<p>常用于 <em>转移类指令</em></p>
+<h4 id="寻址方式总结"><a class="header" href="#寻址方式总结">寻址方式总结</a></h4>
+<p>以上四类寻址方式,重点弄清楚&quot;<font color="red">数在哪里</font>&quot;(在指令中、在CPU寄存器中、在主存中？)
+① 如果操作数在<font color="orange">主存</font>中, 指令直接给出有效地址还是间接给出地址(寄存器间址、存储单元间址)?
+② 如何通过计算使<font color="red">地址量可变</font> (与变址寄存器内容加、与基址寄存器内容加、与PC内容加或拼接)?</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%931.png" alt="寻址方式总结1" />
+<img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%932.png" alt="寻址方式总结2" />
+<img src="pics/%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F/%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%933.png" alt="寻址方式总结3" /></p>
+<h2 id="指令类型"><a class="header" href="#指令类型">指令类型</a></h2>
+<h3 id="指令分类"><a class="header" href="#指令分类">指令分类</a></h3>
+<p>不同标准:</p>
+<ol>
+<li>指令格式: 双操作数、单操作数、程序转移指令</li>
+<li>操作数寻址方式:
+RR型(寄存器-寄存器)<br />
+RX型(寄存器—变址型)<br />
+RS型(寄存器—存储器型)<br />
+SI型(存储器—立即数型)<br />
+SS型(存储器—存储器型)</li>
+<li>按指令功能分类
+现在的大部分微处理器, 将指令分为:
+<font color="red">传送指令</font><br />
+<font color="red">输入/输出（I/O）指令</font><br />
+运算指令(算术运算\逻辑运算指令)<br />
+程序控制类指令<br />
+处理机控制类指令等</li>
+</ol>
+<h3 id="1-传送指令"><a class="header" href="#1-传送指令">1. 传送指令</a></h3>
+<h4 id="1-一般传送指令"><a class="header" href="#1-一般传送指令">(1) 一般传送指令</a></h4>
+<p>设置传送指令时,需要考虑的问题:</p>
+<ol>
+<li><font color=red>传送范围</font>: 即指令允许数据在什么范围内传送
+<blockquote>
+<p>R <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↔</span></span></span></span> R<br />
+R <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">↔</span></span></span></span> M<br />
+M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> R (读存储器)</p>
+</blockquote>
+</li>
+<li><font color=red>传送单位</font>: 即数据可以按字节、字、双字或数组为单位进行传送</li>
+<li><font color=red>设置寻址方式</font></li>
+</ol>
+<h4 id="2-堆栈指令"><a class="header" href="#2-堆栈指令">(2) 堆栈指令</a></h4>
+<p><font color=red>压栈</font>: 将数据压入堆栈栈顶,  可视为存入数据到主存某一个单元的一个特例<br />
+<font color=red>出栈</font>: 从栈顶弹出数据, 可视为读出主存某一单元中数据的一个特例</p>
+<h4 id="3-数据交换指令"><a class="header" href="#3-数据交换指令">(3) 数据交换指令</a></h4>
+<p>双向数据传送, 即将源操作数与目的操作数(一个字节或一个字)相互交换位置</p>
+<h3 id="输入输出io指令"><a class="header" href="#输入输出io指令">输入输出(IO)指令</a></h3>
+<p>从广义的角度来看, <font color=red>IO设备也是一种传送指令</font>, 只是传送设备的一方为IO设备(外设)</p>
+<h4 id="1-外围设备编址"><a class="header" href="#1-外围设备编址">(1) 外围设备编址</a></h4>
+<h5 id="a-对外围设备单独编址"><a class="header" href="#a-对外围设备单独编址">a. 对外围设备单独编址</a></h5>
+<h6 id="1-单独编址到设备级"><a class="header" href="#1-单独编址到设备级">1) 单独编址到设备级</a></h6>
+<p>早期的做法时为每台外围设备分配一个<font color=red>设备码</font>, 该设备接口中设置有限的寄存器, 例如寄存器A, B, C</p>
+<p>在IO指令中<font color="red">给出设备码</font>, 并<font color=red>指明是哪个寄存器</font></p>
+<h6 id="2-单独编址到寄存器级"><a class="header" href="#2-单独编址到寄存器级">2) 单独编址到寄存器级</a></h6>
+<p>为各IO设备中的有关寄存器分配一种<font color=red>IO端口地址</font>, 即编址到寄存器一级(不用再指定设备码, 直接指定端口地址)</p>
+<blockquote>
+<p>例1:
+IN  AX, 0CH   ; 直接寻址，输入一个字到AX(注意0CH代表某个设备接口中的端口地址(端口号))</p>
+<p>例2:
+MOV  DX, 02ECH  ; 02ECH为端口号<br />
+IN  AX, DX   ; 间接寻址，输入一个字到AX</p>
+</blockquote>
+<h5 id="b-外围设备与主存储器统一编址"><a class="header" href="#b-外围设备与主存储器统一编址">b. 外围设备与主存储器统一编址</a></h5>
+<p>统一<font color=red>编址到寄存器级</font>, 每个外围设备接口中的一个寄存器视作一个主存单元, <font color=red>分配一个存储单元地址(总线地址)</font></p>
+<p>根据指令给出的地址码(根据地址范围之类的), 可以判明是访问主存还是访问外围设备, 是访问哪一个接口的哪一个存储器</p>
+<h5 id="两种方法的比较"><a class="header" href="#两种方法的比较">两种方法的比较</a></h5>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E7%B1%BB%E5%9E%8B/%E5%8D%95%E7%8B%AC%E7%BC%96%E5%9D%80%E4%B8%8E%E7%BB%9F%E4%B8%80%E7%BC%96%E5%9D%80%E7%9A%84%E6%AF%94%E8%BE%83.png" alt="单独编址与统一编址的比较" /></p>
+<h4 id="2-io指令的设置方法"><a class="header" href="#2-io指令的设置方法">(2) IO指令的设置方法</a></h4>
+<h5 id="1-设置专用的io指令"><a class="header" href="#1-设置专用的io指令">1) 设置专用的IO指令</a></h5>
+<p>IN，OUT</p>
+<p>适合外围设备单独编码方式</p>
+<ol>
+<li>如采用<font color="blue">设备编码</font>方式，则I/O指令地址码部分应给出所要访问的外围设备编码，并指定所访问的寄存器</li>
+<li>如果采用<font color="blue">I/O端口地址编码</font>方式，则I/O指令地址段给出端口地址(直接/间接寻址)</li>
+</ol>
+<blockquote>
+<p>直接寻址:<br />
+OUT  20H，AL    ；20H表示端口号
+间接寻址:<br />
+MOV  DX，83FCH  ；83FCH表示端口号
+IN   AL，DX</p>
+</blockquote>
+<h5 id="2-采用通用的数据传送指令实现io操作"><a class="header" href="#2-采用通用的数据传送指令实现io操作">2) 采用通用的数据传送指令实现IO操作</a></h5>
+<p>隐式I/O指令, 适合外围设备(I/O接口寄存器)主存单元统一编址，以相同指令访问存储器和外设</p>
+<blockquote>
+<p>输出操作：MOV n，R0   ; n为接口寄存器编号
+输入操作：MOV R0，n</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Part2/一. 概论/概论.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../Part2/三. 中央处理器/中央处理器.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Part2/一. 概论/概论.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../Part2/三. 中央处理器/中央处理器.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

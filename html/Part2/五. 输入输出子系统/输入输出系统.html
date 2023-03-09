@@ -1,0 +1,763 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>输入输出系统 - 计算机系统结构</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Part 1</li><li class="chapter-item expanded "><a href="../../Part1/一. 计算机中的信息表示.html"><strong aria-hidden="true">1.</strong> 计算机中的信息表示</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part1/计算机中的信息表示/数据性数据的表示方法.html"><strong aria-hidden="true">1.1.</strong> 数据型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../Part1/计算机中的信息表示/字符型数据的表示方法.html"><strong aria-hidden="true">1.2.</strong> 字符型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../Part1/计算机中的信息表示/计算机中信息的物理表示.html"><strong aria-hidden="true">1.3.</strong> 计算机中信息的物理表示</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part1/二. 数字逻辑基础.html"><strong aria-hidden="true">2.</strong> 数字逻辑基础</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 2</li><li class="chapter-item expanded "><a href="../../Part2/一. 概论/概论.html"><strong aria-hidden="true">3.</strong> 概论</a></li><li class="chapter-item expanded "><a href="../../Part2/二. 指令系统/二. 指令系统.html"><strong aria-hidden="true">4.</strong> 指令系统</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/中央处理器.html"><strong aria-hidden="true">5.</strong> 中央处理器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/1. 模型机的总体设计/模型机的总体设计.html"><strong aria-hidden="true">5.1.</strong> 模型机的总体设计</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html"><strong aria-hidden="true">5.2.</strong> 运算部件与运算器</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/3. 模型机的组合逻辑控制器/模型机的组合逻辑控制器.html"><strong aria-hidden="true">5.3.</strong> 模型机的组合逻辑控制器</a></li><li class="chapter-item expanded "><a href="../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html"><strong aria-hidden="true">5.4.</strong> 模型机的微程序控制器</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/存储子系统.html"><strong aria-hidden="true">6.</strong> 存储子系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/1. 概述/概述.html"><strong aria-hidden="true">6.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/2. 半导体存储原理/半导体存储原理.html"><strong aria-hidden="true">6.2.</strong> 半导体存储原理</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html"><strong aria-hidden="true">6.3.</strong> 主存储器组织</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/一. 主存储器的逻辑设计/一. 主存储器的逻辑设计.html"><strong aria-hidden="true">6.3.1.</strong> 主存储器的逻辑设计</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/二.动态存储器的刷新/动态存储器的刷新.html"><strong aria-hidden="true">6.3.2.</strong> 动态存储器的刷新</a></li><li class="chapter-item expanded "><a href="../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html"><strong aria-hidden="true">6.3.3.</strong> 主存储器的校验方法</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 磁表面存储器</div></li></ol></li><li class="chapter-item expanded "><a href="../../Part2/五. 输入输出子系统/输入输出系统.html" class="active"><strong aria-hidden="true">7.</strong> 输入输出系统</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 3</li><li class="chapter-item expanded "><a href="../../Part3/一. 微型计算机概述/微型计算机概述.html"><strong aria-hidden="true">8.</strong> 微型计算机概述</a></li><li class="chapter-item expanded "><a href="../../Part3/二. 微处理器/微处理器.html"><strong aria-hidden="true">9.</strong> 微处理器</a></li><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/8086-8088指令系统.html"><strong aria-hidden="true">10.</strong> 8086-8088指令系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/1. 概述/概述.html"><strong aria-hidden="true">10.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html"><strong aria-hidden="true">10.2.</strong> 寻址方式</a></li><li class="chapter-item expanded "><a href="../../Part3/三. 8086-8088指令系统/3. 指令系统/指令系统.html"><strong aria-hidden="true">10.3.</strong> 指令系统</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html"><strong aria-hidden="true">11.</strong> 汇编语言程序设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/1. 汇编语言基础/汇编语言基础.html"><strong aria-hidden="true">11.1.</strong> 汇编语言基础</a></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html"><strong aria-hidden="true">11.2.</strong> 常用伪指令</a></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/3. DOS功能调用/DOS功能调用.html"><strong aria-hidden="true">11.3.</strong> DOS功能调用</a></li><li class="chapter-item expanded "><a href="../../Part3/四. 汇编语言程序设计/4. 汇编程序设计基础/汇编程序设计基础.html"><strong aria-hidden="true">11.4.</strong> 汇编程序设计基础</a></li></ol></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/输入输出及中断技术.html"><strong aria-hidden="true">12.</strong> 输入输出及中断技术</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html"><strong aria-hidden="true">12.1.</strong> IO系统概述</a></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/2. 简单接口电路及应用/简单接口电路及应用.html"><strong aria-hidden="true">12.2.</strong> 简单接口电路及应用</a></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html"><strong aria-hidden="true">12.3.</strong> 8086-8088中断系统</a></li><li class="chapter-item expanded "><a href="../../Part3/五. 输入输出及中断技术/4. 中断控制器8259A/中断控制器8259A.html"><strong aria-hidden="true">12.4.</strong> 中断控制器8259A</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机系统结构</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="输入输出子系统"><a class="header" href="#输入输出子系统">输入输出子系统</a></h1>
+<h2 id="概述"><a class="header" href="#概述">概述</a></h2>
+<h3 id="一-总线"><a class="header" href="#一-总线">一. 总线</a></h3>
+<h4 id="1-总线定义特点实体"><a class="header" href="#1-总线定义特点实体">1. 总线定义、特点、实体</a></h4>
+<h5 id="定义"><a class="header" href="#定义">定义</a></h5>
+<p>一组能为<font color=green>多个部件</font>分时共享的<font color=green>信息传送线路</font></p>
+<h5 id="特点"><a class="header" href="#特点">特点</a></h5>
+<p><font color=green>分时、共享</font></p>
+<p>发送部件通过三态门控制<font color=orange>分时发送</font>信息, 由打入脉冲将信息送入接受部件</p>
+<h5 id="实体"><a class="header" href="#实体">实体</a></h5>
+<p>一组传送线(数量)与相应控制逻辑</p>
+<ul>
+<li>控制逻辑
+<ul>
+<li>CPU内设置控制逻辑</li>
+<li>设置总线控制器</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-总线分类"><a class="header" href="#2-总线分类">2. 总线分类</a></h4>
+<h5 id="1-按功能层次分类"><a class="header" href="#1-按功能层次分类">(1) 按功能(层次)分类</a></h5>
+<ol>
+<li>CPU内总线——ALU总线<br />
+CPU内芯片与ALU互联的总线</li>
+<li>局部总线——片级总线<br />
+(可有效缓解系统总线的瓶颈问题, 如GPU等)<br />
+插件板内各芯片互联的总线</li>
+<li>系统总线——板级总线<br />
+计算机系统内各功能部件之间, 或各插件板之间互联的总线</li>
+<li>外总线——通信总线<br />
+计算机系统之间, 或计算机系统与其他系统之间的总线</li>
+</ol>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E5%90%84%E6%80%BB%E7%BA%BF.png" alt="各总线示例" /></p>
+<h5 id="2-按时序控制方式划分"><a class="header" href="#2-按时序控制方式划分">(2) 按时序控制方式划分</a></h5>
+<h6 id="a-同步总线"><a class="header" href="#a-同步总线">a. 同步总线</a></h6>
+<p>由<font color="green">统一时序</font>控制总线传送操作</p>
+<p>在固定时钟周期内完成数据传送，由同步脉冲定时打入</p>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E5%90%8C%E6%AD%A5%E6%80%BB%E7%BA%BF%E4%BE%8B.png" alt="同步总线例" /></p>
+<h6 id="b-异步总线"><a class="header" href="#b-异步总线">b. 异步总线</a></h6>
+<p>无固定时钟周期划分，总线周期时间由传送实际需要决定；以<font color="green">异步应答</font>方式控制总线传送操作</p>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BA%BF%E4%BE%8B.png" alt="异步总线例" /></p>
+<p>上图中的主从设备是基于谁拥有总线控制权, 而不是以发送方和接收方的身份决定</p>
+<p>从同步表明信息已发送完成, 可以关闭主同步信号</p>
+<p>根据主、从设备的请求信号、回答信号及设备自身定时的关系，异步应答分为三类</p>
+<ul>
+<li>不互锁:<br />
+<img src="pics/%E6%A6%82%E8%BF%B0/%E5%BC%82%E6%AD%A5-%E4%B8%8D%E4%BA%92%E9%94%81.png" alt="不互锁" /></li>
+<li>半互锁:<br />
+<img src="pics/%E6%A6%82%E8%BF%B0/%E5%8D%8A%E4%BA%92%E9%94%81.png" alt="半互锁" /></li>
+<li>全互锁:<br />
+<img src="pics/%E6%A6%82%E8%BF%B0/%E5%85%A8%E4%BA%92%E9%94%81.png" alt="全互锁" /></li>
+</ul>
+<h5 id="3-扩展同步总线"><a class="header" href="#3-扩展同步总线">(3) 扩展同步总线</a></h5>
+<p>以时钟周期为基础时序，允许总线周期中的时钟数可变</p>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E6%89%A9%E5%B1%95%E5%90%8C%E6%AD%A5%E6%80%BB%E7%BA%BF.png" alt="扩展同步总线" /></p>
+<p>如果在T4时钟周期前发现无法及时完成, 会在T4前插入时钟周期Tw, 如此循环, 直到完成数据传送</p>
+<p>注意插入的时间以时钟周期为基础</p>
+<h5 id="注意概念区分"><a class="header" href="#注意概念区分">注意概念区分</a></h5>
+<ul>
+<li>时钟周期：CPU一步操作(一次数据传送)时间</li>
+<li>总线周期：经过总线的一次数据传送(访存)时间
+<ul>
+<li>通常包含若干时钟周期</li>
+<li>（模型机的一个总线周期只包含一个时钟周期）</li>
+</ul>
+</li>
+<li>工作周期：指令周期中的一个操作阶段
+<ul>
+<li>可包含多个总线周期</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-按数据传送格式划分"><a class="header" href="#3-按数据传送格式划分">(3) 按数据传送格式划分</a></h5>
+<h6 id="并行总线"><a class="header" href="#并行总线">并行总线</a></h6>
+<p>同时传送各位信息</p>
+<h6 id="串行总线"><a class="header" href="#串行总线">串行总线</a></h6>
+<p>分时逐位传送各位信息<br />
+(远距离传送信息)</p>
+<p><font color="green">CPU内总线</font>：同步、并行<br />
+<font color="green">系统总线</font>：同步、异步、扩展同步、并行<br />
+<font color="green">外总线</font>：异步、并行、串行</p>
+<h4 id="3-总线的仲裁"><a class="header" href="#3-总线的仲裁">3. 总线的仲裁</a></h4>
+<p>多个部件同时申请总线使用权时，对总线的使用权进行裁决</p>
+<h5 id="1-集中式仲裁"><a class="header" href="#1-集中式仲裁">(1) 集中式仲裁</a></h5>
+<p><font color=orange>总线控制逻辑集中在中央总裁器</font></p>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E9%9B%86%E4%B8%AD%E5%BC%8F%E4%BB%B2%E8%A3%81.png" alt="集中式仲裁" /></p>
+<h6 id="a-链式查询"><a class="header" href="#a-链式查询">a. 链式查询</a></h6>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2.png" alt="链式查询" /></p>
+<p>总线授权信号被依次串行地传送到所连接的外围设备上进行比较, 确认发送请求的设备</p>
+<p>设备的优先级固定，逻辑距离<font color="green">越近</font>的优先级<font color="green">越高</font></p>
+<h6 id="b-计数器定时查询方式总线仲裁"><a class="header" href="#b-计数器定时查询方式总线仲裁">b. 计数器定时查询方式总线仲裁</a></h6>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E8%AE%A1%E6%95%B0%E5%99%A8%E5%AE%9A%E6%97%B6%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F.png" alt="计数器定时查询" /></p>
+<p>当查询计数器计数值与发出请求的设备编号一致时，中止查询，该设备获总线控制权</p>
+<p>计数器通过总线忙信号确认是否继续进行计数</p>
+<p><font color="green">优先级灵活</font>：计数器初值、设备编号可通过程序设定，优先次序可用程序控制</p>
+<h6 id="c-独立请求方式总线仲裁"><a class="header" href="#c-独立请求方式总线仲裁">c. 独立请求方式总线仲裁</a></h6>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BA%BF%E4%BB%B2%E8%A3%81.png" alt="独立请求" /></p>
+<p>各设备均通过专用请求信号线与仲裁器连接，且通过独立的授权信号线接收总线批准信号</p>
+<p>效率高</p>
+<h5 id="2-分布式仲裁"><a class="header" href="#2-分布式仲裁">(2) 分布式仲裁</a></h5>
+<p>各设备有仲裁电路，需要控制总线时，自行判定是否能获得总线权</p>
+<p><font color="green">缺点</font>：信号线复杂, 设备成本高；<br />
+<font color="green">优点</font>：防止总线时间浪费</p>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%B2%E8%A3%81.png" alt="分布式仲裁" /></p>
+<h4 id="4-总线标准"><a class="header" href="#4-总线标准">4. 总线标准</a></h4>
+<p>对总线物理结构、功能、电气等规范统一规定</p>
+<ul>
+<li><font color="green">物理特性</font>: 如接插头大小、引脚数量、相对位置等</li>
+<li><font color="green">功能特性</font>: 描述每一信号线的功能</li>
+<li><font color="green">电气特性</font>: 如信号传送方向、信号驱动能力、抗干扰能力、信号的正负逻辑等</li>
+<li><font color="green">时间特性</font>: 如信号的有效时间、持续时间等</li>
+</ul>
+<p>常见的总线标准</p>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86.png" alt="常见的总线标准" /></p>
+<p>并行有相互之间的干扰, 故频率高了之后难办</p>
+<h3 id="二-接口功能与类型"><a class="header" href="#二-接口功能与类型">二. 接口功能与类型</a></h3>
+<p>IO 接口指<font color=blue>主机</font>与<font color=blue>外设</font>的交接部分, 位于<font color=blue>系统总线</font>与<font color=blue>外设</font>之间</p>
+<p><img src="pics/%E6%A6%82%E8%BF%B0/%E6%8E%A5%E5%8F%A3.png" alt="接口" /></p>
+<h4 id="1-接口的主要功能"><a class="header" href="#1-接口的主要功能">1. 接口的主要功能</a></h4>
+<h5 id="1-寻址"><a class="header" href="#1-寻址">(1) 寻址</a></h5>
+<p>接受CPU送来的地址码, 选择接口中的寄存器(存有外设传来的数据)</p>
+<h5 id="2-数据缓冲"><a class="header" href="#2-数据缓冲">(2) 数据缓冲</a></h5>
+<p>实现主机(快)与外设(慢)的速度匹配</p>
+<p>缓冲的深度与传送的数据量(一次)(比如硬盘一次一个扇区(KB级别))有关</p>
+<h5 id="3-预处理"><a class="header" href="#3-预处理">(3) 预处理</a></h5>
+<ul>
+<li>串-并格式转换(串行接口)</li>
+<li>数据通路宽度转换(并行接口)</li>
+<li>电平转换</li>
+</ul>
+<blockquote>
+<p>主机内部并行方式, 故需要串行转并行<br />
+并行的位数也可能不同, 于是需要数据通路宽度转换</p>
+</blockquote>
+<h5 id="4-控制逻辑"><a class="header" href="#4-控制逻辑">(4) 控制逻辑</a></h5>
+<p>对CPU发来的控制命令进行解析, 并产生相应的操作命令发送给设备</p>
+<blockquote>
+<p>如CPU对所有外设都是一个统一的READ</p>
+</blockquote>
+<p>将设备状态信息通过总线传送给CPU</p>
+<h4 id="2-接口分类"><a class="header" href="#2-接口分类">2. 接口分类</a></h4>
+<h5 id="1-按数据传送格式划分"><a class="header" href="#1-按数据传送格式划分">(1) 按数据传送格式划分</a></h5>
+<h6 id="a-并行接口"><a class="header" href="#a-并行接口">a. 并行接口</a></h6>
+<p>接口与系统总线、接口、外设<font color=red>均按并行</font>方式传送数据</p>
+<p>数据各位同事传送</p>
+<p>适用于设备本身并行工作, 距离主机较近的场合</p>
+<h6 id="b-串行接口"><a class="header" href="#b-串行接口">b. 串行接口</a></h6>
+<p><font color=red>接口与系统总线并行</font>传送, 接口与外设<font color=red>串行传送</font></p>
+<p>数据<font color=red>逐位分时传送</font></p>
+<p>使用于设备本身串行工作, 或距主机较远, 或需要减少传送线的情况</p>
+<h5 id="2-按时序控制方式划分-1"><a class="header" href="#2-按时序控制方式划分-1">(2) 按时序控制方式划分</a></h5>
+<h6 id="a-同步接口"><a class="header" href="#a-同步接口">a. 同步接口</a></h6>
+<p>接口与系统总线的信息传送由统一时序信号控制</p>
+<h6 id="b-异步接口"><a class="header" href="#b-异步接口">b. 异步接口</a></h6>
+<p>接口与系统总线的信息传送采用异步应答方式</p>
+<h5 id="3-按io传送控制方式划分"><a class="header" href="#3-按io传送控制方式划分">(3) 按IO传送控制方式划分</a></h5>
+<ul>
+<li>a. 直接程序传送接口</li>
+<li>b. 中断接口</li>
+<li>c. DMA接口</li>
+</ul>
+<h3 id="三-io控制方式"><a class="header" href="#三-io控制方式">三. IO控制方式</a></h3>
+<p>主机与外设进行信息交换时，应考虑如下问题：</p>
+<p>(1) CPU启动外设后,在外设做准备期间(如用户按下键盘按键, 键盘将数据送到接口, 或者外设将接口的数据取走), CPU等待外设还是并行执行程序？<br />
+(2) 如果CPU并行执行程序,外设准备好后如何通知CPU?<br />
+(3) I/O操作通过硬件隐指令方式还是软件方式?</p>
+<p>对上述问题的不同方法, 有不同的<font color=red>IO控制方式</font></p>
+<ul>
+<li><font color=green>直接程序传送方式</font></li>
+<li><font color=green>中断方式</font> 重点</li>
+<li><font color=green>DMA方式</font></li>
+</ul>
+<blockquote>
+<p>例子:<br />
+上课时发现话筒没声音, 打电话叫设备管理人员送话筒来</p>
+<ol>
+<li>等着话筒到之后再上课 - 直接程序传送方式</li>
+<li>准备设备时, 继续讲课, 准备好后, 送到后敲门(通知机制), 讲课暂停, 自己去拿话筒 - 中断方式</li>
+<li>准备设备时, 继续讲课, 准备好后, 送给助理, 助理再给老师(有个和助理的交接过程(初始化), 对于中断方式对程序运行的影响更小) - DMA方式</li>
+</ol>
+</blockquote>
+<div class="table-wrapper"><table><thead><tr><th>控制方式</th><th>并行</th><th>随机事件</th><th>控制方式</th></tr></thead><tbody>
+<tr><td>直接程序传送</td><td>NO</td><td>NO</td><td>软件</td></tr>
+<tr><td>中断</td><td>YES</td><td>YES</td><td>软件</td></tr>
+<tr><td>DMA</td><td></td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="直接程序传送方式及接口"><a class="header" href="#直接程序传送方式及接口">直接程序传送方式及接口</a></h2>
+<h3 id="一-无条件直接程序传送方式"><a class="header" href="#一-无条件直接程序传送方式">一. 无条件直接程序传送方式</a></h3>
+<p><strong>假设</strong>执行IO操作时, 外部设备总是准备好</p>
+<p>输入接口示例</p>
+<p>也就是说外部设备总是<strong>已经</strong>将数据输入了缓冲器</p>
+<p><img src="pics/%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F/%E6%97%A0%E6%9D%A1%E4%BB%B6%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F-%E8%BE%93%E5%85%A5%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B.png" alt="输入接口示例" /></p>
+<p>输出接口示例</p>
+<p>无论怎样都把数据向缓冲器输送, 不管是否有数据</p>
+<p><img src="pics/%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F/%E6%97%A0%E6%9D%A1%E4%BB%B6%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F-%E8%BE%93%E5%87%BA%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B.png" alt="输出接口示例" /></p>
+<p>优点: 控制软件及接口电路简单</p>
+<p>缺点: 应用受限</p>
+<h3 id="二-程序查询传送方式条件传送"><a class="header" href="#二-程序查询传送方式条件传送">二. 程序查询传送方式(条件传送)</a></h3>
+<p>外设准备期间, CPU<font color=purple>查询设备状态</font>, 设备准备好(可以送数据/读数据), 则通过IO指令与外设交换一次数据</p>
+<h4 id="1-外设状态"><a class="header" href="#1-外设状态">(1) 外设状态</a></h4>
+<p><img src="pics/%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F/%E6%9D%A1%E4%BB%B6%E4%BC%A0%E9%80%81-%E5%A4%96%E8%AE%BE%E7%8A%B6%E6%80%81.png" alt="外设状态" /></p>
+<p><font color=green>空闲</font>: 调用前, 设备不工作</p>
+<p><font color=green>工作</font>: 送数据到接口或从接口读数据(同接口进行数据交换(读/写), 此时程序等待IO操作完成)</p>
+<p><font color=green>结束</font>: 调用后, 设备完成一次工作(接口已准备好数据/数据已被外设读走)</p>
+<p>在<strong>接口</strong>中设置<font color=green>状态字</font>表示设备状态</p>
+<blockquote>
+<p>再请求: 比如要读入多个按键</p>
+</blockquote>
+<h4 id="2-输入流程"><a class="header" href="#2-输入流程">(2) 输入流程</a></h4>
+<p><img src="pics/%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F/%E8%BE%93%E5%85%A5%E6%B5%81%E7%A8%8B.png" alt="输入流程" /></p>
+<p>输入接口示例</p>
+<p><img src="pics/%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F/%E8%BE%93%E5%85%A5%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B.png" alt="输入接口示例" /></p>
+<h4 id="3-输出流程"><a class="header" href="#3-输出流程">(3) 输出流程</a></h4>
+<p><img src="pics/%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F/%E8%BE%93%E5%87%BA%E6%B5%81%E7%A8%8B.png" alt="输出流程" /></p>
+<p>输出接口示例</p>
+<p><img src="pics/%E7%9B%B4%E6%8E%A5%E7%A8%8B%E5%BA%8F%E4%BC%A0%E9%80%81%E6%96%B9%E5%BC%8F/%E8%BE%93%E5%87%BA%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B.png" alt="输出接口示例" /></p>
+<h4 id="4-缺点"><a class="header" href="#4-缺点">(4) 缺点</a></h4>
+<p>外设准备期间，CPU查询等待,并行程度低</p>
+<p>CPU不能响应来自外部的随机请求(IO操作的时机是固定的)，实时性差</p>
+<h4 id="5-优点"><a class="header" href="#5-优点">(5) 优点</a></h4>
+<p>控制简单, 硬件开销小</p>
+<h4 id="6-应用场合"><a class="header" href="#6-应用场合">(6) 应用场合</a></h4>
+<p>对CPU效率要求不高的场合</p>
+<p>或诊断、调试过程</p>
+<h2 id="中断方式及接口"><a class="header" href="#中断方式及接口">中断方式及接口</a></h2>
+<p>注意中断方式不只用于IO操作</p>
+<p>IMPORTANT</p>
+<h3 id="一-中断基本概念"><a class="header" href="#一-中断基本概念">一. 中断基本概念</a></h3>
+<h4 id="1-定义"><a class="header" href="#1-定义">1. 定义</a></h4>
+<p>CPU<font color="red">暂时中止现行程序的执行</font>，转去执行为某个<font color="red">随机</font>事态服务的<font color="red">中断处理程序</font>，处理完毕后<font color="red">自动恢复原程序</font>的执行</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E5%AE%9A%E4%B9%89.png" alt="定义" /></p>
+<h4 id="2-中断的实质与特点"><a class="header" href="#2-中断的实质与特点">2. 中断的实质与特点</a></h4>
+<h5 id="1-中断的实质"><a class="header" href="#1-中断的实质">(1) 中断的实质</a></h5>
+<p><font color=red>程序切换</font></p>
+<p>切换方法</p>
+<pre><code>1. 保存断点(返回地址压栈保存) (进入中断程序前)  
+2. 保护现场(寄存器数据压栈保存) (中断服务处理前, 进入中断程序后)  
+3. 恢复现场, 返回断点(中断服务处理后, 仍在中断程序中)  
+</code></pre>
+<p>切换时机: <font color=red>一条指令结束时切换</font>, 保证程序的完整性</p>
+<h5 id="2-特点"><a class="header" href="#2-特点">(2) 特点</a></h5>
+<p><font color=red>可处理随机事件</font></p>
+<ul>
+<li>随机事件
+<ul>
+<li>随机发生的事态(<font color=darkred>案件、掉电等</font>)</li>
+<li>有意调用, 随机请求的事态(<font color=darkred>调用打印机</font>)</li>
+<li>随机插入的事态(<font color=darkred>软中断指令</font>, 如<code>INT 21H</code>)</li>
+</ul>
+</li>
+</ul>
+<p>程序切换花费一定时间</p>
+<p>适合中低速IO和随机事件</p>
+<p><font color="darkred">注意</font><font color="red">中断</font><font color="darkred">与</font><font color="red">转子程序</font><font color="darkred">的区别</font></p>
+<blockquote>
+<p>中断处理程序针对随机事件, 调用无固定安排<br />
+转子程序的调用是固定安排的</p>
+</blockquote>
+<h4 id="3-中断分类"><a class="header" href="#3-中断分类">3. 中断分类</a></h4>
+<h5 id="1-硬中断与软中断"><a class="header" href="#1-硬中断与软中断">(1) 硬中断与软中断</a></h5>
+<p>硬中断：由硬件请求信号引发中断</p>
+<p>软中断：由软中断指令(<code>INT n</code>)引发中断</p>
+<h5 id="2-内中断与外中断"><a class="header" href="#2-内中断与外中断">(2) 内中断与外中断</a></h5>
+<p>内外以主机为界</p>
+<ul>
+<li>
+<p>内中断：中断源来自主机内部</p>
+<blockquote>
+<p>比如：除法错、溢出、软中断等</p>
+</blockquote>
+</li>
+<li>
+<p>外中断：中断源来自主机外部，比如打印机等外设</p>
+</li>
+</ul>
+<h5 id="3-可屏蔽中断与非屏蔽中断"><a class="header" href="#3-可屏蔽中断与非屏蔽中断">(3) 可屏蔽中断与非屏蔽中断</a></h5>
+<ul>
+<li>可屏蔽中断：可通过<font color="red">屏蔽字</font>屏蔽<strong>该类</strong>中断请求(一般在接口里, 叫<em>中断屏蔽字寄存器</em><code>IMR</code>)<br />
+关中断(<font color="red">中断允许标志</font><code>IF=0</code>, 一般为<code>PSW</code>的某位)(总开关)时不响应请求</li>
+<li>非屏蔽中断(NMI)：该类中断请求不受屏蔽字影响<br />
+请求的响应与开/关中断无关
+<blockquote>
+<p>即使<code>IF=0</code>也响应<br />
+此类中断一般很重要</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="4-向量中断与非向量中断"><a class="header" href="#4-向量中断与非向量中断">(4) 向量中断与非向量中断</a></h5>
+<p>向量中断：由硬件提供中断服务程序入口地址</p>
+<p>非向量中断：由软件提供中断服务程序入口地址</p>
+<h4 id="4-中断典型应用"><a class="header" href="#4-中断典型应用">4. 中断典型应用</a></h4>
+<ul>
+<li>管理中、低速IO操作</li>
+<li>故障处理</li>
+<li>实时处理
+<blockquote>
+<p>事件发生时及时处理，而不是批量处理<br />
+利用时钟中断定时采集参数，检测，调节</p>
+</blockquote>
+</li>
+<li>人机对话</li>
+<li>多机通信</li>
+</ul>
+<h4 id="5-中断系统的软硬件组织"><a class="header" href="#5-中断系统的软硬件组织">5. 中断系统的软硬件组织</a></h4>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F%E8%BD%AF%E7%A1%AC%E4%BB%B6%E7%BB%84%E7%BB%87.png" alt="软硬件组织" /></p>
+<p>中断向量表: 中断请求源 - 中断服务程序 的映射</p>
+<h5 id="1-中毒请求源"><a class="header" href="#1-中毒请求源">(1) 中毒请求源</a></h5>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82%E6%BA%90.png" alt="中断请求源" /></p>
+<h5 id="2-中断服务程序"><a class="header" href="#2-中断服务程序">(2) 中断服务程序</a></h5>
+<p>响应中断请求后调用的服务程序，对中断事件进行处理</p>
+<h5 id="3-中断向量表中断系统的软硬件界面"><a class="header" href="#3-中断向量表中断系统的软硬件界面">(3) 中断向量表(中断系统的软硬件界面)</a></h5>
+<p><font color=green>中断向量</font>: 中断服务程序的入口地址(还可包含状态字)</p>
+<p><font color=green>中断向量表</font>: 按中断类型码的顺序存放各中断向量，在一段连续的存储区</p>
+<blockquote>
+<p>IBM的机器中会加载到内存最低的1K中</p>
+</blockquote>
+<p><font color=green>向量地址</font>: 访问中断向量表内的中断向量所需的存储单元地址(存放中断向量的存储单元的地址)</p>
+<blockquote>
+<p>模型机的中断向量表
+<img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E6%A8%A1%E5%9E%8B%E6%9C%BA%E7%9A%84%E4%B8%AD%E6%96%AD%E5%90%91%E9%87%8F%E8%A1%A8.png" alt="模型机的中断向量表" /></p>
+<p>IBM PC的中断向量表<br />
+注意图中间的虚线<br />
+IBM PC内的存储单元采用逻辑段的形式
+<img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/IBM%20PC%E4%B8%AD%E6%96%AD%E5%90%91%E9%87%8F%E8%A1%A8.png" alt="IBM PC的中断向量表" />
+IBM PC的中断向量表的划分<br />
+<img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/IBM%20PC%E7%9A%84%E4%B8%AD%E6%96%AD%E5%90%91%E9%87%8F%E8%A1%A8%E7%9A%84%E5%88%92%E5%88%86.png" alt="中断向量表的划分" /></p>
+</blockquote>
+<h3 id="二-中断全过程外中断"><a class="header" href="#二-中断全过程外中断">二. 中断全过程(外中断)</a></h3>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E4%B8%AD%E6%96%AD%E5%85%A8%E8%BF%87%E7%A8%8B-%E5%A4%96%E4%B8%AD%E6%96%AD%E4%B8%BA%E4%BE%8B.png" alt="全过程" /></p>
+<h4 id="1-中断请求信号产生"><a class="header" href="#1-中断请求信号产生">1. 中断请求信号产生</a></h4>
+<ul>
+<li>
+<p>条件</p>
+<ul>
+<li><font color=red>外设工作完成</font>: 接口中“完成”标志为1</li>
+<li><font color=red>CPU允许请求</font>: 屏蔽字中对应的“<font color="red">屏蔽</font>”标志为1</li>
+</ul>
+</li>
+<li>
+<p>“屏蔽”对中断请求信号的产生的影响</p>
+<ul>
+<li>先屏蔽, 后请求<br />
+<img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E5%85%88%E5%B1%8F%E8%94%BD%E5%90%8E%E8%AF%B7%E6%B1%82.png" alt="先屏蔽, 后请求" /></li>
+<li>先请求, 后屏蔽
+<img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E5%85%88%E8%AF%B7%E6%B1%82%E5%90%8E%E5%B1%8F%E8%94%BD.png" alt="先请求, 后屏蔽" /></li>
+</ul>
+</li>
+</ul>
+<h4 id="2-中断请求信号的传送"><a class="header" href="#2-中断请求信号的传送">2. 中断请求信号的传送</a></h4>
+<h5 id="a-使用单独请求线"><a class="header" href="#a-使用单独请求线">a. 使用单独请求线</a></h5>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E5%8D%95%E7%8B%AC%E8%AF%B7%E6%B1%82%E7%BA%BF.png" alt="单独请求线" /></p>
+<p>效率高</p>
+<p>成本高, CPU扩展不易</p>
+<h5 id="b-使用公共请求线"><a class="header" href="#b-使用公共请求线">b. 使用公共请求线</a></h5>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E4%BD%BF%E7%94%A8%E5%85%AC%E5%85%B1%E8%AF%B7%E6%B1%82%E7%BA%BF.png" alt="公共请求线" /></p>
+<p>对CPU影响小, 扩展容易, 成本低</p>
+<p>效率低</p>
+<h5 id="c-采用二维结构"><a class="header" href="#c-采用二维结构">c. 采用二维结构</a></h5>
+<p>折衷方案，不同中断请求线优先级不同</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E4%BA%8C%E7%BB%B4%E7%BB%93%E6%9E%84.png" alt="二维结构" /></p>
+<h5 id="d-混合结构"><a class="header" href="#d-混合结构">d. 混合结构</a></h5>
+<p>如非屏蔽中断请求采用单独请求线, 其他采用公共请求线</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E6%B7%B7%E5%90%88%E7%BB%93%E6%9E%84.png" alt="混合结构" /></p>
+<h4 id="3-中断判优"><a class="header" href="#3-中断判优">3. 中断判优</a></h4>
+<h5 id="1-不同事件的优先级顺序"><a class="header" href="#1-不同事件的优先级顺序">(1) 不同事件的优先级顺序</a></h5>
+<p>故障中断、DMA(实际上不是中断, 但也需要中断来触发)、外中断（先输入后输出）</p>
+<h5 id="2-cpu现行程序与外部请求的判优"><a class="header" href="#2-cpu现行程序与外部请求的判优">(2) CPU现行程序与外部请求的判优</a></h5>
+<ul>
+<li>a. CPU设置中断允许标志<code>IF</code> (模型机)
+<ul>
+<li><code>IF = 0</code> 关中断</li>
+<li><code>IF = 1</code> 开中断</li>
+</ul>
+</li>
+<li>b. CPU设置程序状态字的优先级字段
+<ul>
+<li><font color=blue>为现行程序</font>赋予优先级
+<ul>
+<li>&lt; 外设请求优先级, 相应中断</li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span></span></span></span>等于外设请求优先级, 不相应中断</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-外设请求判优"><a class="header" href="#3-外设请求判优">(3) 外设请求判优</a></h5>
+<h6 id="a-软件判优"><a class="header" href="#a-软件判优">a. 软件判优</a></h6>
+<p>由程序查询确定优先级, 可灵活修改优先级</p>
+<p>CPU只有单根中断请求线</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E8%BD%AF%E4%BB%B6%E5%88%A4%E4%BC%98.png" alt="软件判优" /></p>
+<blockquote>
+<p>左图表明中断请求信号的产生; 右图表明CPU对中断请求信号的处理, 确定中断请求来源<br />
+优先级取决于查询的顺序</p>
+</blockquote>
+<p>灵活性强, 效率低</p>
+<h6 id="b-硬件判优"><a class="header" href="#b-硬件判优">b. 硬件判优</a></h6>
+<ul>
+<li>一种采用独立请求线的并行判优逻辑</li>
+</ul>
+<p>优先级顺序固定, 左边的设备的请求会封锁右边设备的请求</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E4%B8%80%E7%A7%8D%E9%87%87%E7%94%A8%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E7%BA%BF%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%88%A4%E4%BC%98%E9%80%BB%E8%BE%91.png" alt="一种采用独立请求线的并行判优逻辑" /></p>
+<ul>
+<li>链式优先排队逻辑</li>
+</ul>
+<p>CPU只有单根中断请求线, 相比独立请求线, 可以减少传输线路、CPU引脚、且相对容易扩展</p>
+<p>优先级顺序固定</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E9%93%BE%E5%BC%8F%E4%BC%98%E5%85%88%E6%8E%92%E9%98%9F%E9%80%BB%E8%BE%91.png" alt="链式优先排队逻辑" /></p>
+<ul>
+<li>专用芯片判优</li>
+</ul>
+<p><font color=blue>中断控制器</font>(以<font color=red>8259</font>为例)</p>
+<p>中断控制器集中解决请求信号的接收、屏蔽、判优、编码等问题</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/8259%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E5%99%A8.png" alt="8259" /></p>
+<blockquote>
+<p><code>IR</code>用于接受不同中断源的请求信号<br />
+<code>D</code>为数据引脚, 用于接受芯片初始化信息(从CPU)、送出判优结果(中断号)<br />
+<code>A0</code>接地址线(访问芯片寄存器)<br />
+<code>CS</code>片选(访问芯片寄存器)<br />
+<code>RD WR</code>区分读写方向<br />
+<code>SP/EN</code>确定主从芯片<br />
+<code>INT</code>输出(向CPU)中断请求信号<br />
+<code>INTA</code>接受(从CPU输入)中断相应信号</p>
+</blockquote>
+<p>简化的内部结构</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/8259%E5%86%85%E9%83%A8%E7%AE%80%E5%8C%961.png" alt="内部结构1" /></p>
+<blockquote>
+<p>中断服务寄存器: 记录正在处理的中断(有嵌套的情况下, 可能有多位为一)<br />
+左边的例子: 2号请求被屏蔽, 当前正在处理3, 有个4号请求, 由于优先级, 不发新的中断请求<br />
+右边的例子: 没有屏蔽, 2号优先级高于正在服务的3号请求, 如果运行嵌套, 就会发一个2号请求给CPU</p>
+</blockquote>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/8259%E5%86%85%E9%83%A8%E7%AE%80%E5%8C%962.png" alt="内部2" /></p>
+<h4 id="4-中断响应"><a class="header" href="#4-中断响应">4. 中断响应</a></h4>
+<h5 id="1-相应中断的条件"><a class="header" href="#1-相应中断的条件">(1) 相应中断的条件</a></h5>
+<ol>
+<li>有中断请求信号，且未被屏蔽</li>
+<li>CPU处于开中断状态(IF=1)</li>
+<li>没有优先权更高的事件要处理(如故障引起的内部中断，或DMA请求等)</li>
+<li>上一条指令不是停机指令</li>
+<li>在一条指令结束时响应(ET结束之后)</li>
+</ol>
+<h5 id="2-相应过程---以模型机为例"><a class="header" href="#2-相应过程---以模型机为例">(2) 相应过程 - 以模型机为例</a></h5>
+<p>主程序现行指令执行周期(ET)的最后一个节拍，响应INTR请求，向中断源发响应信号<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.13889em;">NT</span><span class="mord mathnormal">A</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></p>
+<p>主程序现行指令结束后进入<font color="red">中断周期（IT）</font>，该周期为一个<font color="red">过渡周期</font>,任务是<font color="red">保存断点、获取中断服务程序入口地址</font></p>
+<ul>
+<li>IT周期的操作流程</li>
+</ul>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/IT%E5%91%A8%E6%9C%9F%E7%9A%84%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B.png" alt="IT周期的操作流程" /></p>
+<ul>
+<li>中断服务程序入口地址获取方式</li>
+</ul>
+<p><font color=orange>向量中断</font>: 由<font color="blue">硬件</font>根据<font color="blue">中断类型号</font>产生向量地址，查询中断向量表，获取中断服务程序的入口地址</p>
+<p><font color=orange>非向量中断</font>: 响应时首先转向中断查询程序，通过<font color="blue">软件查询方式</font>确定中断源，获取相应的中断服务程序入口地址</p>
+<h4 id="5-中断处理"><a class="header" href="#5-中断处理">5. 中断处理</a></h4>
+<p>CPU 执行中断服务程序</p>
+<h5 id="1-单级中断"><a class="header" href="#1-单级中断">(1) 单级中断</a></h5>
+<p>CPU响应后只处理一个中断源的请求，处理完毕后才能响应新的请求</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E5%8D%95%E7%BA%A7%E4%B8%AD%E6%96%AD.png" alt="单级中断" /></p>
+<blockquote>
+<p>不能再返回后开中断, 之后原程序直接继续运行了, 无法及时响应其他中断</p>
+</blockquote>
+<h5 id="2-多重中断"><a class="header" href="#2-多重中断">(2) 多重中断</a></h5>
+<p>在中断服务过程中，允许响应处理更高级别的中断请求</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E5%A4%9A%E9%87%8D%E4%B8%AD%E6%96%AD.png" alt="多重中断" /></p>
+<blockquote>
+<p>开中断1: 之前有关中断<br />
+关中断1: 恢复时不希望受影响<br />
+开中断2: 回到上一级后可以响应新请求</p>
+</blockquote>
+<p>示例:</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E5%85%81%E8%AE%B8%E5%A4%9A%E9%87%8D%E4%B8%AD%E6%96%AD%E7%9A%84%E5%B5%8C%E5%A5%97%E5%BD%A2%E5%BC%8F.png" alt="允许多重中断的嵌套形式" /></p>
+<h3 id="三-中断接口"><a class="header" href="#三-中断接口">三. 中断接口</a></h3>
+<p>接口地址译码也可为寄存器选择</p>
+<p><img src="pics/%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E4%B8%AD%E6%96%AD%E6%8E%A5%E5%8F%A3.png" alt="接口" /></p>
+<blockquote>
+<p>接口板: 每个外部设备都有独立的此部分<br />
+主机板: 放在主板, 外部设备共用</p>
+</blockquote>
+<h4 id="1-组成寄存器级"><a class="header" href="#1-组成寄存器级">1. 组成(寄存器级)</a></h4>
+<h5 id="1-端口地址译码"><a class="header" href="#1-端口地址译码">(1) 端口地址译码</a></h5>
+<p>对接口寄存器寻址</p>
+<h5 id="2-命令字寄存器"><a class="header" href="#2-命令字寄存器">(2) 命令字寄存器</a></h5>
+<p>接收CPU发向外设的命令字，转换为相应操作命令送外设</p>
+<p><font color=darkred>命令字格式拟定</font></p>
+<ul>
+<li>用代码表示各种命令
+<ul>
+<li>代码位数</li>
+<li>代码含义</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-状态字寄存器"><a class="header" href="#3-状态字寄存器">(3) 状态字寄存器</a></h5>
+<p>反映设备和接口运行状态</p>
+<p><font color=darkred>状态字格式的拟定</font></p>
+<p>用代码表示各种状态</p>
+<h5 id="4-数据缓冲器"><a class="header" href="#4-数据缓冲器">(4) 数据缓冲器</a></h5>
+<p>传送数据, 实现缓冲</p>
+<ul>
+<li>
+<p>单向(显示器、打印机)/双向(硬盘)</p>
+</li>
+<li>
+<p>缓冲深度(键盘:一个双字之类的; 打印机: 可能一次一行信息; 显示器: 一帧信息)</p>
+</li>
+</ul>
+<h5 id="5-控制逻辑"><a class="header" href="#5-控制逻辑">(5) 控制逻辑</a></h5>
+<ul>
+<li>请求信号产生逻辑(图中<code>IRQi</code>)</li>
+<li>电平转换逻辑</li>
+<li>串-并转换逻辑(仅串口接口)</li>
+<li>扩展中断源</li>
+</ul>
+<h5 id="6-中断控制器公用"><a class="header" href="#6-中断控制器公用">(6) 中断控制器(公用)</a></h5>
+<ul>
+<li>接受外设请求</li>
+<li>判优</li>
+<li>送出中断请求(送CPU)</li>
+<li>接受中断响应(来自CPU)</li>
+<li>送出中断号(中断类型码)</li>
+</ul>
+<h4 id="2-工作过程外中断"><a class="header" href="#2-工作过程外中断">2. 工作过程(外中断)</a></h4>
+<ol>
+<li>设置工作方式, 送屏蔽字, 送中断号高位(数据线<code>D7-D0</code>有8位, 而 <code>IRQ</code> 共8个,只需要三位, 此时就需要约定使用数据线的哪几位)</li>
+<li>发启动命令(送命令字)启动设备</li>
+<li>设备完成工作,请求中断</li>
+<li>中断控制器汇集各中断请求, 判优, 向CPU送INT, 并形成中断号</li>
+<li>CPU 响应 INT, 发<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.13889em;">NT</span><span class="mord mathnormal">A</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></li>
+<li>中断控制器送出中断号</li>
+<li>CPU执行<font color=red>中断隐指令</font>操作(IT周期), 进入服务程序</li>
+</ol>
+<h2 id="dma-方式及接口"><a class="header" href="#dma-方式及接口">DMA 方式及接口</a></h2>
+<h3 id="一-dma方式基本概念"><a class="header" href="#一-dma方式基本概念">一. DMA方式基本概念</a></h3>
+<h4 id="1-定义-1"><a class="header" href="#1-定义-1">1. 定义</a></h4>
+<p><font color="orange">DMA</font>：直接存储器访问（Direct Memory Access），依靠硬件直接在<font color="orange">主存与外围设备</font>之间进行数据传送，在传送过程中<font color="orange">不需要CPU的干预</font></p>
+<h4 id="2-实质与特点"><a class="header" href="#2-实质与特点">2. 实质与特点</a></h4>
+<p><font color="orange">实质：总线权切换</font>(直接数据传送占用总线, DMA之前CPU要让出总线控制权)(没有程序切换)<br />
+<font color="orange">特点</font>：随机性；并行性(外设准备 以及 数据传送时(这个中断不行))；处理<font color="red">简单</font>批量高速数据传送</p>
+<h4 id="3-典型应用"><a class="header" href="#3-典型应用">3. 典型应用</a></h4>
+<p>主存与高速I/O外设间的简单数据传送，比如：<font color="red">磁盘调用、DRAM自动刷新</font></p>
+<p>实时高速数据采集，比如实时音频、视频采集等</p>
+<ul>
+<li>DMA 响应流程</li>
+</ul>
+<p><img src="pics/DMA%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/DMA%E5%93%8D%E5%BA%94%E6%B5%81%E7%A8%8B.png" alt="DMA响应流程" /></p>
+<blockquote>
+<p>CPU的<code>HOLD</code>引脚接受DMA请求<br />
+上图为模型机的情况, 在实际的机器里, DMA请求的响应不会等到指令执行结束, 一般在总线周期的结束(不绝对, 但一定在一次总线访问结束后, 故DMA不影响程序执行的完整性)</p>
+</blockquote>
+<h3 id="二-dma控制器与接口的连接"><a class="header" href="#二-dma控制器与接口的连接">二. DMA控制器与接口的连接</a></h3>
+<p><img src="pics/DMA%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/DMA%E7%A1%AC%E4%BB%B6%E8%AE%BE%E7%BD%AE.png" alt="硬件设置" /></p>
+<p><img src="pics/DMA%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/DMA%E7%A1%AC%E4%BB%B6%E8%AE%BE%E7%BD%AE2.png" alt="硬件设置2" /></p>
+<h4 id="1-dma控制器功能"><a class="header" href="#1-dma控制器功能">1. DMA控制器功能</a></h4>
+<p><font color=orange>初始化</font>: 接收初始化信息(传送方向、主存首址、交换量)</p>
+<p><font color=orange>传送前</font>: 接收外设DMA请求，判优，向CPU申请总线控制权</p>
+<p><font color=orange>传送期间</font>:接管总线权，发地址、读/写命令</p>
+<h4 id="2-接口信息"><a class="header" href="#2-接口信息">2. 接口信息</a></h4>
+<p><font color=orange>初始化</font>: 接收初始化信息(外设寻址信息)</p>
+<p><font color=orange>传送前, 外设准备好</font>: 向DMA控制器发请求</p>
+<p><font color=orange>传送期间</font>: 传送数据</p>
+<h3 id="磁盘的dma传输过程"><a class="header" href="#磁盘的dma传输过程">磁盘的DMA传输过程</a></h3>
+<p><img src="pics/DMA%E6%96%B9%E5%BC%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3/%E7%A3%81%E7%9B%98%E7%9A%84DMA%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.png" alt="磁盘的DMA传送过程" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../Part3/一. 微型计算机概述/微型计算机概述.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../Part3/一. 微型计算机概述/微型计算机概述.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

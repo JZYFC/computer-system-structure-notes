@@ -1,0 +1,495 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>模型机的组合逻辑控制器 - 计算机系统结构</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Part 1</li><li class="chapter-item expanded "><a href="../../../Part1/一. 计算机中的信息表示.html"><strong aria-hidden="true">1.</strong> 计算机中的信息表示</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/数据性数据的表示方法.html"><strong aria-hidden="true">1.1.</strong> 数据型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/字符型数据的表示方法.html"><strong aria-hidden="true">1.2.</strong> 字符型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/计算机中信息的物理表示.html"><strong aria-hidden="true">1.3.</strong> 计算机中信息的物理表示</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part1/二. 数字逻辑基础.html"><strong aria-hidden="true">2.</strong> 数字逻辑基础</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 2</li><li class="chapter-item expanded "><a href="../../../Part2/一. 概论/概论.html"><strong aria-hidden="true">3.</strong> 概论</a></li><li class="chapter-item expanded "><a href="../../../Part2/二. 指令系统/二. 指令系统.html"><strong aria-hidden="true">4.</strong> 指令系统</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/中央处理器.html"><strong aria-hidden="true">5.</strong> 中央处理器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/1. 模型机的总体设计/模型机的总体设计.html"><strong aria-hidden="true">5.1.</strong> 模型机的总体设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html"><strong aria-hidden="true">5.2.</strong> 运算部件与运算器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/3. 模型机的组合逻辑控制器/模型机的组合逻辑控制器.html" class="active"><strong aria-hidden="true">5.3.</strong> 模型机的组合逻辑控制器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html"><strong aria-hidden="true">5.4.</strong> 模型机的微程序控制器</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/存储子系统.html"><strong aria-hidden="true">6.</strong> 存储子系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/1. 概述/概述.html"><strong aria-hidden="true">6.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/2. 半导体存储原理/半导体存储原理.html"><strong aria-hidden="true">6.2.</strong> 半导体存储原理</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html"><strong aria-hidden="true">6.3.</strong> 主存储器组织</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/一. 主存储器的逻辑设计/一. 主存储器的逻辑设计.html"><strong aria-hidden="true">6.3.1.</strong> 主存储器的逻辑设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/二.动态存储器的刷新/动态存储器的刷新.html"><strong aria-hidden="true">6.3.2.</strong> 动态存储器的刷新</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html"><strong aria-hidden="true">6.3.3.</strong> 主存储器的校验方法</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 磁表面存储器</div></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/五. 输入输出子系统/输入输出系统.html"><strong aria-hidden="true">7.</strong> 输入输出系统</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 3</li><li class="chapter-item expanded "><a href="../../../Part3/一. 微型计算机概述/微型计算机概述.html"><strong aria-hidden="true">8.</strong> 微型计算机概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/二. 微处理器/微处理器.html"><strong aria-hidden="true">9.</strong> 微处理器</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/8086-8088指令系统.html"><strong aria-hidden="true">10.</strong> 8086-8088指令系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/1. 概述/概述.html"><strong aria-hidden="true">10.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html"><strong aria-hidden="true">10.2.</strong> 寻址方式</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/3. 指令系统/指令系统.html"><strong aria-hidden="true">10.3.</strong> 指令系统</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html"><strong aria-hidden="true">11.</strong> 汇编语言程序设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/1. 汇编语言基础/汇编语言基础.html"><strong aria-hidden="true">11.1.</strong> 汇编语言基础</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html"><strong aria-hidden="true">11.2.</strong> 常用伪指令</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/3. DOS功能调用/DOS功能调用.html"><strong aria-hidden="true">11.3.</strong> DOS功能调用</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/4. 汇编程序设计基础/汇编程序设计基础.html"><strong aria-hidden="true">11.4.</strong> 汇编程序设计基础</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/输入输出及中断技术.html"><strong aria-hidden="true">12.</strong> 输入输出及中断技术</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html"><strong aria-hidden="true">12.1.</strong> IO系统概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/2. 简单接口电路及应用/简单接口电路及应用.html"><strong aria-hidden="true">12.2.</strong> 简单接口电路及应用</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html"><strong aria-hidden="true">12.3.</strong> 8086-8088中断系统</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/4. 中断控制器8259A/中断控制器8259A.html"><strong aria-hidden="true">12.4.</strong> 中断控制器8259A</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机系统结构</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="模型机的组合逻辑控制器"><a class="header" href="#模型机的组合逻辑控制器">模型机的组合逻辑控制器</a></h1>
+<h2 id="组合逻辑控制器概述"><a class="header" href="#组合逻辑控制器概述">组合逻辑控制器概述</a></h2>
+<p><font color=blue>定义</font>: 组合逻辑控制器的微命令是由组合逻辑电路实现。每种微命令都需要一组逻辑电路，全机所有微命令所需的逻辑电路就构成了微命令发生器</p>
+<p><font color=blue>硬件组成</font>: <img src="pics/%E7%A1%AC%E4%BB%B6%E7%BB%84%E6%88%90.png" alt="硬件组成" /></p>
+<h2 id="组合逻辑控制器时序系统"><a class="header" href="#组合逻辑控制器时序系统">组合逻辑控制器时序系统</a></h2>
+<p><img src="pics/%E6%97%B6%E5%BA%8F%E7%B3%BB%E7%BB%9F.png" alt="时序系统" /></p>
+<p>模型机的组合逻辑控制器采用<font color="orange">三级时序</font>:
+工作周期（机器周期）、时钟周期（节拍）、工作脉冲<br />
+依靠不同的<font color="orange">时间标志</font>，使CPU分步工作</p>
+<h3 id="三级时序"><a class="header" href="#三级时序">三级时序</a></h3>
+<h4 id="工作周期"><a class="header" href="#工作周期">工作周期</a></h4>
+<p>在指令周期中的某一工作阶段所需的时间，
+称为一个工作周期。不同工作周期长度可能不同</p>
+<h4 id="时钟周期"><a class="header" href="#时钟周期">时钟周期</a></h4>
+<p>是时序系统中最基本的时间分段。各节拍的长度相同</p>
+<h4 id="工作脉冲定时脉冲"><a class="header" href="#工作脉冲定时脉冲">工作脉冲(定时脉冲)</a></h4>
+<p>有的操作如打入R，还需严格的定时脉冲，以确定在哪一刻打入</p>
+<h3 id="1-工作周期"><a class="header" href="#1-工作周期">1. 工作周期</a></h3>
+<p><img src="pics/%E5%B7%A5%E4%BD%9C%E5%91%A8%E6%9C%9F.png" alt="工作周期" /></p>
+<p><font color="orange">黄色</font>: 必定经过
+黑色: 可能经过</p>
+<h4 id="1-取址周期ft"><a class="header" href="#1-取址周期ft">1. 取址周期FT</a></h4>
+<p>从存储器取指令送IR, 并修改PC</p>
+<h4 id="2-源周期st"><a class="header" href="#2-源周期st">2. 源周期ST</a></h4>
+<p>源操作数<font color="red">非寄存器取址(<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>)</font>, 进入ST, 按寻址方式形成源操作数地址, 从主存读取送C</p>
+<h4 id="3-目的周期dt"><a class="header" href="#3-目的周期dt">3. 目的周期DT</a></h4>
+<p>目的操作数<font color="red">非寄存器寻址</font>，则进入DT，按寻址方式形成目的地址送MAR，非传送类指令还需从主存读操作数送D</p>
+<h4 id="4-执行周期et"><a class="header" href="#4-执行周期et">4. 执行周期ET</a></h4>
+<p>根据操作码执行具体操作（传送、运算、转移等），并<strong>将后续指令地址(PC的值)送MAR</strong></p>
+<h4 id="5-dma周期dmat"><a class="header" href="#5-dma周期dmat">5. DMA周期DMAT</a></h4>
+<p>响应DMA请求之后进入DMAT，实现主存与外围设备间的数据直传</p>
+<h4 id="6-中断周期it"><a class="header" href="#6-中断周期it">6. 中断周期IT</a></h4>
+<p>响应中断请求后需要一个过渡周期，为进入中断服务程序做准备，这个过渡周期称为中断周期IT</p>
+<h4 id="工作周期转换"><a class="header" href="#工作周期转换">工作周期转换</a></h4>
+<p><img src="pics/%E5%B7%A5%E4%BD%9C%E5%91%A8%E6%9C%9F%E8%BD%AC%E6%8D%A2.png" alt="工作周期转换" /></p>
+<p>注意可能有多个DMAT, 但只有最多一个IT</p>
+<h5 id="工作周期转换的控制"><a class="header" href="#工作周期转换的控制">工作周期转换的控制</a></h5>
+<p>每个 工作周期 对应一个状态触发器(0 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 1 工作状态开始; 1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 0 工作状态结束), 采用集成D触发器</p>
+<p><img src="pics/%E9%9B%86%E6%88%90D%E8%A7%A6%E5%8F%91%E5%99%A8.png" alt="集成D触发器" /></p>
+<p>同一时刻, 只能有一个工作周期状态触发器为1, 指明当前所在工作周期(每个工作周期都有一个对应的状态触发器)</p>
+<h3 id="2-时钟周期节拍"><a class="header" href="#2-时钟周期节拍">2. 时钟周期(节拍)</a></h3>
+<p>控制一个工作周期内的<font color="orange">分步</font>操作</p>
+<h4 id="1-时钟周期长度"><a class="header" href="#1-时钟周期长度">(1) 时钟周期长度</a></h4>
+<p>模型机以一次<font color="red">访存时间</font>作为时钟周期的长度, 设置为<font color="red">1us</font>, 可执行操作如下</p>
+<ul>
+<li>一次读主存, 并经过内部数据通路传送的操作(异步, 于是一次就行)</li>
+<li>一次内部数据通路传送操作</li>
+<li>一次写主存操作(MDR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> M)(内部数据传到MDR采用同步方式, 故此时钟周期无法继续向主存传数据)</li>
+</ul>
+<h4 id="2-时钟周期计数"><a class="header" href="#2-时钟周期计数">(2) 时钟周期计数</a></h4>
+<p>一个工作周期内可以包含多个时钟周期</p>
+<p>用<font color="red">计数器T</font>进行计数</p>
+<p><img src="pics/%E6%97%B6%E9%92%9F%E5%91%A8%E6%9C%9F%E8%AE%A1%E6%95%B0.png" alt="时钟周期计数" /></p>
+<blockquote>
+<p>如@(R0)+ (部分步骤省略)<br />
+1 R0 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR<br />
+2 R0 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> ALU(+1) <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> R0<br />
+3 M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> C<br />
+4 C <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR<br />
+5 M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR</p>
+</blockquote>
+<h3 id="3-工作脉冲-p"><a class="header" href="#3-工作脉冲-p">3. 工作脉冲 P</a></h3>
+<p>每个时钟周期的末尾设置一个工作脉冲, 作为各种同步脉冲的来源</p>
+<p>同步定时脉冲控制定时操作: 打入寄存器(及写结果)(前沿, 上升沿), 时序切换(后沿, 下降沿)</p>
+<p><img src="pics/%E5%B7%A5%E4%BD%9C%E8%84%89%E5%86%B2.png" alt="工作脉冲" /></p>
+<h2 id="指令流程与操作时间表-important"><a class="header" href="#指令流程与操作时间表-important">指令流程与操作时间表 IMPORTANT</a></h2>
+<p>CPU执行指令的工作机制, 从两个层次分析</p>
+<h3 id="1-指令流程"><a class="header" href="#1-指令流程">1. 指令流程</a></h3>
+<p>在<font color=red>寄存器传送级</font>拟定<font color=red>各类指令的执行流程</font>, 即每一时钟周期完成的具体操作</p>
+<blockquote>
+<p>取指令: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> DB <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> IR, 化简为寄存器传送级: <font color=red>M<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span>IR</font>
+数据传送: R0 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 选择器A <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> ALU <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 移位器 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> 内总线 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> R1, 化简为寄存器传送级: <font color=red>R0 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> R1</font></p>
+</blockquote>
+<h3 id="2-操作时间表"><a class="header" href="#2-操作时间表">2. 操作时间表</a></h3>
+<p>指令流程中各操作所需的<font color=red>微操作命令(电位型、脉冲型)序列</font>, 以及各种微命令的逻辑条件和实践条件</p>
+<h4 id="-cpu内部数据通路操作r之间的数据传送相关微命令"><a class="header" href="#-cpu内部数据通路操作r之间的数据传送相关微命令">☆ CPU内部数据通路操作(R之间的数据传送)相关微命令</a></h4>
+<h5 id="1-alu输入选择"><a class="header" href="#1-alu输入选择">1. ALU输入选择</a></h5>
+<ul>
+<li>
+<p>Ri <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> A (选择寄存器Ri):
+Ri取值：R0、R1、R2、R3，C, D, PC, SP</p>
+</li>
+<li>
+<p>Rj <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> B (选择寄存器Rj):
+Rj取值：R0、R1、R2、R3, C, D, MDR, PSW</p>
+</li>
+</ul>
+<h5 id="2-alu功能选择"><a class="header" href="#2-alu功能选择">2. ALU功能选择</a></h5>
+<p>S0, S1, S2, S3, C0(初始进位), M(算术/逻辑运算)</p>
+<blockquote>
+<p>例: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 不要求记住各组合对应的 ALU 操作</p>
+</blockquote>
+<h5 id="3-移位器功能选择"><a class="header" href="#3-移位器功能选择">3. 移位器功能选择</a></h5>
+<p>直传(DM)、左移(SL)、右移(SR)</p>
+<h5 id="4-结果分配微命令"><a class="header" href="#4-结果分配微命令">4. 结果分配微命令</a></h5>
+<p><font color="orange">脉冲型(CP开头)(同步)，脉冲上升沿将内总线上数据打入寄存器</font>
+CPR0、CPR1、CPR2、CPR3、CPC、CPD、CPMAR、CPPC、CPSP、CPMDR、CPPSW</p>
+<h4 id="-访问主存有关的微命令"><a class="header" href="#-访问主存有关的微命令">☆ 访问主存有关的微命令</a></h4>
+<h5 id="1-读主存"><a class="header" href="#1-读主存">1. 读主存</a></h5>
+<ul>
+<li>EMAR (地址使能微命令, 有效时 MAR 到数据总线的三态门打开)(Enable MAR)</li>
+<li>R (读存储器微命令)(Read)</li>
+<li>SMDR (MDR 置入微命令(异步), 数据从主存经数据总线<font color=orange>置入</font> MDR)</li>
+<li>SIR (IR 置入微命令, 取指令时指令从主存经数据总线<font color=orange>置入</font> IR)</li>
+</ul>
+<p>根据工作周期ST/DT还是FT确定采用哪条微命令</p>
+<h5 id="2-写主存"><a class="header" href="#2-写主存">2. 写主存</a></h5>
+<ul>
+<li>EMAR</li>
+<li>W(写主存微命令)(Write)</li>
+</ul>
+<h4 id="-时序切换微命令"><a class="header" href="#-时序切换微命令">☆ 时序切换微命令</a></h4>
+<ul>
+<li>CPT(每一个时钟周期结束时钟周期计数器计数及清零)</li>
+<li>1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> ST(设置状态触发器ST的D端, 置1), ......(其他状态触发器控制)</li>
+<li>CPST(状态触发器的CP端(时钟信号)), ......(其他状态触发器控制)(与上面那个成对使用)</li>
+</ul>
+<h3 id="具体设计"><a class="header" href="#具体设计">具体设计</a></h3>
+<h4 id="1-取址周期-ft"><a class="header" href="#1-取址周期-ft">1. 取址周期 FT</a></h4>
+<h5 id="1-进入-ft-的方式和条件"><a class="header" href="#1-进入-ft-的方式和条件">(1) 进入 FT 的方式和条件</a></h5>
+<p><img src="pics/%E8%BF%9B%E5%85%A5FT%E7%9A%84%E6%96%B9%E5%BC%8F%E5%92%8C%E6%9D%A1%E4%BB%B6.png" alt="进入FT的方式和条件" /></p>
+<p>由S端异步置入: 此时时钟周期信号还不稳定(具体见图)</p>
+<p>CPFT: 相对正常的脉冲取了个反, 后沿(原为下降沿)</p>
+<h5 id="2-取址流程"><a class="header" href="#2-取址流程">(2) 取址流程</a></h5>
+<p>FT0(FT的第一个时钟周期<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>): <font color=red>M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> IR</font>, PC + 1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC (上面两段路径不重叠, 可以同步进行)</p>
+<h5 id="3-操作时间表"><a class="header" href="#3-操作时间表">(3) 操作时间表</a></h5>
+<p><img src="pics/FT-table1.png" alt="1" /></p>
+<p>到此取址结束, 下面是时序切换</p>
+<p><img src="pics/FT-table2.png" alt="2" /></p>
+<p>下面是工作周期切换, 不同分支, 产生条件在每条微指令的后面以中括号标识, 下面图中第二条微指令的产生条件省略</p>
+<ul>
+<li><img src="pics/FT-table3-1.png" alt="3-1" /></li>
+<li><img src="pics/FT-table3-2.png" alt="3-2" /></li>
+<li><img src="pics/FT-table3-3.png" alt="3-3" /></li>
+</ul>
+<p><img src="pics/FT-table.png" alt="总结" /></p>
+<h4 id="2-传送类指令"><a class="header" href="#2-传送类指令">2. 传送类指令</a></h4>
+<p><img src="pics/%E4%BC%A0%E9%80%81%E7%B1%BB%E6%8C%87%E4%BB%A4.png" alt="传送类指令" /></p>
+<p><img src="pics/%E6%BA%90%E5%91%A8%E6%9C%9F%E6%B5%81%E7%A8%8B.png" alt="源周期流程" /></p>
+<p>注意(R)+, 对Ri的更改放在读M后面, 这是为了在源周期的相同时钟周期内(ST1), 进行相同的操作, 但顺序对结果没有影响; 其他的操作同理</p>
+<h5 id="1-r型"><a class="header" href="#1-r型">(1) (R)型</a></h5>
+<p><img src="pics/(R)%E5%9E%8B.png" alt="(R)" /></p>
+<h5 id="2--r型"><a class="header" href="#2--r型">(2) -(R)型</a></h5>
+<p><img src="pics/-(R).png" alt="-(R)" /></p>
+<h5 id="3-ir型"><a class="header" href="#3-ir型">(3) I/(R)+型</a></h5>
+<p><img src="pics/(R)+.png" alt="I/(R)+" /></p>
+<h5 id="4-r"><a class="header" href="#4-r">(4) @(R)+</a></h5>
+<p><img src="pics/@(R)+.png" alt="@(R)+" />
+<img src="pics/@(R)+2.png" alt="@(R)+2" /></p>
+<h5 id="5-xr"><a class="header" href="#5-xr">(5) X(R)+</a></h5>
+<p><img src="pics/X(R).png" alt="X(R)" />
+<img src="pics/X(R)2.png" alt="X(R)2" /></p>
+<h5 id="设计原则"><a class="header" href="#设计原则">设计原则</a></h5>
+<p>同一时钟周期内，操作内容尽量相同，以便化简微命令时间条件，简化硬件设计</p>
+<h5 id="目的周期指令流程"><a class="header" href="#目的周期指令流程">目的周期指令流程</a></h5>
+<p><img src="pics/%E7%9B%AE%E7%9A%84%E6%8C%87%E4%BB%A4%E6%B5%81%E7%A8%8B.png" alt="目的指令流程" /></p>
+<p>相对上面的源周期指令, 没有送暂存寄存器C的流程(因为不取数, 只准备地址);</p>
+<h5 id="执行周期指令流程"><a class="header" href="#执行周期指令流程">执行周期指令流程</a></h5>
+<p><img src="pics/%E6%89%A7%E8%A1%8C%E5%91%A8%E6%9C%9F%E6%8C%87%E4%BB%A4%E6%B5%81%E7%A8%8B.png" alt="执行周期指令流程" /></p>
+<p>因为在源周期及目的周期(如果有)都准备好数据/地址了, 于是直接读/写</p>
+<p>目的地是非寄存器, 多一次写M的流程</p>
+<p>注意最后一个节拍 PC送MAR</p>
+<h5 id="示例"><a class="header" href="#示例">示例</a></h5>
+<ol>
+<li>
+<p>写出指令流程<code>MOV R0 R1</code>:</p>
+<blockquote>
+<p>FT0: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> IR, PC + 1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC
+<br>
+ET0: R1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> R0<br />
+ET1: PC <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR</p>
+</blockquote>
+</li>
+<li>
+<p><code>MOV (R0) X(R1)</code></p>
+<blockquote>
+<p>FT0: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> IR, PC+1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC
+<br>
+ST0: PC <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR<br />
+ST1: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MDR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> C(形式地址)<br />
+ST2: PC+1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC<br />
+ST3: R1 + C <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR<br />
+ST4: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MDR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> C(源操作数)
+<br>
+DT0: R0 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR
+<br>
+ET0: C <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MDR<br />
+ET1: MDR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> M<br />
+ET2: PC <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="3-双操作数指令"><a class="header" href="#3-双操作数指令">3. 双操作数指令</a></h4>
+<p><font color=blue>目的周期</font>需要取目的操作数送D</p>
+<p><font color=blue>执行周期</font>根据操作码执行具体操作</p>
+<p><img src="pics/%E5%8F%8C%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8C%87%E4%BB%A4.png" alt="双操作数指令" /></p>
+<h5 id="例子"><a class="header" href="#例子">例子</a></h5>
+<p><code>ADD @(R1)+ X(R3)</code></p>
+<p><img src="pics/dual-eg1.png" alt="eg1" /></p>
+<p><img src="pics/dual-eg2.png" alt="eg2" /></p>
+<p><img src="pics/dual-eg3.png" alt="eg3" /></p>
+<p><img src="pics/dual-eg4.png" alt="eg4" /></p>
+<p><img src="pics/dual-eg5.png" alt="eg5" /></p>
+<p><img src="pics/dual-eg6.png" alt="eg6" /></p>
+<p><code>ADD (PC)+ R1</code></p>
+<p><img src="pics/eg2-1.jpg" alt="eg2-1" /></p>
+<p><img src="pics/eg2-2.jpg" alt="eg2-2" /></p>
+<h4 id="4-单操作数指令"><a class="header" href="#4-单操作数指令">4. 单操作数指令</a></h4>
+<p><img src="pics/%E5%8D%95%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8C%87%E4%BB%A4.png" alt="单操作数指令" /></p>
+<h5 id="例子-1"><a class="header" href="#例子-1">例子</a></h5>
+<p><code>COM -(RO)</code>(按位取反)</p>
+<p>FT0: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> IR, PC+1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC<br />
+DT0: R0-1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> R0, MAR<br />
+DT1: M<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MDR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> D<br />
+ET0: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MDR<br />
+ET1: MDR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> M<br />
+ET2: PC <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR</p>
+<h4 id="5-转移返回指令共用操作码"><a class="header" href="#5-转移返回指令共用操作码">5. 转移/返回指令(共用操作码)</a></h4>
+<ul>
+<li><code>JMP</code> 获取转移地址, 安排在ET中</li>
+<li><code>RST</code> 获取返回地址(来自栈顶), 安排在ET中</li>
+</ul>
+<p><code>JMP</code>执行结果有两种</p>
+<ul>
+<li><code>JP</code> 转移条件满足, <font color=blue>转移</font></li>
+<li><code>NJP</code> 转移条件不满足, <font color=blue>不转移, 顺序执行</font>
+<ul>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">PC</span></span></span></span>型, 转移地址在当前指令下一个单元(为了顺序执行, PC要+1)</li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">PC</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>型, 转移地址不在当前指令下一个单元</li>
+</ul>
+</li>
+</ul>
+<p><img src="pics/%E8%BD%AC%E7%A7%BB%E8%BF%94%E5%9B%9E%E6%8C%87%E4%BB%A4.png" alt="转移返回指令" /></p>
+<blockquote>
+<p>SKP: 跳步, 转移地址在下一个单元<br />
+<code>JP</code> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> <code>(R)+</code>方式中, 当<code>R</code>为<code>SP</code>时, 对应<code>RST</code>操作<br />
+注意变指寻址的差异, PC不用再加一</p>
+</blockquote>
+<h5 id="例子-2"><a class="header" href="#例子-2">例子</a></h5>
+<p><code>JMP R0</code></p>
+<p>FT0: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> IR, PC+1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC<br />
+ET0: R0 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC, MAR</p>
+<p><code>RST (SP)+</code>(显式提供堆栈地址)</p>
+<p>FT0: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> IR PC+1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC<br />
+ET0: SP <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR<br />
+ET1: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MDR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC, MAR<br />
+ET2: SP + 1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> SP</p>
+<blockquote>
+<p>PC 送 MAR 在转移类指令不再需要</p>
+</blockquote>
+<h4 id="6-转子指令-jsr"><a class="header" href="#6-转子指令-jsr">6. 转子指令 <code>JSR</code></a></h4>
+<p><img src="pics/JSR.png" alt="JSR" />
+注意在FT内PC已指向下一条指令</p>
+<p>子程序内通过RST返回</p>
+<p><img src="pics/JSR2.png" alt="JSR2" /></p>
+<blockquote>
+<p><code>JSR(R2)</code><br />
+FT0: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR, PC + 1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC<br />
+ST0: R2 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR<br />
+ST1: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MAR <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> C<br />
+ET0: SP-1 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> SP MAR<br />
+ET1: PC <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> MDR<br />
+ET2: M <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> M<br />
+ET3: C <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">→</span></span></span></span> PC MAR</p>
+</blockquote>
+<h2 id="微命令综合与化简"><a class="header" href="#微命令综合与化简">微命令综合与化简</a></h2>
+<p>归纳所有指令执行过程所需微命令，列出微命令与输入信号之间的逻辑关系，并综合化简</p>
+<p><img src="pics/%E5%8C%96%E7%AE%80%E4%BE%8B.png" alt="例" /></p>
+<h3 id="优化思路"><a class="header" href="#优化思路">优化思路</a></h3>
+<ul>
+<li>提取公共逻辑变量，减少引线和元件数目，降低电路冗余</li>
+<li>减少逻辑门级数，减少时延</li>
+</ul>
+<h3 id="电路实现"><a class="header" href="#电路实现">电路实现</a></h3>
+<ul>
+<li>可直接用基本门电路、复合门电路实现，构成控制器的主要实体</li>
+<li>也可用PLA(可编程逻辑阵列)实现</li>
+</ul>
+<h2 id="组合逻辑控制方式的优缺点"><a class="header" href="#组合逻辑控制方式的优缺点">组合逻辑控制方式的优缺点</a></h2>
+<h3 id="优点"><a class="header" href="#优点">优点</a></h3>
+<p>控制信号产生速度快</p>
+<h3 id="缺点"><a class="header" href="#缺点">缺点</a></h3>
+<ul>
+<li>设计不规整：实现各微命令的门电路所需逻辑形态不规整，核心电路繁琐、零乱，设计效率较低</li>
+<li>不易修改或扩展：设计结果用印制电路板（硬连逻辑）固定下来以后，不便于修改或进行功能扩展</li>
+</ul>
+<h2 id="小结"><a class="header" href="#小结">小结</a></h2>
+<ol>
+<li>组合逻辑控制器：直接由硬连逻辑产生微命令</li>
+<li>三级时序：工作周期、时钟周期(节拍)和工作脉冲</li>
+<li>指令流程：每个时钟周期的具体操作(寄存器传送级,重点是传送类、双操作数指令）</li>
+<li>操作时间表：指令执行过程每一步的微命令序列，及各微命令的产生条件</li>
+<li>组合逻辑控制器的优缺点</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

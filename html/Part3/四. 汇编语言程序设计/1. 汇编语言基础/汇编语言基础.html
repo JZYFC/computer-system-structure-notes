@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>汇编语言基础 - 计算机系统结构</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Part 1</li><li class="chapter-item expanded "><a href="../../../Part1/一. 计算机中的信息表示.html"><strong aria-hidden="true">1.</strong> 计算机中的信息表示</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/数据性数据的表示方法.html"><strong aria-hidden="true">1.1.</strong> 数据型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/字符型数据的表示方法.html"><strong aria-hidden="true">1.2.</strong> 字符型数据的表示方法</a></li><li class="chapter-item expanded "><a href="../../../Part1/计算机中的信息表示/计算机中信息的物理表示.html"><strong aria-hidden="true">1.3.</strong> 计算机中信息的物理表示</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part1/二. 数字逻辑基础.html"><strong aria-hidden="true">2.</strong> 数字逻辑基础</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 2</li><li class="chapter-item expanded "><a href="../../../Part2/一. 概论/概论.html"><strong aria-hidden="true">3.</strong> 概论</a></li><li class="chapter-item expanded "><a href="../../../Part2/二. 指令系统/二. 指令系统.html"><strong aria-hidden="true">4.</strong> 指令系统</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/中央处理器.html"><strong aria-hidden="true">5.</strong> 中央处理器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/1. 模型机的总体设计/模型机的总体设计.html"><strong aria-hidden="true">5.1.</strong> 模型机的总体设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/2. 运算部件与运算器/运算部件与运算器.html"><strong aria-hidden="true">5.2.</strong> 运算部件与运算器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/3. 模型机的组合逻辑控制器/模型机的组合逻辑控制器.html"><strong aria-hidden="true">5.3.</strong> 模型机的组合逻辑控制器</a></li><li class="chapter-item expanded "><a href="../../../Part2/三. 中央处理器/4. 模型机的微程序控制器/模型机的微程序控制器.html"><strong aria-hidden="true">5.4.</strong> 模型机的微程序控制器</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/存储子系统.html"><strong aria-hidden="true">6.</strong> 存储子系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/1. 概述/概述.html"><strong aria-hidden="true">6.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/2. 半导体存储原理/半导体存储原理.html"><strong aria-hidden="true">6.2.</strong> 半导体存储原理</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/主存储器组织.html"><strong aria-hidden="true">6.3.</strong> 主存储器组织</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/一. 主存储器的逻辑设计/一. 主存储器的逻辑设计.html"><strong aria-hidden="true">6.3.1.</strong> 主存储器的逻辑设计</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/二.动态存储器的刷新/动态存储器的刷新.html"><strong aria-hidden="true">6.3.2.</strong> 动态存储器的刷新</a></li><li class="chapter-item expanded "><a href="../../../Part2/四. 存储子系统/3. 主存储器组织/三.主存储器的校验方法/主存储器的校验方法.html"><strong aria-hidden="true">6.3.3.</strong> 主存储器的校验方法</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.4.</strong> 磁表面存储器</div></li></ol></li><li class="chapter-item expanded "><a href="../../../Part2/五. 输入输出子系统/输入输出系统.html"><strong aria-hidden="true">7.</strong> 输入输出系统</a></li><li class="chapter-item expanded affix "><li class="part-title">Part 3</li><li class="chapter-item expanded "><a href="../../../Part3/一. 微型计算机概述/微型计算机概述.html"><strong aria-hidden="true">8.</strong> 微型计算机概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/二. 微处理器/微处理器.html"><strong aria-hidden="true">9.</strong> 微处理器</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/8086-8088指令系统.html"><strong aria-hidden="true">10.</strong> 8086-8088指令系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/1. 概述/概述.html"><strong aria-hidden="true">10.1.</strong> 概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/2. 寻址方式/寻址方式.html"><strong aria-hidden="true">10.2.</strong> 寻址方式</a></li><li class="chapter-item expanded "><a href="../../../Part3/三. 8086-8088指令系统/3. 指令系统/指令系统.html"><strong aria-hidden="true">10.3.</strong> 指令系统</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html"><strong aria-hidden="true">11.</strong> 汇编语言程序设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/1. 汇编语言基础/汇编语言基础.html" class="active"><strong aria-hidden="true">11.1.</strong> 汇编语言基础</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html"><strong aria-hidden="true">11.2.</strong> 常用伪指令</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/3. DOS功能调用/DOS功能调用.html"><strong aria-hidden="true">11.3.</strong> DOS功能调用</a></li><li class="chapter-item expanded "><a href="../../../Part3/四. 汇编语言程序设计/4. 汇编程序设计基础/汇编程序设计基础.html"><strong aria-hidden="true">11.4.</strong> 汇编程序设计基础</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/输入输出及中断技术.html"><strong aria-hidden="true">12.</strong> 输入输出及中断技术</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/1. IO系统概述/IO系统概述.html"><strong aria-hidden="true">12.1.</strong> IO系统概述</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/2. 简单接口电路及应用/简单接口电路及应用.html"><strong aria-hidden="true">12.2.</strong> 简单接口电路及应用</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/3. 中断系统/8086-8088中断系统.html"><strong aria-hidden="true">12.3.</strong> 8086-8088中断系统</a></li><li class="chapter-item expanded "><a href="../../../Part3/五. 输入输出及中断技术/4. 中断控制器8259A/中断控制器8259A.html"><strong aria-hidden="true">12.4.</strong> 中断控制器8259A</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机系统结构</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="汇编语言基础"><a class="header" href="#汇编语言基础">汇编语言基础</a></h1>
+<h2 id="一-汇编语句类型"><a class="header" href="#一-汇编语句类型">一. 汇编语句类型</a></h2>
+<h3 id="1-语句类型"><a class="header" href="#1-语句类型">1. 语句类型</a></h3>
+<h4 id="1-指令性语句"><a class="header" href="#1-指令性语句">1) 指令性语句</a></h4>
+<p>在汇编时产生一个可供CPU执行的及其<font color=red>目标代码</font>, 又叫可执行语句</p>
+<p>格式:</p>
+<p><img src="pics/%E6%8C%87%E4%BB%A4%E6%80%A7%E8%AF%AD%E5%8F%A5%E6%A0%BC%E5%BC%8F.png" alt="指令性语句格式" /></p>
+<ul>
+<li><font color="red">指令助记符必须有</font>，操作数个数可以为0，1，2</li>
+<li><font color="red">标号字段可选</font>，后面必须跟“：”。</li>
+<li><font color="red">注释字段可选</font>，以分号“;”开始。
+<ul>
+<li>注释不产生机器目标代码，不影响程序功能。</li>
+<li>注释可以在指令后面，也可以单独一行。</li>
+</ul>
+</li>
+</ul>
+<p>示例:</p>
+<pre><code class="language-asm">         MOV AX, BX      ；双操作数指令
+         INC AX          ；单操作数指令
+         PUSHF           ；隐含操作数
+         MOV  CL, 4
+         ROL  AH, CL
+ LABEL1：ADD  AX，BX    ；功能为AX&lt;=(AX)+(BX)
+         ;后面的程序段完成一次对存储器的访问
+</code></pre>
+<h4 id="2-指示性语句"><a class="header" href="#2-指示性语句">2) 指示性语句</a></h4>
+<p>指示性语句又叫<font color="red">伪指令语句、伪操作</font>语句。</p>
+<p><font color="red">不产生目标代码</font>，用于指示汇编程序如何进行<font color="red">汇编</font>。</p>
+<p>格式:</p>
+<p><img src="pics/%E4%BC%AA%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F.png" alt="Alt text" /></p>
+<pre><code class="language-asm">DATA1 DB 20H   ; 伪指令符DB定义一个字节单元
+END            ; 伪指令END停止汇编      
+</code></pre>
+<h3 id="2-标识符"><a class="header" href="#2-标识符">2. 标识符</a></h3>
+<p>指令语句中的<font color="red">标号</font>和伪指令语句中<font color="red">符号名</font>统称为<strong>标识符</strong></p>
+<h4 id="构成规则"><a class="header" href="#构成规则">构成规则</a></h4>
+<ol>
+<li>由 1-31 个字符组成</li>
+<li><font color=red>第一个字符</font>必须是字母、问号、@、下划线<font color=red>四种字符之一</font></li>
+<li>从第二个字符开始，可以是字母、数字、@ 、 下划线_或问号“？”</li>
+<li>不能使用系统专用的保留字</li>
+</ol>
+<h4 id="专用保留字"><a class="header" href="#专用保留字">专用保留字</a></h4>
+<ul>
+<li>寄存器名</li>
+<li>指令助记符(如ADD)</li>
+<li>伪指令符 如(DB)</li>
+<li>表达式中的运算符(如GE、EQ)以及属性操作符(如PTR、OFFSET等)</li>
+</ul>
+<h2 id="二-数据项"><a class="header" href="#二-数据项">二. 数据项</a></h2>
+<h3 id="1-常量"><a class="header" href="#1-常量">1. 常量</a></h3>
+<p>经过汇编后其值已完全确定，并且在程序运行过程中，其<font color="red">值不会发生变化</font></p>
+<p>常量的类型: <font color="red">数值常量与字符常量</font></p>
+<h4 id="1-数值常量"><a class="header" href="#1-数值常量">1) 数值常量</a></h4>
+<ul>
+<li>二进制数：以字母B结尾，如01001001B</li>
+<li>八进制数：以字母O或Q结尾，如631Q、254O</li>
+<li>十进制数：以字母D结尾，或者没有结尾字母, 如2007D、2007</li>
+<li>十六进制数：以字母H结尾，如3FEH、<font color="red">0</font>F1H</li>
+</ul>
+<blockquote>
+<p>注意最后的十六进制数的零</p>
+</blockquote>
+<h4 id="2-字符串常量"><a class="header" href="#2-字符串常量">2) 字符串常量</a></h4>
+<p>用单引号括起来的一个或多个字符，其值为这些字符的<font color="red">ASCII码</font>值</p>
+<p><img src="pics/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E4%BE%8B%E5%AD%90.png" alt="字符串常量例子" /></p>
+<h4 id="常量的应用"><a class="header" href="#常量的应用">常量的应用</a></h4>
+<ol>
+<li>
+<p>作指令语句的源操作数</p>
+<pre><code class="language-asm">MOV AX, 0B2F0H
+ADD AH, 64H
+</code></pre>
+</li>
+<li>
+<p>存储器操作数中作<font color=red>偏移地址</font>或<font color=red>位移量</font></p>
+<pre><code class="language-asm">MOV  BX，[1200H]
+MOV  0ABH[BX]，CX
+ADC  DX，100H[BP][DI]
+</code></pre>
+</li>
+<li>
+<p>在数据定义伪指令中作变量初值</p>
+<pre><code class="language-asm">DATA1 DB 10H 
+DATA2 DW 3210H
+</code></pre>
+</li>
+</ol>
+<h3 id="2-变量"><a class="header" href="#2-变量">2. 变量</a></h3>
+<p>用来表示存放数据的<font color="red">存储单元</font>，程序运行期间<font color="red">变量值可以被改变</font></p>
+<p>程序中以<font color=red>变量名</font>的形式来访问, 也称为<font color=red>符号地址</font></p>
+<p>例:</p>
+<pre><code class="language-asm">MOV  AH，DATA1   ；DATA1为字节
+MOV  AX，DATA2   ；DATA2为字
+</code></pre>
+<h4 id="变量的属性"><a class="header" href="#变量的属性">变量的属性</a></h4>
+<ul>
+<li>段属性: 变量所在段的<font color=red>段基址</font></li>
+<li>偏移量属性: 表示变量所在单元与起始段单元之间的<font color=red>字节数</font></li>
+</ul>
+<blockquote>
+<p>段属性和偏移量属性构成变量的逻辑地址</p>
+</blockquote>
+<ul>
+<li>类型属性: 表示数据区中存取操作对象的字节数, 有<code>BYTE WORD DWORD QWORD TBYTE</code></li>
+</ul>
+<h3 id="3-标号"><a class="header" href="#3-标号">3. 标号</a></h3>
+<p>标号加在指令的前面，是指令在内存的起始地址的符号表示，即<font color="red">指令地址的别名</font></p>
+<p>标号主要用作<font color="red">转移的目的地</font></p>
+<pre><code class="language-asm">    MOV   CX, 100
+LAB:MOV  AX, BX
+    LOOP  LAB        ; LAB为目标地址
+    JNE    NEXT       ; NEXT为目标地址
+    ……
+NEXT: ……
+</code></pre>
+<h4 id="标号的属性"><a class="header" href="#标号的属性">标号的属性</a></h4>
+<ul>
+<li>段属性：表示该标号所代表的地址在哪个逻辑段中，即<strong>段基址</strong></li>
+<li>偏移量属性：表示该标号所代表的地址在段内与段起始单元间的字节数，即地址的<strong>偏移量</strong></li>
+<li>距离属性（也叫类型属性）：表示该标号可以被<strong>段内</strong>还是<strong>段间</strong>的指令使用</li>
+</ul>
+<blockquote>
+<p>NEAR(近)：只能用作<strong>段内转移/调用</strong>的目标地址<br />
+FAR(远)：可以用作<strong>段间转移/调用</strong>的目标地址</p>
+</blockquote>
+<h2 id="三-表达式与运算符"><a class="header" href="#三-表达式与运算符">三. 表达式与运算符</a></h2>
+<p>表达式是指令或伪指令语句操作数的常见形式,由常数、变量、标号等通过运算符连接而成</p>
+<p>例：</p>
+<p><code>MOV AX，3*5+2</code></p>
+<p><font color="red">表达式的值在程序被汇编的过程中进行计算确定</font></p>
+<h3 id="1-算术运算符"><a class="header" href="#1-算术运算符">1. 算术运算符</a></h3>
+<p>+、-、＊、 / 、MOD</p>
+<h4 id="1-数值运算"><a class="header" href="#1-数值运算">1) 数值运算</a></h4>
+<p>&quot;+&quot;、“-”、“＊”、“/”(整除)、“MOD”(取余)运算符，作用于数值表达式，结果为数值</p>
+<pre><code class="language-asm">NUM = 15＊8；NUM=120
+NUM = NUM/7；NUM=17
+NUM = NUM MOD 3；NUM=2
+NUM = NUM+5；NUM=7
+NUM = -NUM-3；NUM=-10
+NUM = -NUM-NUM；NUM=20
+</code></pre>
+<h4 id="2-地址运算"><a class="header" href="#2-地址运算">2) 地址运算</a></h4>
+<p>“+”、“-” 运算符可作用于地址表达式，表示地址运算。</p>
+<p>例:</p>
+<p>将字数组NUM的第8个字内容送累加器AX</p>
+<p><code>MOV  AX， NUM+(8-1)*2</code></p>
+<h3 id="2-逻辑运算符"><a class="header" href="#2-逻辑运算符">2. 逻辑运算符</a></h3>
+<p><code>NOT AND OR XOR</code> 注意<font color=red>只用于数值表达式, 不是指令</font></p>
+<p><img src="pics/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BE%8B.png" alt="Alt text" /></p>
+<h3 id="3-关系运算符"><a class="header" href="#3-关系运算符">3. 关系运算符</a></h3>
+<p>EQ（等于）、NE（不等于）、LT（小于）、LE（小于等于）、GT（大于）、GE（大于等于）</p>
+<p>比较两个表达式的大小。两个表达式必须<code>同为常数</code>或<code>同一逻辑段中的变量</code></p>
+<ul>
+<li>常量比较，则按无符号数进行比较</li>
+<li>变量比较，则<font color="red">比较偏移量的大小</font></li>
+</ul>
+<p>关系运算的结果为“真”(全1)或“假”(全0)</p>
+<h4 id="关系运算符示例"><a class="header" href="#关系运算符示例">关系运算符示例</a></h4>
+<p><img src="pics/%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E7%A4%BA%E4%BE%8B.png" alt="示例" /></p>
+<h3 id="4-取值运算符"><a class="header" href="#4-取值运算符">4. 取值运算符</a></h3>
+<h4 id="1-seg-运算符"><a class="header" href="#1-seg-运算符">1) <code>SEG</code> 运算符</a></h4>
+<p>取变量或标号所在段的<font color="red">段基址</font></p>
+<h4 id="2-offset-运算符"><a class="header" href="#2-offset-运算符">2) <code>OFFSET</code> 运算符</a></h4>
+<p>取变量或标号在段内的<font color="red">偏移地址</font></p>
+<blockquote>
+<p><code>LEA</code>指令也行</p>
+</blockquote>
+<p><img src="pics/SEG-OFFSET%E4%BE%8B.png" alt="Alt text" /></p>
+<h4 id="3-type-运算符"><a class="header" href="#3-type-运算符">3) <code>TYPE</code> 运算符</a></h4>
+<p>取变量或者标号的类型属性, 用数值表示</p>
+<p><img src="pics/TYPE%E8%BF%90%E7%AE%97%E7%AC%A6.png" alt="TYPE运算符" /></p>
+<h3 id="5-属性修改运算符-ptr"><a class="header" href="#5-属性修改运算符-ptr">5. 属性修改运算符 <code>PTR</code></a></h3>
+<p>PTR用于临时指定标号、变量的“类型”属性。</p>
+<p>格式: <code>类型 PTR 地址表达式</code></p>
+<p><img src="pics/PTR%E4%BE%8B.png" alt="Alt text" /></p>
+<h3 id="6-其他运算符"><a class="header" href="#6-其他运算符">6. 其他运算符</a></h3>
+<ul>
+<li>
+<p>下标运算符 <code>[ ]</code></p>
+<p>格式: 表达式1[表达式2]</p>
+<p>例：<code>MOV   AX，DA_WORD[20H]</code></p>
+</li>
+<li>
+<p>段重设运算符“：”</p>
+<p>例: <code>MOV   AX，ES: [DI]</code></p>
+</li>
+</ul>
+<h2 id="小结"><a class="header" href="#小结">小结</a></h2>
+<ol>
+<li>语句类型及格式：
+<font color="red">指令性语句</font>，汇编后生成目标代码
+<font color="red">指示性(伪指令)语句</font>，不生成目标代码</li>
+<li>数据项与表达式：
+<font color="red">常量</font>：数值常量、字符串常量,无属性，不占存储空间
+<font color="red">变量</font>：作用、属性（段\偏移量\类型属性）
+<font color="red">标号</font>：定义形式，属性（段\偏移量\类型属性）
+<font color="red">表达式</font>：运算符连接数据项，汇编时确定值
+<font color="red">常用运算符</font>：算术运算符、关系运算符、逻辑运算符、取值运算符、属性修改运算符</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Part3/四. 汇编语言程序设计/汇编语言程序设计.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Part3/四. 汇编语言程序设计/2. 常用伪指令/常用伪指令.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
