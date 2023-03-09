@@ -8,5 +8,10 @@ src = "src"
 [build]
 create-missing = false
 
+[output.katex]
+
+[preprocessor.katex]
+renderers = ["html"]
+
 [output.html]
 mathjax-support = true
