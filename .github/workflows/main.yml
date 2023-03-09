@@ -20,7 +20,7 @@ jobs:
           mdbook-version: 'latest'
           
       - name: Install mdbook-katex
-        uses: jaxxstorm/action-install-gh-release@v1.5.0
+        uses: jaxxstorm/action-install-gh-release@v1.9
         with: # Grab the latest version
           repo: lzanini/mdbook-katex
 
@@ -31,4 +31,4 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.TOKEN }}
-          publish_dir: ./book
+          publish_dir: ./book/html
