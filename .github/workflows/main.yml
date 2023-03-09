@@ -18,6 +18,10 @@ jobs:
         with:
 #           mdbook-version: '0.4.10'
           mdbook-version: 'latest'
+          
+      - run: cargo install mdbook-katex
+      
+      - run: cargo install mdbook-pagetoc
 
       - run: mdbook build
 
