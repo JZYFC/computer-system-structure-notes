@@ -19,9 +19,10 @@ jobs:
 #           mdbook-version: '0.4.10'
           mdbook-version: 'latest'
           
-      - run: cargo install mdbook-katex
-      
-      - run: cargo install mdbook-pagetoc
+      - name: Install mdbook-katex
+        uses: jaxxstorm/action-install-gh-release@v1.5.0
+        with: # Grab the latest version
+          repo: lzanini/mdbook-katex
 
       - run: mdbook build
 
